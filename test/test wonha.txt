@@ -1,1 +1,18 @@
 fadsfdfdasafdasfd
+
+
+
+main사용자
+
+wonha사용자 branch
+
+wifi 기능 추가 branch
+
+~~기능 수정 branch
+
+ branch
+
+ add > commit > push > pull request
+
+ pull 최신화해서 가져오는거
+ clone 원본 싹다 복사
