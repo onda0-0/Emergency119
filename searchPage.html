@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>musicList</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="login.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .loginPage {
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+
+        }
+
+        .loginWindow {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .loginPopup {
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+
+            /* 임시 지정 */
+            width: 1000px;
+            height: 700px;
+        }
+        .loginImg {
+            z-index: -1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+        }
+        .loginText {
+            z-index: 15;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+
+        }
+        .loginTextCol {
+            z-index: 15;
+            margin: 0 auto 0 auto;
+            width: 30%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        .btnThemeColor {
+            width: 300px;
+            background-color: aqua;
+            z-index: 100;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button class="btnOpenModal">로그인</button>
+    </div>
+    <div class="full_size"> <!--1번-->
+        <div class="loginPage">
+            <div class="loginWindow">
+                <div class="loginPopup">
+                    <img class="loginImg" src="src/background/login.png">
+                    <div class="loginText">
+                        <div class="loginTextCol">
+                            <input type="text" size="10"/>
+                            <input type="text" size="10"/>
+                            <input type="text" size="10"/>
+                            <button class="btnThemeColor" value="Enter">Enter</button>
+                        </div>
+                        
+                        <div class="loginTextCol">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ------------------------스크립트----------------------------- -->
+    <script type="module" defer>
+        //firebaseDB 세팅
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, doc, deleteDoc, query, limit, collection, addDoc, orderBy, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
+            authDomain: "watual-f9224.firebaseapp.com",
+            projectId: "watual-f9224",
+            storageBucket: "watual-f9224.appspot.com",
+            messagingSenderId: "307021915043",
+            appId: "1:307021915043:web:ec35f5002d695d81a1f016",
+            measurementId: "G-248XS4LSEE"
+        };
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        let docs;
+        // Firebase DB, Table 호출
+        (async () => {
+            docs = await getDocs(collection(db, "rankingidol"));
+            document.addEventListener("DOMContentLoaded", function () {
+                console.log(docs);
+                //index, emptyIndex, 0{createUser, artist, link, music }, 1, 2, ...
+                // docs.playlist.forEach((i) => {
+                //     let dataPlaylist = i.data();
+                //     alert(dataPlaylist);
+                // });
+            });
+        })();
+        $('.btnOpenModal').click(function () {
+            const btnOpenLogin = document.querySelector('.loginPage');
+            alert("asdf");
+            $('loginPage').style.display = "flex";
+        })
+
+        //문서 로드, 함수 호출
+        document.addEventListener("DOMContentLoaded", ready);
+        function ready() {
+
+
+            //function Ready()
+        }
+
+
+
+    </script>
+</body>
+
+</html>

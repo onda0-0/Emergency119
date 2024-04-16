@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>응급9조대</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<script type="module">
+    // Firebase SDK 라이브러리 가져오기
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyB1LgAbTFdpbyOmHTg6U60bFVjSsWZZ2KQ",
+        authDomain: "test1-decaa.firebaseapp.com",
+        projectId: "test1-decaa",
+        storageBucket: "test1-decaa.appspot.com",
+        messagingSenderId: "629960551291",
+        appId: "1:629960551291:web:d57635d3234a59873a2bde",
+        measurementId: "G-C4CG02WP18"
+    };
+
+
+    // Firebase 인스턴스 초기화
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    $("#signbtn").click(async function () {
+
+        let id = $('#id').val();
+        let pw = $('#pw').val();
+        let pwc = $('pwc').val();
+        let name = $('#name').val();
+        let number = $('#number').val();
+        let address = $('#address').val();
+        let email = $('#email').val();
+        let git = $('#git').val();
+        let insta = $('#insta').val();
+
+        let doc = {
+            'id': id,
+            'pw': pw,
+            'pwc': pwc,
+            'name': name,
+            'number': number,
+            'address': address,
+            'email': email,
+            'git': git,
+            'insta': insta
+        }
+
+        if (id === '') {
+            alert('id를 입력하세요.');
+            return false;
+        }
+
+        if (pw === '') {
+            alert('pw를 입력하세요.');
+            return false;
+        }
+
+        if (pw === pwc) {
+            return true;
+        }
+        else{
+            alert('pw를 확인하세요.');
+            return false;
+        }
+
+        await addDoc(collection(db, "user"), doc);
+
+        alert('회원가입 완료!')
+        window.location.reload();
+    })
+
+
+
+
+</script>
+
+<style>
+    body {
+        background-image: url("src/background/login.png");
+        background-size: cover;
+    }
+
+    .Sign {
+        font-size: 200px;
+        color: #BE50C1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100dvh;
+    }
+
+    .Sign-up {
+        font-size: 200px;
+        display: flex;
+        float: left;
+        margin-left: 100px;
+    }
+
+    .info {
+        margin-left: 100px;
+        font-size: 30px;
+    }
+
+    input::placeholder {
+        color: #BE50C1;
+        font-size: 30px;
+    }
+
+    .signbtn {
+        color: #BE50C1;
+        width: 220px;
+        height: 70px;
+        font-size: 30px;
+    }
+
+    .navyBtn {
+        color: #BE50C1;
+        width: 200px;
+        height: 70px;
+        font-size: 30px;
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="Sign">
+            <div class="Sign-up">
+                <h1 class="ID" color: #BE50C1;>
+                    회원가입<br><br>
+                    <input type="text" id="id" name="id" placeholder="아이디 입력"><br><br>
+                    <input type="text" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
+                    <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
+                    <button type="button" class="signbtn" id="signbtn">회원가입 버튼</button>
+                    <button type="button" class="navyBtn" onClick="location.href='login.html'">로그인 버튼</button>
+                </h1><br>
+                <h1 class="info"><br><br>
+                    <input type="text" id="name" name="name" placeholder="이름" size="7">
+                    <input type="text" id="number" name="number" placeholder="전화번호(선택)" size="11"><br><br>
+                    <input type="text" id="address" name="address" placeholder="사는 주소(간략)" size="23"><br><br>
+                    <input type="text" id="email" name="email" placeholder="이메일" size="23"><br><br>
+                    <input type="text" id="git" name="git" placeholder="Git 이메일" size="23"><br><br>
+                    <input type="text" id="insta" name="insta" placeholder="인스타 주소" size="23"><br><br>
+                </h1>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+
+
+</body>
+
+</html>
