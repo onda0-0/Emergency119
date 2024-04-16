@@ -39,9 +39,10 @@
 
         let id = $('#id').val();
         let pw = $('#pw').val();
-        let pwc = $('pwc').val();
+        let pwc = $('#pwc').val();
         let name = $('#name').val();
         let number = $('#number').val();
+        let date = $('#date').val();
         let address = $('#address').val();
         let email = $('#email').val();
         let git = $('#git').val();
@@ -52,6 +53,7 @@
             'pw': pw,
             'pwc': pwc,
             'name': name,
+            'date': date,
             'number': number,
             'address': address,
             'email': email,
@@ -69,18 +71,18 @@
             return false;
         }
 
-        if (pw === pwc) {
-            return true;
-        }
-        else{
-            alert('pw를 확인하세요.');
-            return false;
+        if (pw !== '' && pwc !== '') {
+            if (pw !== pwc){
+                return alert('비밀번호를 확인하세요');
+            } else{
+
+            }
         }
 
         await addDoc(collection(db, "user"), doc);
 
         alert('회원가입 완료!')
-        window.location.reload();
+        location.href='login.html';
     })
 
 
@@ -96,7 +98,7 @@
 
     .Sign {
         font-size: 200px;
-        color: #BE50C1;
+        color: white;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -121,35 +123,35 @@
     }
 
     .signbtn {
-        color: #BE50C1;
-        width: 220px;
-        height: 70px;
+        color: white;
+        background-color: #BE50C1;
         font-size: 30px;
+        width: 450px;
+        height: 50px;
+        border-radius: 10px;
+    }
+    #id,#pw,#pwc,#name,#number,#date,#address,#email,#git,#insta{
+        border-radius: 10px;
     }
 
-    .navyBtn {
-        color: #BE50C1;
-        width: 200px;
-        height: 70px;
-        font-size: 30px;
-    }
+
 </style>
 
 <body>
     <div class="main">
         <div class="Sign">
             <div class="Sign-up">
-                <h1 class="ID" color: #BE50C1;>
-                    회원가입<br><br>
+                <h1 class="ID">
+                    Sign up<br><br>
                     <input type="text" id="id" name="id" placeholder="아이디 입력"><br><br>
                     <input type="text" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
                     <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
-                    <button type="button" class="signbtn" id="signbtn">회원가입 버튼</button>
-                    <button type="button" class="navyBtn" onClick="location.href='login.html'">로그인 버튼</button>
+                    <button type="button" class="signbtn" id="signbtn">Sign up</button>
                 </h1><br>
-                <h1 class="info"><br><br>
+                <h1 class="info"><br>
                     <input type="text" id="name" name="name" placeholder="이름" size="7">
                     <input type="text" id="number" name="number" placeholder="전화번호(선택)" size="11"><br><br>
+                    <input type="text" id="date" name="date" placeholder="생년월일" size="23"><br><br>
                     <input type="text" id="address" name="address" placeholder="사는 주소(간략)" size="23"><br><br>
                     <input type="text" id="email" name="email" placeholder="이메일" size="23"><br><br>
                     <input type="text" id="git" name="git" placeholder="Git 이메일" size="23"><br><br>
