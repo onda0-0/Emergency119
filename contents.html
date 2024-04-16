@@ -16,7 +16,10 @@
         }
 
         body {
+            width: 1200px;
+            height: 700px;
             background-image: url(https://img.freepik.com/free-photo/3d-grunge-room-interior-with-spotlight-and-smoky-atmosphere-background_1048-11333.jpg);
+            background-size: cover;
         }
 
         .header {
@@ -52,7 +55,21 @@
             margin-top: 100px;
         }
 
+        .container:hover {
+            position:relative;
+            animation:ddd .1s infinite;
+            animation-iteration-count: 2;
+        }
+
+        @keyframes ddd { 
+            0% { transform: rotate(-1.5deg); }
+            50% { transform: rotate(1.5deg); }
+            100% { transform: rotate(-1.5deg); }
+        }
+
         .phone {
+            pointer-events: none;
+            position: absolute;
             background-image: url(src/frame/mobile.png);
             background-size: 220px auto;
             background-repeat: no-repeat;
@@ -69,15 +86,21 @@
         }
 
         .member {
+            position: relative;
             background-color: #444444;
             color: white;
 
             width: 200px;
-            height: 370px;
+            height: 390px;
             margin: 20px;
 
             padding: 10px;
             border-radius: 15px;
+        }
+
+        .member_img {
+            width: 160px;
+            height: 200px;
         }
 
         .member_img>img {
@@ -142,7 +165,7 @@
             margin-left: 5px;
             margin-right: 5px;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, #f7eccc 30%, #88bdf3, #feb6aa);
+            background: linear-gradient(45deg, #4F57CE 30%, #B851C2, #F7BA7B);
 
         }
 
@@ -206,29 +229,28 @@
 
             let temp_html = `
             <div class="container">
-                <div class="phone">
+                <div class="member">
 
-                    <div class="member">
-
-                        <div class="member_img">
-                            <img
-                                src="${image}" alt="...">
-                        </div>
-
-                        <div class="member_name">
-                            <h3>${name}</h3>
-                        </div>
-
-                        <div class="member_mbti">
-                            <h4>${mbti}</h4>
-                        </div>
-
-                        <button class="detail" onClick="location.href ='introducePage.html'">
-                            자세히
-                        </button>
+                    <div class="member_img">
+                        <img
+                            src="${image}" alt="...">
                     </div>
 
-                </div>
+                    <div class="member_name">
+                        <h3>${name}</h3>
+                    </div>
+
+                    <div class="member_mbti">
+                         <h4>${mbti}</h4>
+                    </div>
+
+                    <button class="detail" onClick="location.href ='introducePage.html'">
+                        자세히
+                    </button>
+                 </div>
+
+                <div class="phone"></div>
+
             </div>`;
             $('#card').append(temp_html);
         });
@@ -242,12 +264,10 @@
     <div class="main" id="card">
         <!--
         <div class="container">
-
             <div class="member">
 
                 <div class="member_img">
-                    <img
-                        src="https://imgnews.pstatic.net/image/311/2024/04/15/0001714781_001_20240415172801360.jpg?type=w647">
+                    <img src="" alt="...">
                 </div>
 
                 <div class="member_name">
@@ -258,10 +278,12 @@
                     <h4>MBTI</h4>
                 </div>
 
-                <button class="detail">
+                <button class="detail" onClick="location.href ='introducePage.html'">
                     자세히
                 </button>
             </div>
+
+            <div class="phone"></div>
 
         </div>
         -->
@@ -271,7 +293,7 @@
             <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
                 <rect id="shape" height="40" width="150" />
                 <div id="text">
-                    <a href="searchPage.html"><span class="spot"></span>검색!</a>
+                    <a href="searchPage.html"><span class="spot"></span>검색</a>
                 </div>
             </svg>
         </div>
