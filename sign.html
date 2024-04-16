@@ -39,11 +39,44 @@
 
         let id = $('#id').val();
         let pw = $('#pw').val();
+        let pwc = $('pwc').val();
+        let name = $('#name').val();
+        let number = $('#number').val();
+        let address = $('#address').val();
+        let email = $('#email').val();
+        let git = $('#git').val();
+        let insta = $('#insta').val();
 
         let doc = {
             'id': id,
-            'pw': pw
+            'pw': pw,
+            'pwc': pwc,
+            'name': name,
+            'number': number,
+            'address': address,
+            'email': email,
+            'git': git,
+            'insta': insta
         }
+
+        if (id === '') {
+            alert('id를 입력하세요.');
+            return false;
+        }
+
+        if (pw === '') {
+            alert('pw를 입력하세요.');
+            return false;
+        }
+
+        if (pw === pwc) {
+            return true;
+        }
+        else{
+            alert('pw를 확인하세요.');
+            return false;
+        }
+
         await addDoc(collection(db, "user"), doc);
 
         alert('회원가입 완료!')
@@ -89,6 +122,16 @@
 
     .signbtn {
         color: #BE50C1;
+        width: 220px;
+        height: 70px;
+        font-size: 30px;
+    }
+
+    .navyBtn {
+        color: #BE50C1;
+        width: 200px;
+        height: 70px;
+        font-size: 30px;
     }
 </style>
 
@@ -102,14 +145,15 @@
                     <input type="text" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
                     <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
                     <button type="button" class="signbtn" id="signbtn">회원가입 버튼</button>
+                    <button type="button" class="navyBtn" onClick="location.href='login.html'">로그인 버튼</button>
                 </h1><br>
                 <h1 class="info"><br><br>
-                    <input type="text" id="id" name="id" placeholder="이름" size="7">
-                    <input type="text" id="id" name="id" placeholder="전화번호(선택)" size="11"><br><br>
-                    <input type="text" id="id" name="id" placeholder="사는 주소(간략)" size="23"><br><br>
-                    <input type="text" id="id" name="id" placeholder="이메일" size="23"><br><br>
-                    <input type="text" id="id" name="id" placeholder="Git 이메일" size="23"><br><br>
-                    <input type="text" id="id" name="id" placeholder="인스타 주소" size="23"><br><br>
+                    <input type="text" id="name" name="name" placeholder="이름" size="7">
+                    <input type="text" id="number" name="number" placeholder="전화번호(선택)" size="11"><br><br>
+                    <input type="text" id="address" name="address" placeholder="사는 주소(간략)" size="23"><br><br>
+                    <input type="text" id="email" name="email" placeholder="이메일" size="23"><br><br>
+                    <input type="text" id="git" name="git" placeholder="Git 이메일" size="23"><br><br>
+                    <input type="text" id="insta" name="insta" placeholder="인스타 주소" size="23"><br><br>
                 </h1>
 
             </div>
