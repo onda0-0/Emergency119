@@ -34,8 +34,29 @@
         }
 
         .container {
-            background-image: url(https://blog.kakaocdn.net/dn/SV7L6/btrjI8y3Dgt/h70DLcm84qDLYkM3UFTbe0/%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8F%B0%20%EC%B5%9C%EC%8B%A0%EB%AA%A8%EB%8D%B8.png?attach=1&knm=img.png);
-            background-size: 220px;
+            background-color: black;
+            background-size: 200px auto;
+            background-repeat: no-repeat;
+            background-position: center bottom 20px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 195px;
+            height: 400px;
+            border-radius: 30px;
+        }
+
+        .container:nth-child(even) {
+            margin-top: 100px;
+        }
+
+        .phone {
+            background-image: url(src/frame/mobile.png);
+            background-size: 220px auto;
+            background-repeat: no-repeat;
+            background-position: center bottom 5px;
 
             display: flex;
             justify-content: center;
@@ -43,12 +64,8 @@
 
             width: 220px;
             height: 460px;
-            border-radius: 22px;
-        }
 
-        .container:nth-child(2),
-        .container:nth-child(4) {
-            margin-top: 100px;
+            margin-top: -20px;
         }
 
         .member {
@@ -56,16 +73,16 @@
             color: white;
 
             width: 200px;
-            height: 430px;
+            height: 370px;
             margin: 20px;
 
-            padding: 20px;
-            border-radius: 10px;
+            padding: 10px;
+            border-radius: 15px;
         }
 
         .member_img>img {
             width: 160px;
-            height: 240px;
+            height: 200px;
             object-fit: cover;
         }
 
@@ -189,27 +206,29 @@
 
             let temp_html = `
             <div class="container">
+                <div class="phone">
 
-                <div class="member">
+                    <div class="member">
 
-                    <div class="member_img">
-                        <img
-                            src="${image}" alt="...">
+                        <div class="member_img">
+                            <img
+                                src="${image}" alt="...">
+                        </div>
+
+                        <div class="member_name">
+                            <h3>${name}</h3>
+                        </div>
+
+                        <div class="member_mbti">
+                            <h4>${mbti}</h4>
+                        </div>
+
+                        <button class="detail" onClick="location.href ='introducePage.html'">
+                            자세히
+                        </button>
                     </div>
 
-                    <div class="member_name">
-                        <h3>${name}</h3>
-                    </div>
-
-                    <div class="member_mbti">
-                        <h4>${mbti}</h4>
-                    </div>
-
-                    <button class="detail" onClick="location.href ='##'">
-                        자세히
-                    </button>
                 </div>
-
             </div>`;
             $('#card').append(temp_html);
         });
@@ -252,7 +271,7 @@
             <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
                 <rect id="shape" height="40" width="150" />
                 <div id="text">
-                    <a href="#"><span class="spot"></span>검색!</a>
+                    <a href="searchPage.html"><span class="spot"></span>검색!</a>
                 </div>
             </svg>
         </div>
