@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel = "stylesheet" href = "./css/main.css">
-    <link rel = "stylesheet" href = "./css/scroll.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
@@ -14,92 +12,57 @@
             font-family: 'Gowun Dodum', sans-serif;
         }
 
-        .ba {
-            background-color: aqua;
-            height: 800px;
+        .main_image {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: center;
             color: white;
 
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            background-image: url('https://images.unsplash.com/photo-1511992243105-2992b3fd0410?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            background-position: center;
-            background-size: cover;
-        
 
         }
-        .container{
-            background-color: white;
-            height:50%;
-            width: 30%;
-            border-radius: 50px;
-            padding-top: 5%;
-            padding-bottom: 5%;
-            color:black;
-            background-image:url ('');
-            
-        }
-        .profile{
-            font-size: 1rem;
-            
-        
-        }
-        .form-label{
-            width:60% ;
-        }
-        .profile_2{
-            font-size:1rem;
-        }
 
+        .profile_text1 {
+            position: absolute;
+            color: white;
+            margin-left: 200px;
+            margin-top: 30px;
+            font-size: 15px;
+        }
+        .advantage{
+            margin-right: 200px;
+            margin-top: 30px;
+            font-size: 10px;
+        }
         
         
+
+        body {
+            background-color: black;
+        }
     </style>
+
 </head>
 
-<body style>
-    <div class = "ba">
-        
-    <div class="container">
-        <div class="profile">
-            <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">이름</label>
-                <input type="text" class="form-control" id="name" placeholder="Example input placeholder">
-              </div>
-              <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">mbti</label>
-                <input type="text" class="form-control" id="mbti" placeholder="Another input placeholder">
-              </div>
+<body>
+    <div class="main_image">
+            <img id="profile_image1" src="mobile1.png" height="700" width="400">           
+        <div class="profile_text1">       
+            <h1 class="profile_text2">이름:석현호 <br>mbti: ISFJ</h1>
+        <div class="advantage">
+            <h2 style="border:1px solid white">장점</h2>
+            <textarea name="message" rows="10" cols="50" font-size=10px;>            
 
-              <div class="profile_2">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">장점</label>
-                    <input type="email" class="form-control" id="advantage" placeholder="  ">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label"></label>
-                    <textarea class="form-control" id="content" rows="5"></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">협업</label>
-                    <input type="email" class="form-control" id="cooperation" placeholder="">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label"></label>
-                    <textarea class="form-control" id="content" rows=""></textarea>
-                  </div>
+                </textarea>
+                <h2 style="border:1px solid white">협업</h2>
+            <textarea name="message" rows="10" cols="50" font-size=10px;>            
 
-              </div>
-              
-          
-        </div>
-      </div>
-       
-        
-        
-    </div>
-</div>
+                </textarea>
+                
+            </div>
+            </div>
+      
 </body>
 
 </html>
