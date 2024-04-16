@@ -39,7 +39,7 @@
 
         let id = $('#id').val();
         let pw = $('#pw').val();
-        let pwc = $('pwc').val();
+        let pwc = $('#pwc').val();
         let name = $('#name').val();
         let number = $('#number').val();
         let address = $('#address').val();
@@ -69,18 +69,18 @@
             return false;
         }
 
-        if (pw === pwc) {
-            return true;
-        }
-        else{
-            alert('pw를 확인하세요.');
-            return false;
+        if (pw !== '' && pwc !== '') {
+            if (pw !== pwc){
+                return alert('비밀번호를 확인하세요');
+            } else{
+
+            }
         }
 
         await addDoc(collection(db, "user"), doc);
 
         alert('회원가입 완료!')
-        window.location.reload();
+        location.href='login.html';
     })
 
 
@@ -122,17 +122,15 @@
 
     .signbtn {
         color: #BE50C1;
-        width: 220px;
-        height: 70px;
         font-size: 30px;
+        width: 450px;
+        border-radius: 10px;
+    }
+    #id,#pw,#pwc,#name,#number,#address,#email,#git,#insta{
+        border-radius: 10px;
     }
 
-    .navyBtn {
-        color: #BE50C1;
-        width: 200px;
-        height: 70px;
-        font-size: 30px;
-    }
+
 </style>
 
 <body>
@@ -145,7 +143,6 @@
                     <input type="text" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
                     <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
                     <button type="button" class="signbtn" id="signbtn">회원가입 버튼</button>
-                    <button type="button" class="navyBtn" onClick="location.href='login.html'">로그인 버튼</button>
                 </h1><br>
                 <h1 class="info"><br><br>
                     <input type="text" id="name" name="name" placeholder="이름" size="7">
