@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contents</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        body {
+            background-image: url(https://img.freepik.com/free-photo/3d-grunge-room-interior-with-spotlight-and-smoky-atmosphere-background_1048-11333.jpg);
+        }
+
+        .header {
+            height: 50px;
+        }
+
+        .main {
+            background-position: center;
+            background-size: cover;
+
+            text-align: center;
+
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .container {
+            background-image: url(https://blog.kakaocdn.net/dn/SV7L6/btrjI8y3Dgt/h70DLcm84qDLYkM3UFTbe0/%EC%8A%A4%EB%A7%88%ED%8A%B8%ED%8F%B0%20%EC%B5%9C%EC%8B%A0%EB%AA%A8%EB%8D%B8.png?attach=1&knm=img.png);
+            background-size: 220px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 220px;
+            height: 460px;
+            border-radius: 22px;
+        }
+
+        .container:nth-child(2),
+        .container:nth-child(4) {
+            margin-top: 100px;
+        }
+
+        .member {
+            background-color: #444444;
+            color: white;
+
+            width: 200px;
+            height: 430px;
+            margin: 20px;
+
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .member_img>img {
+            width: 160px;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .member_name {
+            height: 33px;
+            margin: 10px auto;
+
+            align-items: center;
+
+            background-color: #333333;
+            border-radius: 5px;
+        }
+
+        .member_mbti {
+            height: 33px;
+            margin: 10px auto;
+
+            align-items: center;
+
+            background-color: #333333;
+            border-radius: 5px;
+        }
+
+        .member>button {
+            width: 150px;
+            height: 40px;
+            border-radius: 100px;
+            background-color: #00DD99;
+            color: white;
+            border: none;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .footer>button {
+            text-align: left;
+        }
+
+        .spot {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .svg-wrapper {
+            margin-top: 0;
+            position: relative;
+            width: 150px;
+            height: 40px;
+            display: inline-block;
+            border-radius: 3px;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #f7eccc 30%, #88bdf3, #feb6aa);
+
+        }
+
+        #shape {
+            stroke-width: 6px;
+            fill: transparent;
+            stroke: #009ec1;
+            stroke-dasharray: 85 400;
+            stroke-dashoffset: -220;
+            transition: 1s all ease;
+        }
+
+        #text {
+            margin-top: -35px;
+            text-align: center;
+        }
+
+        #text a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+
+        .svg-wrapper:hover #shape {
+            stroke-dasharray: 50 0;
+            stroke-width: 3px;
+            stroke-dashoffset: 0;
+            stroke: #06D6A0;
+        }
+    </style>
+    <script type="module">
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        // Firebase 구성 정보 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyAIP8svZiWmrZ5hcYP2R-qSeGapwrJESxk",
+            authDomain: "ilboon.firebaseapp.com",
+            projectId: "ilboon",
+            storageBucket: "ilboon.appspot.com",
+            messagingSenderId: "889902979830",
+            appId: "1:889902979830:web:e06a486199415e115bead7",
+            measurementId: "G-RZSDVG93QH"
+        };
+
+        // Firebase 인스턴스 초기화
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let docs = await getDocs(collection(db, "introduce"));
+        docs.forEach((doc) => {
+            let row = doc.data();
+
+            let image = row['image'];
+            let name = row['name'];
+            let mbti = row['mbti'];
+
+            let temp_html = `
+            <div class="container">
+
+                <div class="member">
+
+                    <div class="member_img">
+                        <img
+                            src="${image}" alt="...">
+                    </div>
+
+                    <div class="member_name">
+                        <h3>${name}</h3>
+                    </div>
+
+                    <div class="member_mbti">
+                        <h4>${mbti}</h4>
+                    </div>
+
+                    <button class="detail" onClick="location.href ='##'">
+                        자세히
+                    </button>
+                </div>
+
+            </div>`;
+            $('#card').append(temp_html);
+        });
+    </script>
+</head>
+
+<body>
+    <div class="header">
+
+    </div>
+    <div class="main" id="card">
+        <!--
+        <div class="container">
+
+            <div class="member">
+
+                <div class="member_img">
+                    <img
+                        src="https://imgnews.pstatic.net/image/311/2024/04/15/0001714781_001_20240415172801360.jpg?type=w647">
+                </div>
+
+                <div class="member_name">
+                    <h3>이름</h3>
+                </div>
+
+                <div class="member_mbti">
+                    <h4>MBTI</h4>
+                </div>
+
+                <button class="detail">
+                    자세히
+                </button>
+            </div>
+
+        </div>
+        -->
+    </div>
+    <div class="footer">
+        <div class="svg-wrapper">
+            <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
+                <rect id="shape" height="40" width="150" />
+                <div id="text">
+                    <a href="#"><span class="spot"></span>검색!</a>
+                </div>
+            </svg>
+        </div>
+    </div>
+</body>
+
+</html>
