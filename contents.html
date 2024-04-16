@@ -9,14 +9,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
-
-        * {
-            font-family: 'Gowun Dodum', sans-serif;
-        }
+        @import url('https://webfontworld.github.io/daegu/DalseoHealing.css');
 
         body {
-            background-image: url(https://img.freepik.com/free-photo/3d-grunge-room-interior-with-spotlight-and-smoky-atmosphere-background_1048-11333.jpg);
+            width: 1200px;
+            height: 700px;
+            background-image: url('https://img.freepik.com/free-photo/3d-grunge-room-interior-with-spotlight-and-smoky-atmosphere-background_1048-11333.jpg');
+            background-size: cover;
         }
 
         .header {
@@ -33,6 +32,7 @@
             justify-content: space-around;
         }
 
+        /* 컨테이너 */
         .container {
             background-color: black;
             background-size: 200px auto;
@@ -52,7 +52,22 @@
             margin-top: 100px;
         }
 
+        .container:hover {
+            position:relative;
+            animation:ddd .1s infinite;
+            animation-iteration-count: 2;
+        }
+
+        @keyframes ddd { 
+            0% { transform: rotate(-1.5deg); }
+            50% { transform: rotate(1.5deg); }
+            100% { transform: rotate(-1.5deg); }
+        }
+
+        /* 핸드폰 */
         .phone {
+            pointer-events: none;
+            position: absolute;
             background-image: url(src/frame/mobile.png);
             background-size: 220px auto;
             background-repeat: no-repeat;
@@ -68,16 +83,23 @@
             margin-top: -20px;
         }
 
+        /* 멤버 */
         .member {
-            background-color: #444444;
+            position: relative;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8NPk71uFIWG-nr2thDH8ya1E7M4h5s2bu-g&usqp=CAU');
             color: white;
 
             width: 200px;
-            height: 370px;
+            height: 390px;
             margin: 20px;
 
             padding: 10px;
             border-radius: 15px;
+        }
+
+        .member_img {
+            width: 160px;
+            height: 200px;
         }
 
         .member_img>img {
@@ -91,9 +113,13 @@
             margin: 10px auto;
 
             align-items: center;
+            text-align: center;
 
-            background-color: #333333;
+            background-color: #333333AA;
             border-radius: 5px;
+
+            font-family: 'DalseoHealing', sans-serif;
+            font-size: 24px;
         }
 
         .member_mbti {
@@ -101,18 +127,23 @@
             margin: 10px auto;
 
             align-items: center;
+            text-align: center;
 
-            background-color: #333333;
+            background-color: #333333AA;
             border-radius: 5px;
+
+            font-family: 'Georgia', sans-serif;
+            font-size: 20px;
         }
 
         .member>button {
             width: 150px;
             height: 40px;
             border-radius: 100px;
-            background-color: #00DD99;
+            background-color: #728D56;
             color: white;
             border: none;
+            font-weight: bold;
         }
 
         .footer {
@@ -120,6 +151,7 @@
             text-align: center;
         }
 
+        /* 검색버튼 */
         .footer>button {
             text-align: left;
         }
@@ -142,8 +174,7 @@
             margin-left: 5px;
             margin-right: 5px;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, #f7eccc 30%, #88bdf3, #feb6aa);
-
+            background: linear-gradient(45deg, #4F57CE 30%, #B851C2, #F7BA7B);
         }
 
         #shape {
@@ -204,33 +235,37 @@
             let name = row['name'];
             let mbti = row['mbti'];
 
-            let temp_html = `
-            <div class="container">
-                <div class="phone">
+            if (image != null && name != null && mbti != null
+            && image != '' && name != '' && mbti != ''
+            && mbti.length === 4) {
+                let temp_html = `
+                    <div class="container">
+                        <div class="member">
 
-                    <div class="member">
+                            <div class="member_img">
+                                <img
+                                    src="${image}" alt="...">
+                            </div>
 
-                        <div class="member_img">
-                            <img
-                                src="${image}" alt="...">
+                            <div class="member_name">
+                                <p>${name}</p>
+                            </div>
+
+                            <div class="member_mbti">
+                                <p>${mbti}</p>
+                            </div>
+
+                            <button class="detail" onClick="location.href ='introducePage.html'">
+                                자세히
+                            </button>
+
                         </div>
 
-                        <div class="member_name">
-                            <h3>${name}</h3>
-                        </div>
+                        <div class="phone"></div>
 
-                        <div class="member_mbti">
-                            <h4>${mbti}</h4>
-                        </div>
-
-                        <button class="detail" onClick="location.href ='introducePage.html'">
-                            자세히
-                        </button>
-                    </div>
-
-                </div>
-            </div>`;
-            $('#card').append(temp_html);
+                    </div>`;
+                $('#card').append(temp_html);
+            }
         });
     </script>
 </head>
@@ -242,12 +277,10 @@
     <div class="main" id="card">
         <!--
         <div class="container">
-
             <div class="member">
 
                 <div class="member_img">
-                    <img
-                        src="https://imgnews.pstatic.net/image/311/2024/04/15/0001714781_001_20240415172801360.jpg?type=w647">
+                    <img src="" alt="...">
                 </div>
 
                 <div class="member_name">
@@ -258,10 +291,12 @@
                     <h4>MBTI</h4>
                 </div>
 
-                <button class="detail">
+                <button class="detail" onClick="location.href ='introducePage.html'">
                     자세히
                 </button>
             </div>
+
+            <div class="phone"></div>
 
         </div>
         -->
@@ -271,7 +306,7 @@
             <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
                 <rect id="shape" height="40" width="150" />
                 <div id="text">
-                    <a href="searchPage.html"><span class="spot"></span>검색!</a>
+                    <a href="searchPage.html"><span class="spot"></span>검색</a>
                 </div>
             </svg>
         </div>
