@@ -72,9 +72,9 @@
         }
 
         if (pw !== '' && pwc !== '') {
-            if (pw !== pwc){
+            if (pw !== pwc) {
                 return alert('비밀번호를 확인하세요');
-            } else{
+            } else {
 
             }
         }
@@ -82,7 +82,7 @@
         await addDoc(collection(db, "user"), doc);
 
         alert('회원가입 완료!')
-        location.href='login.html';
+        location.href = 'login.html';
     })
 
 
@@ -91,6 +91,12 @@
 </script>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+    * {
+        font-family: 'Gowun Dodum', sans-serif;
+    }
+
     body {
         background-image: url("src/background/login.png");
         background-size: cover;
@@ -130,11 +136,10 @@
         height: 50px;
         border-radius: 10px;
     }
-    #id,#pw,#pwc,#name,#number,#date,#address,#email,#git,#insta{
+
+    #id,#pw,#pwc,#name,#number,#date,#address,#email,#git,#insta {
         border-radius: 10px;
     }
-
-
 </style>
 
 <body>
