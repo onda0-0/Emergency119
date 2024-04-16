@@ -52,7 +52,7 @@
                 if (id === idin && pw === pwin) {
                     loggedIn = true;
                     //alert('로그인 성공');
-                    window.location.href = 'contents.html';
+                    window.location.href = 'index.html';
                 }
             });
 
@@ -62,7 +62,7 @@
             }
         });
 
-        $("#signinbtn").click(async function () {
+        $("#signupbtn").click(async function () {
             location.href = 'sign.html';
         });
     });
@@ -78,8 +78,8 @@
     }
 
     .Login {
-        font-size: 200px;
-        color: #BE50C1;
+        font-size: 400px;
+        color: white;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -99,17 +99,20 @@
     }
 
     .loginbtn {
-        color: #BE50C1;
+        color: white;
+        background-color: #BE50C1;
         font-size: 30px;
         width: 450px;
         height: 70px;
         border-radius: 10px;
     }
 
-    .signinbtn {
-        color: #BE50C1;
+    .signupbtn {
+        color: white;
+        background-color: #BE50C1;
         font-size: 30px;
         width: 300px;
+        height: 50px;
         margin-left: 70px;
         border-radius: 10px;
     }
@@ -124,12 +127,12 @@
     <div class="main">
         <div class="Login">
             <div class="Log-in">
-                <h1 class="Info" color: #BE50C1;>
-                    로그인<br><br>
+                <h1 class="Info">
+                    Login<br><br>
                     <input type="text" id="idin" name="idin" placeholder="아이디 입력"><br><br>
                     <input type="password" id="pwin" name="pwin" placeholder="비밀번호 입력"><br><br>
-                    <button type="button" class="loginbtn" id="loginbtn">로그인 버튼</button><br>
-                    <button type="button" class="signinbtn" id="signinbtn">회원가입 버튼</button>
+                    <button type="button" class="loginbtn" id="loginbtn">LOGIN</button><br><br>
+                    <button type="button" class="signupbtn" id="signupbtn">Sign up</button>
                 </h1><br>
 
 
