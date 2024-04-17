@@ -9,200 +9,169 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        @import url('https://webfontworld.github.io/daegu/DalseoHealing.css');
+        .full_size {
+            width: 100vw;
+            height: 100vh;
+        }
 
-        body {
-            width: 1200px;
-            height: 700px;
-            background-image: url('https://img.freepik.com/free-photo/3d-grunge-room-interior-with-spotlight-and-smoky-atmosphere-background_1048-11333.jpg');
-            background-size: cover;
+        .contentsPage {
+            width: 100%;
+            height: 100%;
+
+            background-color: #1B1C22;
         }
 
         .header {
-            height: 50px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+
+        .header>img {
+            height: 80%;
+            padding-left: 6.2%;
+            object-fit: contain;
         }
 
         .main {
-            background-position: center;
-            background-size: cover;
-
-            text-align: center;
+            min-width: 800px;
+            height: 80%;
+            padding: 5%;
 
             display: flex;
-            justify-content: space-around;
+
+            overflow: hidden;
         }
 
         /* 컨테이너 */
         .container {
-            background-color: black;
-            background-size: 200px auto;
-            background-repeat: no-repeat;
-            background-position: center bottom 20px;
+            width: 20%;
+            height: 100%;
 
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
 
-            width: 195px;
-            height: 400px;
-            border-radius: 30px;
+            position: relative;
+
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        .container:nth-child(odd) {
+            padding-bottom: 5%;
         }
 
         .container:nth-child(even) {
-            margin-top: 100px;
+            padding-top: 5%;
         }
 
         .container:hover {
-            position:relative;
-            animation:ddd .1s infinite;
-            animation-iteration-count: 2;
-        }
-
-        @keyframes ddd { 
-            0% { transform: rotate(-1.5deg); }
-            50% { transform: rotate(1.5deg); }
-            100% { transform: rotate(-1.5deg); }
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+            transform: translateY(-5px);
         }
 
         /* 핸드폰 */
         .phone {
+            width: 100%;
             pointer-events: none;
             position: absolute;
-            background-image: url(src/frame/mobile.png);
-            background-size: 220px auto;
-            background-repeat: no-repeat;
-            background-position: center bottom 5px;
+        }
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 220px;
-            height: 460px;
-
-            margin-top: -20px;
+        .phone img {
+            width: 90%;
+            height: 100%;
+            margin: 5%;
         }
 
         /* 멤버 */
         .member {
-            position: relative;
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8NPk71uFIWG-nr2thDH8ya1E7M4h5s2bu-g&usqp=CAU');
+            width: 88%;
+            aspect-ratio: 350/700;
+
+            margin: 5%;
+            border-radius: 25px;
+
             color: white;
 
-            width: 200px;
-            height: 390px;
-            margin: 20px;
-
-            padding: 10px;
-            border-radius: 15px;
+            position: relative;
         }
 
         .member_img {
-            width: 160px;
-            height: 200px;
+            height: 60%;
         }
 
         .member_img>img {
-            width: 160px;
-            height: 200px;
-            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .member_name,
+        .member_mbti {
+            width: 85%;
+            height: 10%;
+            margin: 5% auto;
+
+            background-color: #333333AA;
+            border-radius: 5px;
+
+            text-align: center;
         }
 
         .member_name {
-            height: 33px;
-            margin: 10px auto;
-
-            align-items: center;
-            text-align: center;
-
-            background-color: #333333AA;
-            border-radius: 5px;
-
-            font-family: 'DalseoHealing', sans-serif;
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .member_mbti {
-            height: 33px;
-            margin: 10px auto;
-
-            align-items: center;
-            text-align: center;
-
-            background-color: #333333AA;
-            border-radius: 5px;
-
-            font-family: 'Georgia', sans-serif;
             font-size: 20px;
         }
 
         .member>button {
-            width: 150px;
-            height: 40px;
-            border-radius: 100px;
-            background-color: #728D56;
+            width: 80%;
+            height: 10%;
+            margin: 5% auto 10% auto;
+            display: block;
+
+            background: linear-gradient(20deg, #5357CE, #C650C0, #F8BB7B);
             color: white;
-            border: none;
-            font-weight: bold;
+            border-style: none;
+            border-radius: 100px;
+
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
         }
 
         .footer {
-            margin-top: 30px;
-            text-align: center;
+            height: 5%;
+            max-height: 100px;
+            min-width: 800px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* 검색버튼 */
         .footer>button {
-            text-align: left;
-        }
+            min-width: 100px;
+            width: 10%;
+            height: 80%;
 
-        .spot {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        .svg-wrapper {
-            margin-top: 0;
-            position: relative;
-            width: 150px;
-            height: 40px;
-            display: inline-block;
-            border-radius: 3px;
-            margin-left: 5px;
-            margin-right: 5px;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #4F57CE 30%, #B851C2, #F7BA7B);
-        }
-
-        #shape {
-            stroke-width: 6px;
-            fill: transparent;
-            stroke: #009ec1;
-            stroke-dasharray: 85 400;
-            stroke-dashoffset: -220;
-            transition: 1s all ease;
-        }
-
-        #text {
-            margin-top: -35px;
-            text-align: center;
-        }
-
-        #text a {
+            background: linear-gradient(20deg, #5357CE, #C650C0, #F8BB7B);
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1em;
-        }
+            border-style: none;
+            border-radius: 5px;
 
-        .svg-wrapper:hover #shape {
-            stroke-dasharray: 50 0;
-            stroke-width: 3px;
-            stroke-dashoffset: 0;
-            stroke: #06D6A0;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 18px;
         }
     </style>
     <script type="module">
@@ -236,15 +205,14 @@
             let mbti = row['mbti'];
 
             if (image != null && name != null && mbti != null
-            && image != '' && name != '' && mbti != ''
-            && mbti.length === 4) {
+                && image != '' && name != '' && mbti != ''
+                && mbti.length === 4) {
                 let temp_html = `
                     <div class="container">
                         <div class="member">
 
                             <div class="member_img">
-                                <img
-                                    src="${image}" alt="...">
+                                <img src="${image}" alt="...">
                             </div>
 
                             <div class="member_name">
@@ -258,10 +226,9 @@
                             <button class="detail" onClick="location.href ='introducePage.html'">
                                 자세히
                             </button>
-
                         </div>
 
-                        <div class="phone"></div>
+                        <div class="phone"><img src="src/frame/mobile.png" alt=""></div>
 
                     </div>`;
                 $('#card').append(temp_html);
@@ -271,44 +238,17 @@
 </head>
 
 <body>
-    <div class="header">
-
-    </div>
-    <div class="main" id="card">
-        <!--
-        <div class="container">
-            <div class="member">
-
-                <div class="member_img">
-                    <img src="" alt="...">
-                </div>
-
-                <div class="member_name">
-                    <h3>이름</h3>
-                </div>
-
-                <div class="member_mbti">
-                    <h4>MBTI</h4>
-                </div>
-
-                <button class="detail" onClick="location.href ='introducePage.html'">
-                    자세히
-                </button>
+    <div class="full_size">
+        <div class="contentsPage">
+            <div class="header">
+                <img src="src/logo/logo10.png" alt="">
             </div>
+            <div class="main" id="card">
 
-            <div class="phone"></div>
-
-        </div>
-        -->
-    </div>
-    <div class="footer">
-        <div class="svg-wrapper">
-            <svg height="40" width="150" xmlns="http://www.w3.org/2000/svg">
-                <rect id="shape" height="40" width="150" />
-                <div id="text">
-                    <a href="searchPage.html"><span class="spot"></span>검색</a>
-                </div>
-            </svg>
+            </div>
+            <div class="footer">
+                <button onClick="location.href ='searchPage.html'"">검색</button>
+            </div>
         </div>
     </div>
 </body>
