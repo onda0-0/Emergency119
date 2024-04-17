@@ -53,8 +53,6 @@
             justify-content: center;
 
             position: relative;
-
-            transition: box-shadow 0.3s, transform 0.3s;
         }
 
         .container:nth-child(odd) {
@@ -66,8 +64,15 @@
         }
 
         .container:hover {
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
-            transform: translateY(-5px);
+            position:relative;
+            animation:ddd .1s infinite;
+            animation-iteration-count: 2;
+        }
+
+        @keyframes ddd { 
+            0% { transform: rotate(-1.5deg); }
+            50% { transform: rotate(1.5deg); }
+            100% { transform: rotate(-1.5deg); }
         }
 
         /* 핸드폰 */
