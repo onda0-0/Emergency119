@@ -26,10 +26,8 @@
         background-position: center;
         background-size: cover;
       }
-      
       .teamname > h2 {
         font-weight: 1000;
-        margin-top: 0.7rem;
         margin-bottom: 1rem;
       }
       .loginNlist {
@@ -80,14 +78,20 @@
         width: 200px;
         font-weight: bold;
       }
-
+      .mbtislide {
+        animation: slide;
+      }
       .carousel-inner > .item > img {
         top: 0;
         left: 0;
         min-width: 100%;
         min-height: 300px;
       }
-
+      .carousel-item > h3 {
+        text-shadow: none !important;
+        top: 50%;
+        bottom: 0 !important;
+      }
       .carousel-caption > h3 {
         background: -webkit-linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
         -webkit-background-clip: text;
@@ -105,22 +109,17 @@
         /* 버튼 배경색 그라데이션 지정 */
         background: linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
       }
-      a {
-        text-decoration-line: none;
+
+      @keyframes slide {
+        from {
+          left: -100px;
+          opacity: 0;
+        }
+        to {
+          left: 400px;
+          opacity: 1;
+        }
       }
-      a:link {
-        color: white;
-      }
-      a:visited {
-        color: white;
-      }
-      a:hover {
-        color: #f50f5c;
-        transform: scale(2);
-        transition-duration: 0.5s;
-      }
-      .logoimage{ width: 70px;}
-      
     </style>
     <script type="module">
       // Firebase SDK 라이브러리 가져오기
@@ -184,39 +183,36 @@ onAuthStateChanged(auth, (user) => {
         }
       });
       */
-
+     
       //로그인버튼 눌렀을때
       $("#loginbtn").click(async function () {
-        location.href = "login.html";
+        location.href="login.html";
       });
-
+      $("#gotocontents").click(async function () {
+        location.href="contents.html";
+      });
+      
       //
       $("#hyunji_profile").click(async function () {
-        location.href = "login.html";
+        location.href="login.html";
       });
       $("#hyun_profile").click(async function () {
-        location.href = "login.html";
+        location.href="login.html";
       });
       $("#wonha_profile").click(async function () {
-        location.href = "login.html";
+        location.href="login.html";
       });
       $("#jaeseok_profile").click(async function () {
-        location.href = "login.html";
+        location.href="login.html";
       });
       $("#hyeonho_profile").click(async function () {
-        location.href = "login.html";
+        location.href="login.html";
       });
     </script>
   </head>
   <body>
     <div class="teamname">
-
-  <img src="src\logo\logo0.png" class="logoimage" alt="..." />
-        <h2>9해조 내 팀원</h2>
-
-        
-
-      
+      <h2>9해조 내 팀원</h2>
       <p>
         취미가 뭔지 MBTI가 뭔지 서로 소개하고 공유하며 협업하고 싶은 팀원을
         찾아보아요!
@@ -255,7 +251,7 @@ onAuthStateChanged(auth, (user) => {
             <img src="src\profile\mbti4.png" class="d-block w-100" alt="..." />
             <div class="carousel-caption d-none d-md-block">
               <h3 style="font-weight: bold">MBTI가 궁금해!</h3>
-              <p><a href="login.html" class="letsgo">mbti알아보러가기</a></p>
+              <p><a href="searchPage.html"><span class="letsgo"></span>mbti알아보러가기</a></p>
             </div>
           </div>
           <div class="carousel-item">
@@ -266,11 +262,7 @@ onAuthStateChanged(auth, (user) => {
             />
             <div class="carousel-caption d-none d-md-block">
               <h3 style="font-weight: bold">협업스타일이 궁금해!</h3>
-              <p>
-                <a href="login.html"
-                  ><span class="letsgo"></span>협업스타일 알아보러가기</a
-                >
-              </p>
+              <p><a href="searchPage.html"><span class="letsgo"></span>협업스타일 알아보러가기</a></p>
             </div>
           </div>
           <div class="carousel-item">
@@ -281,12 +273,7 @@ onAuthStateChanged(auth, (user) => {
             />
             <div class="carousel-caption d-none d-md-block">
               <h3 style="font-weight: 800">응급9조대가 궁금해!</h3>
-              <p>
-                <a href="login.html"
-                  ><span class="letsgo"></span>극강의 MBTI밸런스를 자랑하는
-                  응급9조대원들 알아보러가기</a
-                >
-              </p>
+              <p><a href="searchPage.html"><span class="letsgo"></span>극강의 MBTI밸런스를 자랑하는 응급9조대원들 알아보러가기</a></p>
             </div>
           </div>
         </div>
@@ -312,8 +299,9 @@ onAuthStateChanged(auth, (user) => {
     </div>
 
     <div class="loginNlist mt-2">
-      <button type="button" class="emergencyBtn" id="loginbtn">Login</button>
+      <button type="button" class="emergencyBtn" id="gotocontents">팀원을 찾아보아요</button>
     </div>
+
     <div>
       <h2 style="font-weight: bold; color: white; text-align: center">
         응급9조대
