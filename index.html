@@ -6,8 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emergency119</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
   <style>
     body {
       background-color: #1b1c22;
@@ -25,29 +29,12 @@
       background-size: cover;
     }
 
-
     .teamname > h2 {
         font-weight: 1000;
         margin-top: 0.7rem;
         margin-bottom: 1rem;
       }
-      
-.navbar{
-  padding-left: 3px;
-  padding-right: 5px;
-}
-.logoimage{
-  margin-left: 0.7rem;
-}
-.loginbtn{margin-right: 1rem;}
-.logoutbtn{margin-right: 1rem;}
 
-.get-team-mate {
-        color: #fff;
-        text-shadow: 0 0 5px #fff, 0 0 9px #fff, 0 0 17px #fff, 0 0 32px #f50f5c,
-          0 0 82px #f50f5c, 0 0 92px #f50f5c, 0 0 102px #f50f5c,
-          0 0 151px #f50f5c;
-      }
 
     .loginNlist {
       display: flex;
@@ -117,12 +104,12 @@
       min-height: 300px;
     }
 
-    .carousel-caption>h3 {
-      background: -webkit-linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
-      -webkit-background-clip: text;
-      -webkit-text-stroke: 4px transparent;
-      color: #ffffff;
-    }
+    .carousel-caption > h3 {
+        background: -webkit-linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
+        -webkit-background-clip: text;
+        -webkit-text-stroke: 4px transparent;
+        color: #ffffff;
+      }
 
 
     .emergencyBtn {
@@ -137,7 +124,6 @@
     }
 
     a {
-
         text-decoration-line: none;
       }
       a:link {
@@ -148,58 +134,27 @@
       }
       a:hover {
         color: #f50f5c;
-        transform: scale(1.2);
+        transform: scale(2);
         transition-duration: 0.5s;
       }
       .logoimage{ width: 70px;}
-      .letsgo{
-        background-color: transparent;
-        border: none;
-        color:white;
-      }
 
-
-    a:link {
-      color: white;
-    }
-
-    a:visited {
-      color: white;
-    }
-
-    a:hover {
-      color: #f50f5c;
-      transform: scale(2);
-      transition-duration: 0.5s;
-    }
-
-    .logoimage {
-      width: 70px;
-    }
   </style>
+  <script>
+    //1B1C22
+    //<a target="_blank" href="https://icons8.com/icon/46822/siren">사이렌</a> 작가: <a target="_blank" href="https://icons8.com">Icons8</a>
+    //https://i.pinimg.com/564x/ea/b0/0b/eab00b4e63c53ba697ff038f1b60d96e.jpg
+    //<a target="_blank" href="https://icons8.com/icon/46344/%EA%B5%AC%EA%B8%89%EC%B0%A8">구급차</a> 작가: <a target="_blank" href="https://icons8.com">Icons8</a>
+    //<a target="_blank" href="https://icons8.com/icon/46344/%EA%B5%AC%EA%B8%89%EC%B0%A8">구급차</a> 작가: <a target="_blank" href="https://icons8.com">Icons8</a>
 
+
+  </script>
   
-
 </head>
 
 <body>
-  <nav class="navbar" style="background-color: #1b1c22;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
-        <img src="src\logo\logo10.png" class="logoimage" alt=""  height="33">
-      </a>
-      
-      <span id="username" style="color:white"></span>
-      <form class="d-flex">
-        <button type="button" class="emergencyBtn" id="loginbtn">
-          Login
-        </button>
-        <button type="button" class="emergencyBtn" id="logoutbtn" onclick="logout()">Logout</button>
-      </form>
-    </div>
-  </nav>
   <div class="teamname">
-    <h2 class="get-team-mate" style="font-size: 3em;">9해조 내 팀원</h2>
+    <h2>9해조 내 팀원</h2>
     <p>취미가 뭔지
       MBTI가 뭔지 서로 소개하고 공유하며 협업하고 싶은 팀원을 찾아보아요!</p>
   </div>
@@ -215,26 +170,26 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="src\profile\mbti4.png" class="d-block w-100" alt="...">
+          <img src="src\profile\mbti_image.png" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
 
-            <h3 style="font-weight: bold;">MBTI가 궁금해!</h3>
-            <button class="letsgo" id="letsgo_search1">mbti알아보러가기</button>
+            <h3 style="background-color: rgba(255, 0, 107, 0.4); font-weight: bold;">MBTI가 궁금해!</h3>
+            <p>mbti알아보러가기</p>
           </div>
 
         </div>
         <div class="carousel-item">
-          <img src="src\profile\communication3.png" class="d-block w-100" alt="...">
+          <img src="src\profile\communication_image.png" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
             <h3 style="font-weight: bold;">협업스타일이 궁금해!</h3>
-            <button class="letsgo" id="letsgo_search2">협업스타일 알아보러가기</button>
+            <p>협업스타일 알아보러가기</p>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="src\profile\teamphoto.png" class="d-block w-100" alt="...">
+          <img src="src\profile\mbti_image.png" class="d-block w-100" alt="...">
           <div class="carousel-caption d-none d-md-block">
-            <h3 style="font-weight: bold;">응급9조대가 궁금해!</h3>
-            <button class="letsgo" id="letsgo_contents">극강의 MBTI밸런스를 자랑하는 응급9조대원들 알아보러가기</button>
+            <h3 style="font-weight: 800;">응급9조대가 궁금해!</h3>
+            <p>극강의 MBTI밸런스를 자랑하는 응급9조대원들 알아보러가기</p>
           </div>
         </div>
       </div>
@@ -252,7 +207,11 @@
   </div>
 
   <div class="loginNlist mt-2">
-    <button type="button" class="emergencyBtn" id="gotocontentsBtn">팀원을 찾아보아요</button>
+    <button type="button" class="emergencyBtn" id="loginbtn">
+      Login
+    </button>
+    <span id="username" style="color:white"></span>
+    <button type="button" class="emergencyBtn" id="logoutbtn" onclick="logout()">Logout</button>
   </div>
   <div>
     <h2 style="font-weight: bold; color:white; text-align: center;">응급9조대</h2>
@@ -351,15 +310,8 @@
     const db = getFirestore(app);
 
     $("#loginbtn").click(async function () {
-      $.ajax({
-        url: "login.html",
-        success: function (response) {
-          $("#loginModalBody").html(response);
-          $("#loginModal").modal("show");
-        }
-      });
+      location.href = 'login.html';
     });
-
 
 
     // index.html에서 페이지가 로드될 때 실행되는 코드
@@ -368,46 +320,12 @@
       const loginButton = document.getElementById('loginbtn');
       const logoutButton = document.getElementById('logoutbtn');
       const userNameLabel = document.getElementById('username');
-/*
-      const HyunjiProfile=document.getElementById('hyunji_profile');
-      const WonhaProfile=document.getElementById('wonha_profile');
-      const HyunProfile=document.getElementById('hyun_profile');
-      const HyeonhoProfile=document.getElementById('hyeonho_profile');
-      const jaeseokProfile=document.getElementById('jaeseok_profile');*/
 
       if (loggedInUser) {
         // 사용자가 로그인되어 있는 경우
         loginButton.style.display = 'none'; // 로그인 버튼 숨기기
-        userNameLabel.innerText = `${loggedInUser.name}'s 팀원을 찾는 여정!`; // 사용자 이름 표시
+        userNameLabel.innerText = `${loggedInUser.name} 님 반갑습니다.`; // 사용자 이름 표시
         logoutButton.style.display = 'inline-block'; // 로그아웃 버튼 보이기
-        
-        $("#hyunji_profile").click(async function () {
-      location.href = "contents.html";
-    });
-    $("#hyeonho_profile").click(async function () {
-      location.href = "contents.html";
-    });
-    $("#wonha_profile").click(async function () {
-      location.href = "contents.html";
-    });
-    $("#hyun_profile").click(async function () {
-      location.href = "contents.html";
-    });
-    $("#jaeseok_profile").click(async function () {
-      location.href = "contents.html";
-    });
-    $("#gotocontentsBtn").click(async function () {
-      location.href = "contents.html";
-    });
-    $("#letsgo_search1").click(async function () {
-      location.href = "searchPage.html";
-    });
-    $("#letsgo_search2").click(async function () {
-      location.href = "searchPage.html";
-    });
-    $("#letsgo_contents").click(async function () {
-      location.href = "contents.html";
-    });
 
         console.log('로그인된 사용자 정보 :', loggedInUser);
       } else {
@@ -415,34 +333,6 @@
         loginButton.style.display = 'inline-block'; // 로그인 버튼 보이기
         userNameLabel.innerText = ''; // 사용자 이름 숨기기
         logoutButton.style.display = 'none'; // 로그아웃 버튼 숨기기
-        $("#hyunji_profile").click(async function () {
-      location.href = "login.html";
-    });
-    $("#hyeonho_profile").click(async function () {
-      location.href = "login.html";
-    });
-    $("#wonha_profile").click(async function () {
-      location.href = "login.html";
-    });
-    $("#hyun_profile").click(async function () {
-      location.href = "login.html";
-    });
-    $("#jaeseok_profile").click(async function () {
-      location.href = "login.html";
-    });
-    $("#gotocontentsBtn").click(async function () {
-      location.href = "login.html";
-    });
-        $("#letsgo_search1").click(async function () {
-      location.href = "login.html";
-    });
-    $("#letsgo_search2").click(async function () {
-      location.href = "login.html";
-    });
-    $("#letsgo_contents").click(async function () {
-      location.href = "login.html";
-    });
-    
       }
     };
 
@@ -456,6 +346,5 @@
   </script>
 
 </body>
-
 
 </html>
