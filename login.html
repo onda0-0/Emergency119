@@ -100,7 +100,7 @@
             let idin = $('#idin').val();
             let pwin = $('#pwin').val();
 
-            let loggedIn = false;
+            let loggedInUser = null;
 
             docs.forEach((doc) => {
                 let row = doc.data();
@@ -108,15 +108,17 @@
                 let pw = row['pw'];
 
                 if (id === idin && pw === pwin) {
-                    loggedIn = true;
-
-                    // 로그인한 사용자 정보 저장
-                    sessionStorage.setItem('loggedInUser', idin);
-
-                    window.location.href = 'index.html';
-                    
+                    loggedInUser = row;
+                    return;
                 }
             });
+
+            if (loggedInUser) {
+                // 로그인한 사용자 정보 저장
+                sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+
+                window.location.href = 'index.html';
+            }
 
             // 로그인에 실패한 경우에만 실행됨
             if (!loggedIn) {
