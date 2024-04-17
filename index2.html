@@ -87,10 +87,6 @@
       font-weight: bold;
     }
 
-    .mbtislide {
-      animation: slide;
-    }
-
     .carousel-inner>.item>img {
       top: 0;
       left: 0;
@@ -122,17 +118,7 @@
       background: linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
     }
 
-    @keyframes slide {
-      from {
-        left: -100px;
-        opacity: 0;
-      }
-
-      to {
-        left: 400px;
-        opacity: 1;
-      }
-    }
+ 
   </style>
   <script type="module">
     // Firebase SDK 라이브러리 가져오기
@@ -143,11 +129,7 @@
       addDoc,
     } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
     import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-    } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-
+    
     //로그인버튼 눌렀을때
     $("#loginbtn").click(async function () {
       location.href = "login.html";
@@ -176,6 +158,21 @@
 </head>
 
 <body>
+    <nav class="navbar" style="background-color: #1b1c22;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="src\logo\logo10.png" class="logoimage" alt=""  height="33">
+          </a>
+          
+          <span id="username" style="color:white"></span>
+          <form class="d-flex">
+            <button type="button" class="emergencyBtn" id="loginbtn">
+              Login
+            </button>
+            <button type="button" class="emergencyBtn" id="logoutbtn" onclick="logout()">Logout</button>
+          </form>
+        </div>
+      </nav>
   <div class="teamname">
     <h2>9해조 내 팀원</h2>
     <p>
