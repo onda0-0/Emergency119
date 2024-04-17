@@ -53,69 +53,35 @@
         }
 
         .div_homeIcon {
-            width: 100px;
+            width: 200px;
+            height: 70%;
+            margin-top: auto;
+            margin-bottom: auto;
+            background-image: url('src/logo/logo10.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
+
         .div_logo {
             flex-grow: 1;
 
-            
-        }
-        .div_searchBar {
-            min-width: 200px;
-            flex: 1 0 auto;
-            /* flex-grow: 1; */
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-content: center;
-
 
         }
 
-        .searchForm {
-            width: 50%;
-        }
-
-        .searchBar {
-            position: relative;
-            width: 100%;
-            height: 40px;
-            font-size: 17px;
-            padding: 7px 15px 7px 15px;
-            background-color: rgb(48, 48, 48);
-            border-radius: 10px;
-            border: 1px solid #0F0F10;
-            color: rgb(143, 142, 142);
-            font-weight: 500;
-            outline: none;
-            opacity: 0.5;
-            z-index: 7;
-        }
-
-        .searchBarText {
-            position: absolute;
-            width: auto;
-            height: 40px;
-            font-size: 22px;
-            z-index: 5;
-            background-color: #00000000;
-            color: rgb(201, 201, 201);
-            border-style: none;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-        }
 
         .div_profileIcon {
             width: 100px;
 
         }
+
         .profileRecommendTop {
             background: linear-gradient(250deg, #5357CE, #C650C0, #F8BB7B);
             height: 20px;
             width: 100%;
 
         }
+
         .profileRecommendTitle {
 
             color: white;
@@ -196,9 +162,96 @@
             white-space: nowrap;
         }
 
-        .profileSearchFooter {}
+        .profileSearchFooter {
+            position: fixed;
+            width: 100%;
+            height: 100px;
+            bottom: 0;
+            background: linear-gradient(to left, #5357CE, #C650C0, #F8BB7B);
+            transition: all 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-        
+        }
+
+        .profileSearchFooterGradient {
+            position: absolute;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to bottom, #1B1C22, #1b1c2200);
+            z-index: 3;
+        }
+
+        .profileSearchFooterGradient2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #5357CE, #d43770, #F8BB7B);
+            transition: all 5s ease-in-out;
+            z-index: 2;
+            opacity: 1;
+        }
+
+        .div_searchBarOutline {
+            width: 50%;
+            height: 60px;
+            align-content: center;
+            margin-top: 30px;
+            min-width: 250px;
+            border-radius: 10px;
+        }
+
+        .div_searchBar {
+            min-width: 200px;
+            flex: 1 0 auto;
+            /* flex-grow: 1; */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+
+
+        }
+
+        .searchForm {
+            display: flex;
+            flex-direction: row;
+            width: 80%;
+            height: 90%;
+        }
+
+        .searchBar {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            font-size: 17px;
+            padding: 7px 15px 7px 15px;
+            background-color: rgb(0, 0, 0);
+            border-radius: 10px;
+            border: 1px solid #0F0F10;
+            color: rgb(255, 255, 255);
+            font-weight: 500;
+            outline: none;
+            opacity: 0.4;
+            z-index: 7;
+        }
+
+        .searchBarText {
+            transition: all 1s ease-in-out;
+            position: absolute;
+            width: 40%;
+            height: 40px;
+            z-index: 5;
+            background-color: #00000000;
+            color: rgb(201, 201, 201);
+            border-style: none;
+            transform: translateX(-50%);
+            left: 50%;
+            text-align: center;
+            font-size: 22px;
+            bottom: 20px;
+        }
     </style>
 </head>
 
@@ -207,12 +260,10 @@
         <div class="searchPage">
             <div class="spHeader">
                 <div class="div_homeIcon">
-
                 </div>
                 <div class="div_logo">
                 </div>
                 <div class="div_profileIcon">
-
                 </div>
             </div>
             <div class="profileRecommendTop"></div>
@@ -220,7 +271,6 @@
                 추천 프로필
             </div>
             <div class="profileRecommend">
-
             </div>
             <div class="profileSearch">
                 <div class="profileSearchLeft">
@@ -229,16 +279,19 @@
                 </div>
             </div>
             <div class="profileSearchFooter">
-                
-                <div class="div_searchBar">
-                    <form class="centerItem searchForm" action="searchPage.html" method="get">
-                        <input class="searchBarText" value="사용자 찾기">
-                        <input type="text" name="searchStr" class="searchBar">
-                    </form>
+                <div class="profileSearchFooterGradient2"></div>
+                <div class="profileSearchFooterGradient"></div>
+                <div class="div_searchBarOutline">
+                    <div class="div_searchBar">
+                        <form class="centerItem searchForm" action="searchPage.html" method="get">
+                            <input class="searchBarText" value="사용자 찾기" readonly />
+                            <input type="text" name="searchStr" class="searchBar" />
+                            <input type="submit" method="get" value=""/>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 
@@ -262,7 +315,9 @@
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        let docs = await getDocs(collection(db, "emergency"));
+
+        let qq = 0;
+        let docs = await getDocs(collection(db, `emergency${qq}`));
         const docsCnt = await getCountFromServer(collection(db, "emergency"));
 
         $('.profileSearchLeft').append(`
@@ -337,26 +392,54 @@
         $(function () {
             $('.searchBar').on('input', function (f) {
                 if ($('.searchBar').val() != '') {
-                    // $('.nav_top_search_submit').click(function () {
-                    //     sendData();
-                    // });
-                    $('.searchBarText').attr("value", "");
                     addEventListener('keydown', function (e) {
                         if ((e.code == 'Enter') || (e.code == 'NumpadEnter') && $('.searchBar').val() != '') {
                             sendData();
                         }
                     })
+
+                    $('.searchBarText').css("font-size", "15px");
+                    $('.searchBarText').css("bottom", "50px");
+                    $('.searchBarText').css("paddign-right", "300px");
                 } else {
                     $('.searchBarText').attr("value", "사용자 찾기");
+
+                    $('.searchBarText').css("font-size", "22px");
+                    $('.searchBarText').css("bottom", "20px");
+                    $('.searchBarText').css("paddign-right", "0");
                 }
 
             })
 
         })
+        document.addEventListener("DOMContentLoaded", ready());
+        function ready() {
+            $('.searchBar').hover(function () {
+                $('.searchBarText').css("font-size", "15px");
+                $('.searchBarText').css("bottom", "50px");
+            }, function () {
+                $('.searchBarText').css("font-size", "22px");
+                $('.searchBarText').css("bottom", "20px");
+
+            })
+        };
 
 
-
-
+        // color:aqua;
+        //     transition: all 1s ease-in-out;
+        //     font-size: 0.65em;
+        //     transform: translateX(10px) translateY(-7px);
+        //     background-color: aqua;
+        let profileSearchFooterGradient2 = 0;
+        setInterval(function () {
+            if (profileSearchFooterGradient2 == 0) {
+                $('.profileSearchFooterGradient2').css("opacity", "0");
+                profileSearchFooterGradient2 = 1;
+            } else {
+                $('.profileSearchFooterGradient2').css("opacity", "1");
+                profileSearchFooterGradient2 = 0;
+            }
+        }, 5000);
 
 
         // <div class="stage">
