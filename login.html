@@ -5,11 +5,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>응급9조대</title>
+    <title>Emergency119</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+    body {
+        background-image: url("src/background/login.png");
+        background-size: cover;
+    }
+
+    .Login {
+        font-size: 400px;
+        color: white;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 100dvh;
+    }
+
+    .Log-in {
+        font-size: 200px;
+        display: flex;
+        float: left;
+        margin-left: 100px;
+    }
+
+    input::placeholder {
+        color: #BE50C1;
+        font-size: 30px;
+    }
+
+    .loginbtn {
+        color: white;
+        background: linear-gradient(20deg, #5357CE, #C650C0, #F8BB7B);
+        font-size: 30px;
+        width: 450px;
+        height: 70px;
+        border-radius: 10px;
+    }
+
+    .signupbtn {
+        color: white;
+        background: linear-gradient(20deg, #5357CE, #C650C0, #F8BB7B);
+        font-size: 30px;
+        width: 300px;
+        height: 50px;
+        margin-left: 70px;
+        border-radius: 10px;
+    }
+
+    #idin,
+    #pwin {
+        border-radius: 10px;
+    }
+
+    .pw_show {
+        font-size: 20px;
+    }
+</style>
 
 <script type="module">
     // Firebase SDK 라이브러리 가져오기
@@ -51,7 +109,10 @@
 
                 if (id === idin && pw === pwin) {
                     loggedIn = true;
-                    //alert('로그인 성공');
+
+                    // 사용자 정보 저장
+                    sessionStorage.setItem('loggedInUser', idin);
+
                     window.location.href = 'index.html';
                 }
             });
@@ -67,61 +128,21 @@
         });
     });
 
+    $(document).ready(function () {
+        const pwInput = $("#pwin");
+        $('.pw_show input[type="checkbox"]').on('change', function () {
+            if (this.checked) {
+                pwInput.prop("type", "text");
+            } else {
+                pwInput.prop("type", "password");
+            }
+        });
+    });
+
 
 
 </script>
 
-<style>
-    body {
-        background-image: url("src/background/login.png");
-        background-size: cover;
-    }
-
-    .Login {
-        font-size: 400px;
-        color: white;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        min-height: 100dvh;
-    }
-
-    .Log-in {
-        font-size: 200px;
-        display: flex;
-        float: left;
-        margin-left: 100px;
-    }
-
-    input::placeholder {
-        color: #BE50C1;
-        font-size: 30px;
-    }
-
-    .loginbtn {
-        color: white;
-        background-color: #BE50C1;
-        font-size: 30px;
-        width: 450px;
-        height: 70px;
-        border-radius: 10px;
-    }
-
-    .signupbtn {
-        color: white;
-        background-color: #BE50C1;
-        font-size: 30px;
-        width: 300px;
-        height: 50px;
-        margin-left: 70px;
-        border-radius: 10px;
-    }
-
-    #idin,
-    #pwin {
-        border-radius: 10px;
-    }
-</style>
 
 <body>
     <div class="main">
@@ -130,7 +151,8 @@
                 <h1 class="Info">
                     Login<br><br>
                     <input type="text" id="idin" name="idin" placeholder="아이디 입력"><br><br>
-                    <input type="password" id="pwin" name="pwin" placeholder="비밀번호 입력"><br><br>
+                    <input type="password" id="pwin" name="pwin" placeholder="비밀번호 입력"><br>
+                    <label class="pw_show"><input type="checkbox">비밀번호 표시</label><br><br>
                     <button type="button" class="loginbtn" id="loginbtn">LOGIN</button><br><br>
                     <button type="button" class="signupbtn" id="signupbtn">Sign up</button>
                 </h1><br>
