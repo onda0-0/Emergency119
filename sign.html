@@ -5,11 +5,61 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>응급9조대</title>
+    <title>Emergency119</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+    
+
+    body {
+        background-image: url("src/background/login.png");
+        background-size: cover;
+    }
+
+    .Sign {
+        font-size: 200px;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100dvh;
+    }
+
+    .Sign-up {
+        font-size: 200px;
+        display: flex;
+        float: left;
+        margin-left: 100px;
+    }
+
+    .info {
+        margin-left: 100px;
+        font-size: 30px;
+    }
+
+    input::placeholder {
+        color: #BE50C1;
+        font-size: 30px;
+    }
+
+    .signbtn {
+        color: white;
+        background: linear-gradient(20deg, #5357CE, #C650C0, #F8BB7B);
+        font-size: 30px;
+        width: 450px;
+        height: 50px;
+        border-radius: 10px;
+    }
+
+    #id,#pw,#pwc,#name,#number,#date,#address,#email,#git,#insta {
+        border-radius: 10px;
+    }
+</style>
 
 <script type="module">
     // Firebase SDK 라이브러리 가져오기
@@ -39,9 +89,10 @@
 
         let id = $('#id').val();
         let pw = $('#pw').val();
-        let pwc = $('pwc').val();
+        let pwc = $('#pwc').val();
         let name = $('#name').val();
         let number = $('#number').val();
+        let date = $('#date').val();
         let address = $('#address').val();
         let email = $('#email').val();
         let git = $('#git').val();
@@ -52,6 +103,7 @@
             'pw': pw,
             'pwc': pwc,
             'name': name,
+            'date': date,
             'number': number,
             'address': address,
             'email': email,
@@ -60,27 +112,62 @@
         }
 
         if (id === '') {
-            alert('id를 입력하세요.');
+            alert('아이디를 입력하세요.');
             return false;
         }
 
         if (pw === '') {
-            alert('pw를 입력하세요.');
+            alert('비밀번호를 입력하세요.');
             return false;
         }
 
-        if (pw === pwc) {
-            return true;
-        }
-        else{
-            alert('pw를 확인하세요.');
+        if (pwc === '') {
+            alert('비밀번호를 한번 더 입력하세요.');
             return false;
+        }
+
+        if (name === '') {
+            alert('이름을 입력하세요.');
+            return false;
+        }
+        
+        if (date === '') {
+            alert('생년월일 입력하세요.');
+            return false;
+        }
+        
+        if (address === '') {
+            alert('주소를 입력하세요.');
+            return false;
+        }
+        
+        if (email === '') {
+            alert('이메일을 입력하세요.');
+            return false;
+        }
+        
+        if (git === '') {
+            alert('깃이메일을 입력하세요.');
+            return false;
+        }
+       
+        if (insta === '') {
+            alert('인스타 아이디를 입력하세요.');
+            return false;
+        }
+
+        if (pw !== '' && pwc !== '') {
+            if (pw !== pwc) {
+                return alert('pw를 확인하세요');
+            } else {
+
+            }
         }
 
         await addDoc(collection(db, "user"), doc);
 
         alert('회원가입 완료!')
-        window.location.reload();
+        location.href = 'login.html';
     })
 
 
@@ -88,68 +175,22 @@
 
 </script>
 
-<style>
-    body {
-        background-image: url("src/background/login.png");
-        background-size: cover;
-    }
-
-    .Sign {
-        font-size: 200px;
-        color: #BE50C1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100dvh;
-    }
-
-    .Sign-up {
-        font-size: 200px;
-        display: flex;
-        float: left;
-        margin-left: 100px;
-    }
-
-    .info {
-        margin-left: 100px;
-        font-size: 30px;
-    }
-
-    input::placeholder {
-        color: #BE50C1;
-        font-size: 30px;
-    }
-
-    .signbtn {
-        color: #BE50C1;
-        width: 220px;
-        height: 70px;
-        font-size: 30px;
-    }
-
-    .navyBtn {
-        color: #BE50C1;
-        width: 200px;
-        height: 70px;
-        font-size: 30px;
-    }
-</style>
 
 <body>
     <div class="main">
         <div class="Sign">
             <div class="Sign-up">
-                <h1 class="ID" color: #BE50C1;>
-                    회원가입<br><br>
-                    <input type="text" id="id" name="id" placeholder="아이디 입력"><br><br>
+                <h1 class="ID">
+                    Sign up<br><br>
+                    <input type="id" id="id" name="id" placeholder="아이디 입력"><br><br>
                     <input type="text" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
                     <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
-                    <button type="button" class="signbtn" id="signbtn">회원가입 버튼</button>
-                    <button type="button" class="navyBtn" onClick="location.href='login.html'">로그인 버튼</button>
+                    <button type="button" class="signbtn" id="signbtn">Sign up</button>
                 </h1><br>
-                <h1 class="info"><br><br>
+                <h1 class="info"><br>
                     <input type="text" id="name" name="name" placeholder="이름" size="7">
                     <input type="text" id="number" name="number" placeholder="전화번호(선택)" size="11"><br><br>
+                    <input type="text" id="date" name="date" placeholder="생년월일" size="23"><br><br>
                     <input type="text" id="address" name="address" placeholder="사는 주소(간략)" size="23"><br><br>
                     <input type="text" id="email" name="email" placeholder="이메일" size="23"><br><br>
                     <input type="text" id="git" name="git" placeholder="Git 이메일" size="23"><br><br>

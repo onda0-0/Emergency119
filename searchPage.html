@@ -4,93 +4,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>musicList</title>
+    <title>SearchPage</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <link rel="stylesheet" href="login.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-        .loginPage {
-
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* 최상위 Div */
+        .full_size {
             width: 100vw;
             height: 100vh;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-
         }
 
-        .loginWindow {
-            position: relative;
+        .searchPage {
             width: 100%;
-            height: 100%;
-        }
-
-        .loginPopup {
-
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-
-            /* 임시 지정 */
-            width: 1000px;
-            height: 700px;
-        }
-        .loginImg {
-            z-index: -1;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-
-        }
-        .loginText {
-            z-index: 15;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: row;
-
-        }
-        .loginTextCol {
-            z-index: 15;
-            margin: 0 auto 0 auto;
-            width: 30%;
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            background-color: #1B1C22;
         }
-        .btnThemeColor {
-            width: 300px;
-            background-color: aqua;
-            z-index: 100;
+
+        /* 공통 css */
+        .centerItem {
+            justify-content: center;
+            align-content: center;
+        }
+
+        /* 스크롤바 커스텀 */
+        *::-webkit-scrollbar {
+            width: 10px;
+            height: 5px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background-color: grey;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: rgb(24, 24, 24);
+        }
+
+        /* 개별 css */
+        .spHeader {
+            height: 70px;
+            background-color: #0F0F10;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .div_homeIcon {
+            width: 200px;
+            height: 70%;
+            margin-top: auto;
+            margin-bottom: auto;
+            background-image: url('src/logo/logo10.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .div_logo {
+            flex-grow: 1;
+
+
+        }
+
+
+        .div_profileIcon {
+            width: 100px;
+
+        }
+
+        .profileRecommendTop {
+            background: linear-gradient(250deg, #5357CE, #C650C0, #F8BB7B);
+            height: 20px;
+            width: 100%;
+
+        }
+
+        .profileRecommendTitle {
+
+            color: white;
+            padding: 20px 10% 10px;
+            font-size: 24px;
+        }
+
+        .profileRecommend {
+            width: 90%;
+            height: 300px;
+            align-self: center;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+
+
+            .profileRecommendContent {
+                padding: 10px;
+                color: white;
+
+                .profileRecommendImg {}
+
+                .profileRecommendText {}
+            }
+        }
+
+        .profileSearch {
+            /* background-color: #6b2a91; */
+            display: flex;
+            flex-direction: row;
+            /* flex-grow: 1; */
+            justify-content: space-evenly;
+            border-top: 1px solid gray;
+
+            .profileSearchLeft {
+                padding-top: 2vh;
+                height: 100%;
+                width: 45%;
+                /* background-color: #9c0f95; */
+
+
+            }
+
+            .profileSearchRight {
+                padding-top: 2vh;
+                height: 100%;
+                width: 45%;
+                /* background-color: #a1054b; */
+            }
+
+        }
+
+        .profileSearchDatas {
+            margin: 5px;
+            height: 50px;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr 4fr;
+            color: rgb(201, 201, 201);
+            border-radius: 5px;
+            background-color: #23242A;
+            justify-content: space-evenly;
+        }
+
+        .noGrid {
+            display: flex;
+            width: 200px;
+            height: 40px;
+            margin: 0 auto 0 auto;
+            background: linear-gradient(20deg, #5357CE, #C650C0, #F8BB7B);
+            margin-bottom: 2vh;
+        }
+
+        .profileSearchData {
+            margin: 5px;
+            align-content: center;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+        }
+
+        .profileSearchFooter {
+            position: fixed;
+            width: 100%;
+            height: 100px;
+            bottom: 0;
+            background: linear-gradient(to left, #5357CE, #C650C0, #F8BB7B);
+            transition: all 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .profileSearchFooterGradient {
+            position: absolute;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to bottom, #1B1C22, #1b1c2200);
+            z-index: 3;
+        }
+
+        .profileSearchFooterGradient2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #5357CE, #d43770, #F8BB7B);
+            transition: all 5s ease-in-out;
+            z-index: 2;
+            opacity: 1;
+        }
+
+        .div_searchBarOutline {
+            width: 50%;
+            height: 60px;
+            align-content: center;
+            margin-top: 30px;
+            min-width: 250px;
+            border-radius: 10px;
+        }
+
+        .div_searchBar {
+            min-width: 200px;
+            flex: 1 0 auto;
+            /* flex-grow: 1; */
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+
+
+        }
+
+        .searchForm {
+            display: flex;
+            flex-direction: row;
+            width: 80%;
+            height: 90%;
+        }
+
+        .searchBar {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            font-size: 17px;
+            padding: 7px 15px 7px 15px;
+            background-color: rgb(0, 0, 0);
+            border-radius: 10px;
+            border: 1px solid #0F0F10;
+            color: rgb(255, 255, 255);
+            font-weight: 500;
+            outline: none;
+            opacity: 0.4;
+            z-index: 7;
+        }
+
+        .searchBarText {
+            transition: all 1s ease-in-out;
+            position: absolute;
+            width: 40%;
+            height: 40px;
+            z-index: 5;
+            background-color: #00000000;
+            color: rgb(201, 201, 201);
+            border-style: none;
+            transform: translateX(-50%);
+            left: 50%;
+            text-align: center;
+            font-size: 22px;
+            bottom: 20px;
         }
     </style>
 </head>
 
 <body>
-    <div>
-        <button class="btnOpenModal">로그인</button>
-    </div>
-    <div class="full_size"> <!--1번-->
-        <div class="loginPage">
-            <div class="loginWindow">
-                <div class="loginPopup">
-                    <img class="loginImg" src="src/background/login.png">
-                    <div class="loginText">
-                        <div class="loginTextCol">
-                            <input type="text" size="10"/>
-                            <input type="text" size="10"/>
-                            <input type="text" size="10"/>
-                            <button class="btnThemeColor" value="Enter">Enter</button>
-                        </div>
-                        
-                        <div class="loginTextCol">
-                        </div>
+    <div class="full_size">
+        <div class="searchPage">
+            <div class="spHeader">
+                <div class="div_homeIcon">
+                </div>
+                <div class="div_logo">
+                </div>
+                <div class="div_profileIcon">
+                </div>
+            </div>
+            <div class="profileRecommendTop"></div>
+            <div class="profileRecommendTitle">
+                추천 프로필
+            </div>
+            <div class="profileRecommend">
+            </div>
+            <div class="profileSearch">
+                <div class="profileSearchLeft">
+                </div>
+                <div class="profileSearchRight">
+                </div>
+            </div>
+            <div class="profileSearchFooter">
+                <div class="profileSearchFooterGradient2"></div>
+                <div class="profileSearchFooterGradient"></div>
+                <div class="div_searchBarOutline">
+                    <div class="div_searchBar">
+                        <form class="centerItem searchForm" action="searchPage.html" method="get">
+                            <input class="searchBarText" value="사용자 찾기" readonly />
+                            <input type="text" name="searchStr" class="searchBar" />
+                            <input type="submit" method="get" value=""/>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -99,11 +296,12 @@
 
 
     <!-- ------------------------스크립트----------------------------- -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script type="module" defer>
         //firebaseDB 세팅
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, doc, deleteDoc, query, limit, collection, addDoc, orderBy, getDocs, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, doc, deleteDoc, query, limit, collection, addDoc, orderBy, getDocs, getDoc, getCountFromServer } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         // Firebase 구성 정보 설정
         const firebaseConfig = {
             apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
@@ -117,34 +315,212 @@
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        let docs;
-        // Firebase DB, Table 호출
-        (async () => {
-            docs = await getDocs(collection(db, "rankingidol"));
-            document.addEventListener("DOMContentLoaded", function () {
-                console.log(docs);
-                //index, emptyIndex, 0{createUser, artist, link, music }, 1, 2, ...
-                // docs.playlist.forEach((i) => {
-                //     let dataPlaylist = i.data();
-                //     alert(dataPlaylist);
-                // });
-            });
-        })();
-        $('.btnOpenModal').click(function () {
-            const btnOpenLogin = document.querySelector('.loginPage');
-            alert("asdf");
-            $('loginPage').style.display = "flex";
-        })
 
-        //문서 로드, 함수 호출
-        document.addEventListener("DOMContentLoaded", ready);
-        function ready() {
+        let qq = 0;
+        let docs = await getDocs(collection(db, `emergency${qq}`));
+        const docsCnt = await getCountFromServer(collection(db, "emergency"));
 
+        $('.profileSearchLeft').append(`
+                <div class="profileSearchDatas noGrid">
+                    <div class="profileSearchData" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt.data().count}건</div>
+                </div>`);
 
-            //function Ready()
+        let docsIndex = 0;
+        docs.forEach((doc) => {
+            // Firebase DB, Table 호출
+            let row = doc.data();
+            let userid = row['userid'];
+            let password = row['password'];
+            let name = row['name'];
+            let mbti = row['mbti'];
+            let introduce = row['introduce'];
+            let image = row['image'];
+            console.log(userid + password + name + mbti + introduce + image);
+            $('.profileSearchRight').append(`
+                <div class="profileSearchDatas">
+                    <img class="profileSearchData" src="${image}">
+                    <div class="profileSearchData">${userid}</div>
+                    <div class="profileSearchData">${name}</div>
+                    <div class="profileSearchData">${mbti}</div>
+                    <div class="profileSearchData">${introduce}</div>
+                </div>`);
+            $('.profileSearchLeft').append(`
+                <div class="profileSearchDatas">
+                    <img class="profileSearchData" src="${image}">
+                    <div class="profileSearchData">${userid} 님</div>
+                    <div class="profileSearchData">${name}</div>
+                    <div class="profileSearchData">${mbti}</div>
+                    <div class="profileSearchData">${introduce}</div>
+                </div>`);
+
+        });
+
+        for (let i = 1; i <= 7; i++) {
+            $('.profileRecommend').append(`
+                <div class="profileRecommendContent">
+                    <div class="profileRecommendImg">
+                        <img src="src/profile/test${i}.png">
+                    </div>
+                    <div class="profileRecommendText">
+                        조장's ENFP</br>
+                        <div style="color:gray;">
+                            잘 부탁 드립니다
+                        </div>
+                    </div>
+                </div>`);
         }
 
+        //get방식으로 데이터 수령
+        function getParams() {
+            var url = window.location.search.replace('?', '');
+            var urlArray = url.split('&');
+            var params = {};
 
+            for (var i in urlArray) {
+                var param = urlArray[i].split('=');
+                params[param[0]] = param[1];
+            }
+            return params;
+        }
+        const searchStr = getParams("searchStr");
+
+        //get 데이터 가공 후 DB에 정보 요청
+
+
+
+        //search text on, off
+        $(function () {
+            $('.searchBar').on('input', function (f) {
+                if ($('.searchBar').val() != '') {
+                    addEventListener('keydown', function (e) {
+                        if ((e.code == 'Enter') || (e.code == 'NumpadEnter') && $('.searchBar').val() != '') {
+                            sendData();
+                        }
+                    })
+
+                    $('.searchBarText').css("font-size", "15px");
+                    $('.searchBarText').css("bottom", "50px");
+                    $('.searchBarText').css("paddign-right", "300px");
+                } else {
+                    $('.searchBarText').attr("value", "사용자 찾기");
+
+                    $('.searchBarText').css("font-size", "22px");
+                    $('.searchBarText').css("bottom", "20px");
+                    $('.searchBarText').css("paddign-right", "0");
+                }
+
+            })
+
+        })
+        document.addEventListener("DOMContentLoaded", ready());
+        function ready() {
+            $('.searchBar').hover(function () {
+                $('.searchBarText').css("font-size", "15px");
+                $('.searchBarText').css("bottom", "50px");
+            }, function () {
+                $('.searchBarText').css("font-size", "22px");
+                $('.searchBarText').css("bottom", "20px");
+
+            })
+        };
+
+
+        // color:aqua;
+        //     transition: all 1s ease-in-out;
+        //     font-size: 0.65em;
+        //     transform: translateX(10px) translateY(-7px);
+        //     background-color: aqua;
+        let profileSearchFooterGradient2 = 0;
+        setInterval(function () {
+            if (profileSearchFooterGradient2 == 0) {
+                $('.profileSearchFooterGradient2').css("opacity", "0");
+                profileSearchFooterGradient2 = 1;
+            } else {
+                $('.profileSearchFooterGradient2').css("opacity", "1");
+                profileSearchFooterGradient2 = 0;
+            }
+        }, 5000);
+
+
+        // <div class="stage">
+        //                 <div class="container">
+        //                     <div class="ring">
+        //                         <div class="img"></div>
+        //                         <div class="img"></div>
+        //                         <div class="img"></div>
+        //                         <div class="img"></div>
+        //                         <div class="img"></div>
+        //                         <div class="img"></div>
+        //                         <div class="img"></div>
+        //                         <div class="img"></div>
+        //                         <div class="img"></div>
+        //                         <div class="img"></div>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        // //이미지 회전
+        // let xPos = 0;
+
+        // gsap.timeline()
+        //     .set('.ring', { rotationY: 180, cursor: 'grab' }) //set initial rotationY so the parallax jump happens off screen
+        //     .set('.img', { // apply transform rotations to each image
+        //         rotateY: (i) => i * -36,
+        //         transformOrigin: '70% 50% 500px',
+        //         z: -500,
+        //         backgroundImage: (i) => 'url(https://picsum.photos/id/' + (i + 32) + '/600/400/)',
+        //         backgroundPosition: (i) => getBgPos(i),
+        //         backfaceVisibility: 'hidden'
+        //     })
+        //     .from('.img', {
+        //         duration: 1.5,
+        //         y: 200,
+        //         opacity: 0,
+        //         stagger: 0.1,
+        //         ease: 'expo'
+        //     })
+        //     .add(() => {
+        //         $('.img').on('mouseenter', (e) => {
+        //             let current = e.currentTarget;
+        //             gsap.to('.img', { opacity: (i, t) => (t == current) ? 1 : 0.5, ease: 'power3' })
+        //         })
+        //         $('.img').on('mouseleave', (e) => {
+        //             gsap.to('.img', { opacity: 1, ease: 'power2.inOut' })
+        //         })
+        //     }, '-=0.5')
+
+        // $(window).on('mousedown touchstart', dragStart);
+        // $(window).on('mouseup touchend', dragEnd);
+
+
+        // function dragStart(e) {
+        //     if (e.touches) e.clientX = e.touches[0].clientX;
+        //     xPos = Math.round(e.clientX);
+        //     gsap.set('.ring', { cursor: 'grabbing' })
+        //     $(window).on('mousemove touchmove', drag);
+        // }
+
+
+        // function drag(e) {
+        //     if (e.touches) e.clientX = e.touches[0].clientX;
+
+        //     gsap.to('.ring', {
+        //         rotationY: '-=' + ((Math.round(e.clientX) - xPos) % 360),
+        //         onUpdate: () => { gsap.set('.img', { backgroundPosition: (i) => getBgPos(i) }) }
+        //     });
+
+        //     xPos = Math.round(e.clientX);
+        // }
+
+
+        // function dragEnd(e) {
+        //     $(window).off('mousemove touchmove', drag);
+        //     gsap.set('.ring', { cursor: 'grab' });
+        // }
+
+
+        // function getBgPos(i) { //returns the background-position string to create parallax movement in each image
+        //     return (100 - gsap.utils.wrap(0, 360, gsap.getProperty('.ring', 'rotationY') - 180 - i * 36) / 360 * 500) + 'px 0px';
+        // }
 
     </script>
 </body>
