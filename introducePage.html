@@ -9,105 +9,101 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
-        
+        body {
+            background-color: #1B1C22;
+            margin: 0;
+        }
+
+        .main {
+            height: 700px;
+        }
+
         .carousel {
             width: 100%;
             position: relative;
-           
-
         }
-     
-
-
 
         .carousel-inner {
             width: auto;
-            height: 720px;
-            /* 이미지 높이 변경 */
-            
-          
-         
-
+            height: 700px;
         }
-        
 
         .carousel-item {
             position: absolute;
             width: auto;
             height: 100%;
-            margin-left: 40% ;
-            
-          
-            
-
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .d-block {
-            display: block;
-            width: auto;
+        .carousel-item>img {
+            width: 100%;
             height: 100%;
+            padding: 10%;
         }
-        
-        .carousel-control-next {
-                       
+
+        .carousel-caption {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-control-next,
+        .carousel-control-prev {
             background: linear-gradient(20deg, #5357CE, #C650C0, #F8BB7B);
-        }
-        .carousel-control-prev{
-            background: linear-gradient(20deg, #5357CE, #C650C0, #F8BB7B);}
-
-
-
-
-
-        body {
-            background-color: black;
-            margin: 0;
-
+            height: 100vh;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+
+            document.querySelector(".slide2").addEventListener("click", function () {
+                document.querySelector(".container").style = "transform: translateX(-100vw);";
+            });
+
+        </script>
 </head>
 
-
 <body>
-    
+
     <div id="carouselExampleCaptions" class="carousel slide w-100 m-auto ">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
-                aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
-                aria-label="Slide 5"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="mobile1.png" class="d-block w-100 m-auto"  alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <div>
-                        <h1 style="font-size: 20px; ">이름:석현호 <br>mbti: ISFJ <br><br><br><br><br><br></h1>
-                        
-                        <h2 style="border:1px solid white">장점</h2>
-                        <textarea name="message" rows="5" cols="30" font-size=10px;>인내심이 좋음
 
-                        </textarea>
-                        <h2 style="border:1px solid white">협업 스타일</h2>
-                        <textarea name="message" rows="5" cols="30" font-size=10px;>주도적이기 보다 수동적이다
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true">
+            </span>
+            <span class="visually-hidden">
+                Previous
+            </span>
+        </button>
 
-                        </textarea>
-                        <br><br><br>
+        <div class="main">
+            <div class="carousel-inner">
 
-
+                <div class="carousel-item active">
+                    <img src="src/frame/mobile.png" alt="...">
+                    <div class="carousel-caption d-block">
+                        <div>
+                            <p style="font-size: 20px; padding-top: 25px;">이름 : 석현호</p>
+                            <p style="font-size: 20px; padding-bottom: 5px;">MBTI : ISFJ</p>
+                            <p style="border:1px solid white; height: 30px;">장점</p>
+                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">인내심이 좋음</p>
+                            <p style="border:1px solid white; height: 30px;">협업 스타일</p>
+                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">주도적이기 보다 수동적이다</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img src="mobile1.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    
+
+                <div class="carousel-item">
+                    <img src="mobile1.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+
                         <h1 style="font-size: 20px; ">이름:남현 <br> mbti: ISTJ <br><br><br><br><br><br></h1>
 
                         <h2 style="border:1px solid white">장점</h2>
@@ -117,91 +113,101 @@
                         <textarea name="message" rows="5" cols="30" font-size=10px;>상대방의 입장을 이해하며 의견과 관점을 존중하고 상대방의 감정과 요구사항을 고려합니다
                         </textarea>
                         <br><br><br>
-                   
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="mobile1.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <div>
-                        <h1 style="font-size: 20px; ">이름:강현지 <br>mbti: ENFP <br><br><br><br><br><br></h1>
-
-                        <h2 style="border:1px solid white">장점</h2>
-                        <textarea name="message" rows="5" cols="30" font-size=10px;>멘탈 회복이 빠르며 긍정적입니다(짜증나거나 화나거나 무슨 일 있어도 금방 회복하는 편입니다)
-
-                        </textarea>
-                        <h2 style="border:1px solid white">협업 스타일</h2>
-                        <textarea name="message" rows="5" cols="30" font-size=10px;>소통하고 의견공유 하는 걸 중요하게 생각합니다/ 아이디어 잘 던짐
-
-                        </textarea>
-                        <br><br><br>
-
 
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img src="mobile1.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <div>
-                        <h1 style="font-size: 20px; ">이름:이재석 <br>mbti: ISFP <br><br><br><br><br><br></h1>
 
-                        <h2 style="border:1px solid white">장점</h2>
-                        <textarea name="message" rows="5" cols="30" font-size=10px;>의견 수용을 잘함
+                <div class="carousel-item">
+                    <img src="mobile1.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div>
+                            <h1 style="font-size: 20px; ">이름:강현지 <br>mbti: ENFP <br><br><br><br><br><br></h1>
 
-                        </textarea>
-                        <h2 style="border:1px solid white">협업 스타일</h2>
-                        <textarea name="message" rows="5" cols="30" font-size=10px;>여러가지 의견 중 최적의 의견을 소통 후 결정해서 진행하는 편이며 보통 따라가는 편임.
+                            <h2 style="border:1px solid white">장점</h2>
+                            <textarea name="message" rows="5" cols="30" font-size=10px;>멘탈 회복이 빠르며 긍정적입니다(짜증나거나 화나거나 무슨 일 있어도 금방 회복하는 편입니다)
 
                         </textarea>
-                        <br><br><br>
+                            <h2 style="border:1px solid white">협업 스타일</h2>
+                            <textarea name="message" rows="5" cols="30" font-size=10px;>소통하고 의견공유 하는 걸 중요하게 생각합니다/ 아이디어 잘 던짐
+
+                        </textarea>
+                            <br><br><br>
 
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <img src="mobile1.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <div>
-                        <h1 style="font-size: 20px; ">이름:백원하 <br>mbti:INTP <br><br><br><br><br><br></h1>
 
-                        <h2 style="border:1px solid white">장점</h2>
-                        <textarea name="message" rows="5" cols="30" font-size=10px;>몰입도와 집중력이 높음, 이해력이 높아 학습한 내용을 잘 활용함
+                <div class="carousel-item">
+                    <img src="mobile1.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div>
+                            <h1 style="font-size: 20px; ">이름:이재석 <br>mbti: ISFP <br><br><br><br><br><br></h1>
 
-                        </textarea>
-                        <h2 style="border:1px solid white">협업 스타일</h2>
-                        <textarea name="message" rows="5" cols="30" font-size=10px;>맞는 스타일로 변화, 다방면으로 의견을 많이 제시하며, 팀원들 간 의사 조정을 자주 함
+                            <h2 style="border:1px solid white">장점</h2>
+                            <textarea name="message" rows="5" cols="30" font-size=10px;>의견 수용을 잘함
 
                         </textarea>
-                        <br><br><br>
+                            <h2 style="border:1px solid white">협업 스타일</h2>
+                            <textarea name="message" rows="5" cols="30" font-size=10px;>여러가지 의견 중 최적의 의견을 소통 후 결정해서 진행하는 편이며 보통 따라가는 편임.
+
+                        </textarea>
+                            <br><br><br>
 
 
+                        </div>
                     </div>
                 </div>
+
+                <div class="carousel-item">
+                    <img src="mobile1.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <div>
+                            <h1 style="font-size: 20px; ">이름:백원하 <br>mbti:INTP <br><br><br><br><br><br></h1>
+
+                            <h2 style="border:1px solid white">장점</h2>
+                            <textarea name="message" rows="5" cols="30" font-size=10px;>몰입도와 집중력이 높음, 이해력이 높아 학습한 내용을 잘 활용함
+
+                        </textarea>
+                            <h2 style="border:1px solid white">협업 스타일</h2>
+                            <textarea name="message" rows="5" cols="30" font-size=10px;>맞는 스타일로 변화, 다방면으로 의견을 많이 제시하며, 팀원들 간 의사 조정을 자주 함
+
+                        </textarea>
+                            <br><br><br>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" aria-label="Slide 1"
+                    aria-current="true" class="active">
+                </button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2">
+                </button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3">
+                </button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4">
+                </button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5">
+                </button>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
+
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
             data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="carousel-control-next-icon" aria-hidden="true">
+            </span>
+            <span class="visually-hidden">
+                Next
+            </span>
         </button>
-    </div>
+
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-
-            document.querySelector(".slide2").addEventListener("click", function () {
-                document.querySelector(".container").style = "transform: translateX(-100vw);";
-            });
-            
-        </script>
 </body>
 
 </html>
