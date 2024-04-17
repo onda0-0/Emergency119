@@ -6,12 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emergency119</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-    crossorigin="anonymous"
-  />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <style>
     body {
       background-color: #1b1c22;
@@ -29,11 +25,11 @@
       background-size: cover;
     }
 
-    .teamname > h2 {
-        font-weight: 1000;
-        margin-top: 0.7rem;
-        margin-bottom: 1rem;
-      }
+    .teamname>h2 {
+      font-weight: 1000;
+      margin-top: 0.7rem;
+      margin-bottom: 1rem;
+    }
 
 
     .loginNlist {
@@ -104,12 +100,12 @@
       min-height: 300px;
     }
 
-    .carousel-caption > h3 {
-        background: -webkit-linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
-        -webkit-background-clip: text;
-        -webkit-text-stroke: 4px transparent;
-        color: #ffffff;
-      }
+    .carousel-caption>h3 {
+      background: -webkit-linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
+      -webkit-background-clip: text;
+      -webkit-text-stroke: 4px transparent;
+      color: #ffffff;
+    }
 
 
     .emergencyBtn {
@@ -124,21 +120,26 @@
     }
 
     a {
-        text-decoration-line: none;
-      }
-      a:link {
-        color: white;
-      }
-      a:visited {
-        color: white;
-      }
-      a:hover {
-        color: #f50f5c;
-        transform: scale(2);
-        transition-duration: 0.5s;
-      }
-      .logoimage{ width: 70px;}
+      text-decoration-line: none;
+    }
 
+    a:link {
+      color: white;
+    }
+
+    a:visited {
+      color: white;
+    }
+
+    a:hover {
+      color: #f50f5c;
+      transform: scale(2);
+      transition-duration: 0.5s;
+    }
+
+    .logoimage {
+      width: 70px;
+    }
   </style>
   <script>
     //1B1C22
@@ -149,7 +150,7 @@
 
 
   </script>
-  
+
 </head>
 
 <body>
@@ -310,8 +311,15 @@
     const db = getFirestore(app);
 
     $("#loginbtn").click(async function () {
-      location.href = 'login.html';
+      $.ajax({
+        url: "login.html",
+        success: function (response) {
+          $("#loginModalBody").html(response);
+          $("#loginModal").modal("show");
+        }
+      });
     });
+
 
 
     // index.html에서 페이지가 로드될 때 실행되는 코드
@@ -346,5 +354,23 @@
   </script>
 
 </body>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="loginModalBody">
+        <!-- 여기에 login.html 내용을 불러오거나 직접 작성 -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </html>
