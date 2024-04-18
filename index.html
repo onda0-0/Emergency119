@@ -109,7 +109,7 @@
 
         background-size: 300% 100%;
         background-position-x: 0%;
-        animation: gradient 3s ease-in-out both;
+        animation: gradient 5s ease-in-out both;
       }
       @keyframes gradient {
         from {
@@ -119,6 +119,10 @@
           background-position-x: 100%;
         }
       }
+
+      .span-letsgo:hover{
+      text-shadow: 1px 1px 7px white;
+    }
 
       /*멤버프로필 있는 부분*/
       .members_profile {
@@ -154,6 +158,9 @@
       color: white;
       /* 버튼 배경색 그라데이션 지정 */
       background: linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
+    }
+    .emergencyBtn:hover{
+      box-shadow: 1px 1px 8px 1px white;
     }
 
     a:hover {
@@ -219,7 +226,7 @@
           <div class="carousel-caption d-none d-md-block">
             <h3 style="font-weight: bold">MBTI가 궁금해!</h3>
             <button class="letsgo" id="letsgo_search1">
-              mbti알아보러가기
+              <span class="span-letsgo">mbti알아보러가기</span>
             </button>
           </div>
         </div>
@@ -228,7 +235,7 @@
           <div class="carousel-caption d-none d-md-block">
             <h3 style="font-weight: bold">협업스타일이 궁금해!</h3>
             <button class="letsgo" id="letsgo_search2">
-              협업스타일 알아보러가기
+              <span class="span-letsgo">협업스타일 알아보러가기</span>
             </button>
           </div>
         </div>
@@ -237,7 +244,7 @@
           <div class="carousel-caption d-none d-md-block">
             <h3 style="font-weight: bold">응급9조대가 궁금해!</h3>
             <button class="letsgo" id="letsgo_contents">
-              극강의 MBTI밸런스를 자랑하는 응급9조대원들 알아보러가기
+              <span class="span-letsgo">극강의 MBTI밸런스를 자랑하는 응급9조대원들 알아보러가기</span>
             </button>
           </div>
         </div>
