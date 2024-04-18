@@ -160,10 +160,12 @@
             where("id", "==", id)
         );
         let docs = await getDocs(qry);
+        console.log(qry);
+        console.log(docs);
         docs.forEach((doc) => {
             docId = doc.id;
 
-            console.log(doc.data()['image']);
+            // console.log(doc.data()['image']);
 
             //실제 내용값 변경
             $('#id').val(doc.data()['id']);
