@@ -20,7 +20,7 @@
         padding-left: 3px;
         padding-right: 5px;
       }
-      
+
       .logoimage {
         width: 70px;
         margin-left: 0.7rem;
@@ -87,6 +87,34 @@
         color: white;
       }
 
+      .span-letsgo {
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(
+          90deg,
+          #5357ce,
+          #c650c0,
+          #f8bb7b,
+          #c650c0,
+          #5357ce,
+          #c650c0,
+          #f8bb7b
+        );
+
+        background-size: 300% 100%;
+        background-position-x: 0%;
+        animation: gradient 3s ease-in-out both;
+      }
+      @keyframes gradient {
+        from {
+          background-position-x: 0%;
+        }
+        to {
+          background-position-x: 100%;
+        }
+      }
+
       /*멤버프로필 있는 부분*/
       .members_profile {
         display: flex;
@@ -137,8 +165,20 @@
         transform: scale(1.2);
         transition-duration: 0.5s;
       }
-      
-      
+      /* 스크롤바 커스텀 */
+      *::-webkit-scrollbar {
+            width: 10px;
+            height: 5px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background-color: grey;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: rgb(24, 24, 24);
+        }  
+
     </style>
   </head>
 
@@ -219,7 +259,7 @@
             <div class="carousel-caption d-none d-md-block">
               <h3 style="font-weight: bold">협업스타일이 궁금해!</h3>
               <button class="letsgo" id="letsgo_search2">
-                협업스타일 알아보러가기
+                <span class="span-letsgo">협업스타일 알아보러가기</span>
               </button>
             </div>
           </div>
