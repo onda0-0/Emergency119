@@ -148,7 +148,8 @@
     // Firebase 인스턴스 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
-    let id = sessionStorage.getItem("loggedInUser");
+    let id = JSON.parse(sessionStorage.getItem("loggedInUser")).id;
+    
     // let id = "wonha";
     let pw, pwc, name, number, date, address, email, git, image, mbti, strength, workstyle, introduce, insta;
     let docId;
