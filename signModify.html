@@ -89,6 +89,7 @@
         text-align: start;
     }
 
+
     /* 스크롤바 커스텀 */
     *::-webkit-scrollbar {
         width: 10px;
@@ -102,51 +103,122 @@
     *::-webkit-scrollbar-thumb {
         background-color: rgb(24, 24, 24);
     }
+
+    .existing-id {
+        color: red;
+        font-size: 20px;
+    }
+
+    .homebtn {
+        width: 300px;
+        height: 100px;
+        background: url('src/logo/logo10.png') no-repeat;
+        background-size: contain;
+        border: none;
+    }
+
+    .ID {
+        position: relative;
+        top: -100px;
+    }
+
+    #pw {
+        margin-top: 30px;
+    }
 </style>
 
 <script type="module">
+
     // Firebase SDK 라이브러리 가져오기
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
     import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
+    import { collection, addDoc, getDocs, setDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
     // Firebase 구성 정보 설정
     const firebaseConfig = {
-            apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
-            authDomain: "watual-f9224.firebaseapp.com",
-            projectId: "watual-f9224",
-            storageBucket: "watual-f9224.appspot.com",
-            messagingSenderId: "307021915043",
-            appId: "1:307021915043:web:ec35f5002d695d81a1f016",
-            measurementId: "G-248XS4LSEE"
-        };
+        apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
+        authDomain: "watual-f9224.firebaseapp.com",
+        projectId: "watual-f9224",
+        storageBucket: "watual-f9224.appspot.com",
+        messagingSenderId: "307021915043",
+        appId: "1:307021915043:web:ec35f5002d695d81a1f016",
+        measurementId: "G-248XS4LSEE"
+    };
 
 
     // Firebase 인스턴스 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    // let id = sessionStorage.getItem("loggedInUser");
+    let id = "wonha";
+    let pw, pwc, name, number, date, address, email, git, image, mbti, strength, workstyle, introduce, insta;
+    let docId;
+    document.addEventListener("DOMContentLoaded", async function () {
+        // console.log(  getDocs(collection(db, `emergency119`))[0].id  );
+        const qry = query(
+            collection(db, "emergency119"),
+            where("id", "==", id)
+        );
+        let docs = await getDocs(qry);
+        docs.forEach((doc) => {
+            docId = doc.id;
+            console.log(doc.data()['img']);
+
+            //실제 내용값 변경
+            $('#id').val(doc.data()['id']);
+            $('#id').val(doc.data()['id']);
+            $('#pw').val(doc.data()['pw']);
+            $('#name').val(doc.data()['name']);
+            $('#number').val(doc.data()['number']);
+            $('#date').val(doc.data()['date']);
+            $('#address').val(doc.data()['address']);
+            $('#email').val(doc.data()['email']);
+            $('#git').val(doc.data()['git']);
+            $('#image').val(doc.data()['img']);
+            $('#mbti').val(doc.data()['mbti']);
+            $('#strength').val(doc.data()['strength']);
+            $('#workstyle').val(doc.data()['workstyle']);
+            $('#introduce').val(doc.data()['introduce']);
+            $('#insta').val(doc.data()['insta']);
+            //placeholder 값 변경
+            $('#id').attr("placeholder", doc.data()['id']);
+            $('#pw').attr("placeholder", doc.data()['pw']);
+            $('#name').attr("placeholder", doc.data()['name']);
+            $('#number').attr("placeholder", doc.data()['number']);
+            $('#date').attr("placeholder", doc.data()['date']);
+            $('#address').attr("placeholder", doc.data()['address']);
+            $('#email').attr("placeholder", doc.data()['email']);
+            $('#git').attr("placeholder", doc.data()['git']);
+            $('#image').attr("placeholder", doc.data()['img']);
+            $('#mbti').attr("placeholder", doc.data()['mbti']);
+            $('#strength').attr("placeholder", doc.data()['strength']);
+            $('#workstyle').attr("placeholder", doc.data()['workstyle']);
+            $('#introduce').attr("placeholder", doc.data()['introduce']);
+            $('#insta').attr("placeholder", doc.data()['insta']);
+
+        });
+
+
+    })
 
     $("#signbtn").click(async function () {
 
-        let id = $('#id').val();
-        let pw = $('#pw').val();
-        let pwc = $('#pwc').val();
-        let name = $('#name').val();
-        let number = $('#number').val();
-        let date = $('#date').val();
-        let address = $('#address').val();
-        let email = $('#email').val();
-        let git = $('#git').val();
-        let image = $('#image').val();
-        let mbti = $('#mbti').val();
-        let strength = $('#strength').val();
-        let workstyle = $('#workstyle').val();
-        let introduce = $('#introduce').val();
-        let insta = $('#insta').val();
+        id = $('#id').val();
+        pw = $('#pw').val();
+        pwc = $('#pwc').val();
+        name = $('#name').val();
+        number = $('#number').val();
+        date = $('#date').val();
+        address = $('#address').val();
+        email = $('#email').val();
+        git = $('#git').val();
+        image = $('#image').val();
+        mbti = $('#mbti').val();
+        strength = $('#strength').val();
+        workstyle = $('#workstyle').val();
+        introduce = $('#introduce').val();
+        insta = $('#insta').val();
 
-
-        let doc = {
+        let doc1 = {
             'id': id,
             'pw': pw,
             'name': name,
@@ -164,67 +236,57 @@
             'insta': insta
 
         }
-
         if (id === '') {
             alert('아이디를 입력하세요.');
             return false;
         }
-
         if (pw === '') {
             alert('비밀번호를 입력하세요.');
             return false;
         }
-
         if (pwc === '') {
             alert('비밀번호를 한번 더 입력하세요.');
             return false;
         }
-
         if (name === '') {
             alert('이름을 입력하세요.');
             return false;
         }
-
         if (image === '') {
             alert('이미지를 넣어주세요.');
             return false;
         }
-
         if (mbti === '') {
             alert('mbti를 입력하세요.');
             return false;
         }
-
         if (strength === '') {
             alert('장점을 입력하세요.');
             return false;
         }
-
         if (workstyle === '') {
             alert('협업스타일을 입력하세요.');
             return false;
         }
-
         if (introduce === '') {
             alert('자기소개글을 입력하세요.');
             return false;
         }
-
         if (pw !== '' && pwc !== '') {
             if (pw !== pwc) {
                 return alert('pw를 확인하세요');
-            } else {
-
             }
         }
 
-        await addDoc(collection(db, "emergency119"), doc);
+        await setDoc(doc(db, "emergency119", docId), doc1);
 
-        alert('회원가입 완료!')
+        alert('개인정보 수정 완료!')
         location.href = 'login.html';
     })
 
-
+    $("#homebtn").click(async function () {
+        location.href = 'index.html';
+    })
 
 
 </script>
@@ -235,11 +297,13 @@
         <div class="Sign">
             <div class="Sign-up">
                 <h1 class="ID"><br>
+                    <button type="button" class="homebtn" id="homebtn"></button><br>
                     개인정보 수정<br><br>
-                    <input type="id" id="id" name="id" placeholder="아이디 입력"><br><br>
+                    <input type="id" id="id" name="id" placeholder="아이디 입력">
+                    <p class="existing-id"></p>
                     <input type="text" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
                     <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
-                    <button type="button" class="signbtn" id="signbtn">수정 확인</button>
+                    <button type="button" class="signbtn" id="signbtn">수정하기</button>
                 </h1><br>
                 <h1 class="info">필수입력사항<br><br>
                     <input type="text" id="name" name="name" placeholder="이름" size="23"><br><br>
@@ -259,16 +323,9 @@
                     <input type="text" id="git" name="git" placeholder="Git 이메일" size="23"><br><br>
                     <input type="text" id="insta" name="insta" placeholder="인스타 주소" size="23"><br><br>
                 </h1>
-
             </div>
         </div>
     </div>
-
-
-
-    </div>
-
-
 </body>
 
 </html>
