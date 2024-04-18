@@ -484,7 +484,7 @@
 
         $('.profileSearchLeft').append(`
                 <div class="profileSearchDatas noGrid">
-                    <div class="profileSearchData profileSearchDataCnt" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt}건</div>
+                    <div class="profileSearchData profileSearchDataCnt" style="font-size:17px;font-weight:550;">ID 검색결과 : ${docsCnt}건</div>
                 </div>`);
         $('.profileSearchRight').append(`
                 <div class="profileSearchDatas noGrid">
@@ -526,7 +526,7 @@
                 </div>`);
 
                 docsCnt++;
-                $('.profileSearchDataCnt').text(`검색결과 : ${docsCnt}건`);
+                $('.profileSearchDataCnt').text(`ID 검색 : ${docsCnt}건`);
             }
             // 전체 검색
             if (userid.includes(searchStr) || name.includes(searchStr) || mbti.includes(searchStr) || introduce.includes(searchStr)) {
@@ -539,7 +539,7 @@
                     <div class="profileSearchData">${introduce}</div>
                 </div>`);
                 docsCnt2++;
-                $('.profileSearchDataCnt2').text(`검색결과 : ${docsCnt2}건`);
+                $('.profileSearchDataCnt2').text(`전체 검색 : ${docsCnt2}건`);
             }
             // 추천 프로필
             let randomColor = "#" + (parseInt(Math.random() * 0xffffff)).toString(16);
@@ -674,7 +674,7 @@
                 profileSearchFooterGradient2 = 0;
                 $('.profileSearchLine2').css("opacity", "1");
             }
-        }, 3000);
+        }, 2000);
 
 
     </script>
