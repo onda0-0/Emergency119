@@ -151,7 +151,7 @@
 
         <span id="username" style="color: white"></span>
         <form class="d-flex">
-          <button type="button" class="emergencyBtn" id="loginbtn">
+          <button type="button" class="emergencyBtn" id="loginbtn" data-bs-toggle="modal" data-bs-target="loginmodal">
             Login
           </button>
           <button
@@ -463,5 +463,12 @@
         window.location.reload();
       });
     </script>
+    <div class="modaL fade" id="LoginModaL" tabindex="1" aria-labelledby="LoginModaLLabel" aria-hidden="true">
+      <div class="modaL-diaLog">
+        <div class="modaL-content">
+          
+        </div>
+      </div>
+    </div>
   </body>
 </html>

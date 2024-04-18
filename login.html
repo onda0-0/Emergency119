@@ -67,6 +67,20 @@
     .pw_show {
         font-size: 20px;
     }
+
+    /* 스크롤바 커스텀 */
+    *::-webkit-scrollbar {
+            width: 10px;
+            height: 5px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background-color: grey;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: rgb(24, 24, 24);
+        }
 </style>
 
 <script type="module">
@@ -77,16 +91,16 @@
     import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    // Firebase 구성 정보 설정
     const firebaseConfig = {
-        apiKey: "AIzaSyB1LgAbTFdpbyOmHTg6U60bFVjSsWZZ2KQ",
-        authDomain: "test1-decaa.firebaseapp.com",
-        projectId: "test1-decaa",
-        storageBucket: "test1-decaa.appspot.com",
-        messagingSenderId: "629960551291",
-        appId: "1:629960551291:web:d57635d3234a59873a2bde",
-        measurementId: "G-C4CG02WP18"
-    };
+            apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
+            authDomain: "watual-f9224.firebaseapp.com",
+            projectId: "watual-f9224",
+            storageBucket: "watual-f9224.appspot.com",
+            messagingSenderId: "307021915043",
+            appId: "1:307021915043:web:ec35f5002d695d81a1f016",
+            measurementId: "G-248XS4LSEE"
+        };
 
 
     // Firebase 인스턴스 초기화
@@ -95,7 +109,7 @@
 
     $(document).ready(async function () {
         $("#loginbtn").click(async function () {
-            let docs = await getDocs(collection(db, "user"));
+            let docs = await getDocs(collection(db, "emergency119"));
 
             let idin = $('#idin').val();
             let pwin = $('#pwin').val();
