@@ -112,6 +112,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 1px solid gray;
+            border-radius: 5px;
         }
 
 
@@ -191,6 +193,7 @@
             border-radius: 5px;
             background-color: #23242A;
             justify-content: space-evenly;
+            padding-left: 5px;
         }
 
         .noGrid {
@@ -208,6 +211,13 @@
             overflow-x: auto;
             overflow-y: hidden;
             white-space: nowrap;
+        }
+        .profileSearchDataImg {
+            height: 100%;
+            width: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
         }
 
         .profileSearchFooter {
@@ -324,7 +334,6 @@
             </div>
             <div class="profileRecommendTop"></div>
             <div class="profileRecommendTitle">
-                추천 프로필
             </div>
             <div class="profileRecommend">
             </div>
@@ -392,19 +401,19 @@
         docs.forEach((doc) => {
             // Firebase DB, Table 호출
             let row = doc.data();
-            let userid = row['userid'];
-            let password = row['password'];
+            let userid = row['id'];
+            let password = row['pw'];
             let name = row['name'];
             let mbti = row['mbti'];
             let introduce = row['introduce'];
-            let image = row['image'];
+            let image = row['img'];
             // console.log(userid + password + name + mbti + introduce + image);
             // 이름 검색
             if (userid.indexOf(searchStr) != -1) {
 
                 $('.profileSearchLeft').append(`
                 <div class="profileSearchDatas">
-                    <img class="profileSearchData" src="${image}">
+                    <div class="profileSearchDataImg" style="background-image:url('${image}')"></div>
                     <div class="profileSearchData">${userid} 님</div>
                     <div class="profileSearchData">${name}</div>
                     <div class="profileSearchData">${mbti}</div>
@@ -415,18 +424,19 @@
             if (userid.includes(searchStr) || name.includes(searchStr) || mbti.includes(searchStr) || introduce.includes(searchStr)) {
                 $('.profileSearchRight').append(`
                 <div class="profileSearchDatas">
-                    <img class="profileSearchData" src="${image}">
-                    <div class="profileSearchData">${userid}</div>
+                    <div class="profileSearchDataImg" style="background-image:url('${image}')"></div>
+                    <div class="profileSearchData">${userid} 님</div>
                     <div class="profileSearchData">${name}</div>
                     <div class="profileSearchData">${mbti}</div>
                     <div class="profileSearchData">${introduce}</div>
                 </div>`);
             }
-
+            
+            let randomColor = "#"+(parseInt(Math.random()*0xffffff)).toString(16);
 
             $('.profileRecommend').append(`
-                <div class="profileRecommendContent">
-                    <div class="profileRecommendImg" style="background-image:url('src/profile/test${2}.png')""></div>
+                <div class="profileRecommendContent" style="border-color: ${randomColor};">
+                    <div class="profileRecommendImg" style="background-image:url('${image}')"></div>
                     <div class="profileRecommendText">
                         ${mbti} ${userid}</br>
                         <div style="color:gray;">
