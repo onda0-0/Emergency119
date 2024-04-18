@@ -50,11 +50,40 @@
       background-size: cover;
     }
 
-    .teamname>h2 {
-      font-weight: 1000;
-      margin-top: 0.7rem;
-      margin-bottom: 1rem;
-    }
+      .span-letsgo {
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(
+          90deg,
+          #5357ce,
+          #c650c0,
+          #f8bb7b,
+          #c650c0,
+          #5357ce,
+          #c650c0,
+          #f8bb7b
+        );
+
+        background-size: 300% 100%;
+        background-position-x: 0%;
+        animation: gradient 3s ease-in-out both;
+      }
+      @keyframes gradient {
+        from {
+          background-position-x: 0%;
+        }
+        to {
+          background-position-x: 100%;
+        }
+      }
+
+      /*멤버프로필 있는 부분*/
+      .members_profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
     .get-team-mate {
       color: #fff;
@@ -86,18 +115,51 @@
       color: #ffffff;
     }
 
+<<<<<<<<< Temporary merge branch 1
+      a {
+        text-decoration-line: none;
+      }
+      a:link {
+        color: white;
+      }
+      a:visited {
+        color: white;
+      }
+      a:hover {
+        color: #f50f5c;
+        transform: scale(1.2);
+        transition-duration: 0.5s;
+      }
+      /* 스크롤바 커스텀 */
+      *::-webkit-scrollbar {
+            width: 10px;
+            height: 5px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background-color: grey;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: rgb(24, 24, 24);
+        }  
+
+    </style>
+  </head>
+=========
     .letsgo {
       background-color: transparent;
       border: none;
       color: white;
     }
+>>>>>>>>> Temporary merge branch 2
 
-    /*멤버프로필 있는 부분*/
-    .members_profile {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+      /*멤버프로필 있는 부분*/
+      .members_profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
     .card {
       margin: 1rem;
@@ -132,6 +194,21 @@
       transform: scale(1.2);
       transition-duration: 0.5s;
     }
+    
+    /* 스크롤바 커스텀 */
+      *::-webkit-scrollbar {
+            width: 10px;
+            height: 5px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background-color: grey;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: rgb(24, 24, 24);
+        }  
+
   </style>
 </head>
 
@@ -280,7 +357,6 @@
       </div>
     </div>
   </div>
-  <footer></footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3/dist/js/bootstrap.bundle.min.js"
@@ -410,3 +486,4 @@
 </body>
 
 </html>
+>>>>>>>>> Temporary merge branch 2
