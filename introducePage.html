@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Study</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
@@ -60,10 +61,10 @@
             height: 100vh;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-                // Firebase SDK 라이브러리 가져오기
-                import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    <script type="module">
+
+        // Firebase SDK 라이브러리 가져오기
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
@@ -82,20 +83,24 @@
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
         let docs = await getDocs(collection(db, "introduce"));
+        let count = 0;
         docs.forEach((doc) => {
             let row = doc.data();
-            let countData=docs.data().count;
+
             let image = row['image'];
             let name = row['name'];
             let mbti = row['mbti'];
-
-                let temp_html = `
-                <div class="carousel-item">
+            let strength = row['strength'];
+            let workstyle = row['workstyle'];
+            
+             let temp_html = `
+                <div class="carousel-item ${count === 0 ? ' active' : ''}">
                     <img src="src/frame/mobile.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-block">
                         <div>
-                            <p style="font-size: 20px; padding-top: 25px;">이름 :${countData11} </p>
+                            <p style="font-size: 20px; padding-top: 25px;">이름 : ${name}</p>
                             <p style="font-size: 20px; padding-bottom: 5px;">MBTI : ${mbti}</p>
                             <p style="border:1px solid white; height: 30px;">장점</p>
                             <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">${strength}</p>
@@ -103,24 +108,26 @@
                             <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">${workstyle}</p>
                         </div>
                     </div>
-                </div>`;
-                let btn =`
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6">
-                </button>`
-                    
-                  
+                </div>
+            `;
+            
+            let btn = `
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${count}" aria-label="Slide ${count +1}" ${count === 0 ? ' aria-current="true" class="active"' : ''}">
+                    </button>
+                `;
+
                 $('#card').append(temp_html);
-                $('#btn').append(btn);
+                $('#cardBtn').append(btn);
+
+            count++;
+            
         });
 
+        document.querySelector(".slide2").addEventListener("click", function () {
+            document.querySelector(".container").style = "transform: translateX(-100vw);";
+        });
 
-            document.querySelector(".slide2").addEventListener("click", function () {
-                document.querySelector(".container").style = "transform: translateX(-100vw);";
-            });
-           
-
-
-        </script>
+    </script>
 </head>
 
 <body>
@@ -137,94 +144,12 @@
         </button>
 
         <div class="main">
-            <div class="carousel-inner"id="card">
-
-                <div class="carousel-item active">
-                    <img src="src/frame/mobile.png" alt="...">
-                    <div class="carousel-caption d-block">
-                        <div>
-                            <p style="font-size: 20px; padding-top: 25px;">이름 : 석현호</p>
-                            <p style="font-size: 20px; padding-bottom: 5px;">MBTI : ISFJ</p>
-                            <p style="border:1px solid white; height: 30px;">장점</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">인내심이 좋음</p>
-                            <p style="border:1px solid white; height: 30px;">협업 스타일</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">주도적이기 보다 수동적이다</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="src/frame/mobile.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-block">
-                        <div>
-                            <p style="font-size: 20px; padding-top: 25px;">이름 : 남현</p>
-                            <p style="font-size: 20px; padding-bottom: 5px;">MBTI : ISTJ</p>
-                            <p style="border:1px solid white; height: 30px;">장점</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">스트레스를 받지 않음</p>
-                            <p style="border:1px solid white; height: 30px;">협업 스타일</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">상대방의 감정과 요구사항을 고려
-                                각자의 의견과 관점을 존중
-                                상대방의 입장을 이해</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="src/frame/mobile.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-block">
-                        <div>
-                            <p style="font-size: 20px; padding-top: 25px;">이름 : 강현지</p>
-                            <p style="font-size: 20px; padding-bottom: 5px;">MBTI : ENFP</p>
-                            <p style="border:1px solid white; height: 30px;">장점</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">멘탈 회복이 빠름(짜증나거나 화나거나 무슨 일 있어도 금방 회복하는 편)/긍정적인 편</p>
-                            <p style="border:1px solid white; height: 30px;">협업 스타일</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">소통하고 의견공유를 하는 걸 중요하게 생각함/ 아이디어를 잘 던짐</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="src/frame/mobile.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-block">
-                        <div>
-                            <p style="font-size: 20px; padding-top: 25px;">이름 : 백원하</p>
-                            <p style="font-size: 20px; padding-bottom: 5px;">MBTI : INTP</p>
-                            <p style="border:1px solid white; height: 30px;">장점</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">몰입도와 집중력이 높음, 이해력이 높아 학습한 내용을 잘 활용함</p>
-                            <p style="border:1px solid white; height: 30px;">협업 스타일</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">포지션에 맞는 스타일로 변화, 다방면으로 의견을 많이 제시하며, 팀원들 간 의사 조정을 자주 함</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="src/frame/mobile.png" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-block">
-                        <div>
-                            <p style="font-size: 20px; padding-top: 25px;">이름 : 이재석</p>
-                            <p style="font-size: 20px; padding-bottom: 5px;">MBTI : ISFP</p>
-                            <p style="border:1px solid white; height: 30px;">장점</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">의견 수용을 잘함 / 화를 내거나 감정을 표출하는 일은 없음</p>
-                            <p style="border:1px solid white; height: 30px;">협업 스타일</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">여러가지 의견 중 최적의 의견을 소통 후 결정해서 진행하는 편, 보통 따라가는 편입니다</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="carousel-inner" id="card">
 
             </div>
 
-            <div id="btn" class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" aria-label="Slide 1"
-                    aria-current="true" class="active">
-                </button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2">
-                </button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3">
-                </button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4">
-                </button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5">
-                </button>
+            <div id="cardBtn" class="carousel-indicators">
+                
             </div>
         </div>
 
