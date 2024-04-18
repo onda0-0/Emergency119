@@ -26,6 +26,8 @@
         justify-content: flex-start;
         align-items: center;
         min-height: 100dvh;
+        position: relative;
+        top: -40px;
     }
 
     .Log-in {
@@ -70,17 +72,25 @@
 
     /* 스크롤바 커스텀 */
     *::-webkit-scrollbar {
-            width: 10px;
-            height: 5px;
-        }
+        width: 10px;
+        height: 5px;
+    }
 
-        *::-webkit-scrollbar-track {
-            background-color: grey;
-        }
+    *::-webkit-scrollbar-track {
+        background-color: grey;
+    }
 
-        *::-webkit-scrollbar-thumb {
-            background-color: rgb(24, 24, 24);
-        }
+    *::-webkit-scrollbar-thumb {
+        background-color: rgb(24, 24, 24);
+    }
+
+    .homebtn {
+        width: 300px;
+        height: 150px;
+        background: url('src/logo/logo10.png') no-repeat;
+        background-size: contain;
+        border: none;
+    }
 </style>
 
 <script type="module">
@@ -93,14 +103,14 @@
 
     // Firebase 구성 정보 설정
     const firebaseConfig = {
-            apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
-            authDomain: "watual-f9224.firebaseapp.com",
-            projectId: "watual-f9224",
-            storageBucket: "watual-f9224.appspot.com",
-            messagingSenderId: "307021915043",
-            appId: "1:307021915043:web:ec35f5002d695d81a1f016",
-            measurementId: "G-248XS4LSEE"
-        };
+        apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
+        authDomain: "watual-f9224.firebaseapp.com",
+        projectId: "watual-f9224",
+        storageBucket: "watual-f9224.appspot.com",
+        messagingSenderId: "307021915043",
+        appId: "1:307021915043:web:ec35f5002d695d81a1f016",
+        measurementId: "G-248XS4LSEE"
+    };
 
 
     // Firebase 인스턴스 초기화
@@ -135,7 +145,7 @@
             }
 
             // 로그인에 실패한 경우에만 실행됨
-            if (!loggedIn) {
+            if (!loggedInUser) {
                 alert('id와 pw를 확인하세요');
             }
         });
@@ -157,6 +167,9 @@
         });
     });
 
+    $("#homebtn").click(async function () {
+        location.href = 'index.html';
+    })
 
 
 </script>
@@ -167,6 +180,7 @@
         <div class="Login">
             <div class="Log-in">
                 <h1 class="Info">
+                    <button type="button" class="homebtn" id="homebtn"></button><br><br>
                     Login<br><br>
                     <input type="text" id="idin" name="idin" placeholder="아이디 입력"><br><br>
                     <input type="password" id="pwin" name="pwin" placeholder="비밀번호 입력"><br>
