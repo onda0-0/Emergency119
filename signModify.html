@@ -161,7 +161,8 @@
         let docs = await getDocs(qry);
         docs.forEach((doc) => {
             docId = doc.id;
-            console.log(doc.data()['img']);
+
+            console.log(doc.data()['image']);
 
             //실제 내용값 변경
             $('#id').val(doc.data()['id']);
@@ -173,7 +174,8 @@
             $('#address').val(doc.data()['address']);
             $('#email').val(doc.data()['email']);
             $('#git').val(doc.data()['git']);
-            $('#image').val(doc.data()['img']);
+            $('#image').val(doc.data()['image']);
+
             $('#mbti').val(doc.data()['mbti']);
             $('#strength').val(doc.data()['strength']);
             $('#workstyle').val(doc.data()['workstyle']);
@@ -188,7 +190,9 @@
             $('#address').attr("placeholder", doc.data()['address']);
             $('#email').attr("placeholder", doc.data()['email']);
             $('#git').attr("placeholder", doc.data()['git']);
-            $('#image').attr("placeholder", doc.data()['img']);
+
+            $('#image').attr("placeholder", doc.data()['image']);
+
             $('#mbti').attr("placeholder", doc.data()['mbti']);
             $('#strength').attr("placeholder", doc.data()['strength']);
             $('#workstyle').attr("placeholder", doc.data()['workstyle']);
