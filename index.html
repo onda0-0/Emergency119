@@ -439,6 +439,7 @@
       import {
         collection,
         addDoc,
+        query
       } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
       import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
@@ -461,6 +462,47 @@
         location.href = "login.html";
       });
 
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 코드추가
+let userids = {
+      "hyunji_profile": "",
+      "hyeonho_profile": "",
+      "wonha_profile": "",
+      "hyun_profile": "",
+      "jaeseok_profile": ""
+    };
+    async function makeUserids() {
+      const qry = query(
+        collection(db, "emergency119")
+        // ,where("name", "==", "")
+        // ,where("mbti", "==", "")
+      );
+      let docs = await getDocs(qry);
+      docs.forEach((doc) => {
+        //이름, mbti 대조 후 id 추출, userids에 입력
+        const strName = doc.data()['name'];
+        const strMbti = doc.data()['mbti'];
+        switch (strName) {
+          case "강현지": if (strMbti.toLowerCase() == "enfj") {
+            userids["hyunji_profile"] = doc.data()['id'];
+          } break;
+          case "백원하": if (strMbti.toLowerCase() == "intp") {
+            userids["wonha_profile"] = doc.data()['id'];
+          } break;
+          case "이재석": if (strMbti.toLowerCase() == "isfp") {
+            userids["jaeseok_profile"] = doc.data()['id'];
+          } break;
+          case "남현": if (strMbti.toLowerCase() == "istj") {
+            userids["hyun_profile"] = doc.data()['id'];
+          } break;
+          case "석현호": if (strMbti.toLowerCase() == "isfj") {
+            userids["hyeonho_profile"] = doc.data()['id'];
+          } break;
+        }
+      })
+    };
+    makeUserids();
+    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 코드추가
+
       // index.html에서 페이지가 로드될 때 실행되는 코드
       window.onload = function () {
         const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
@@ -468,13 +510,6 @@
         const logoutButton = document.getElementById("logoutbtn");
         const userNameLabel = document.getElementById("username");
         const ModifyBtn = document.getElementById("modifybtn");
-
-        /*
-    const HyunjiProfile=document.getElementById('hyunji_profile');
-    const WonhaProfile=document.getElementById('wonha_profile');
-    const HyunProfile=document.getElementById('hyun_profile');
-    const HyeonhoProfile=document.getElementById('hyeonho_profile');
-    const jaeseokProfile=document.getElementById('jaeseok_profile');*/
 
         if (loggedInUser) {
           // 사용자가 로그인되어 있는 경우
@@ -484,19 +519,25 @@
           ModifyBtn.style.display = "inline-block";
 
           $("#hyunji_profile").click(async function () {
-            location.href = "contents.html";
-          });
-          $("#hyeonho_profile").click(async function () {
-            location.href = "contents.html";
+            sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["hyunji_profile"]}));
+            location.href = "introducePage.html";
           });
           $("#wonha_profile").click(async function () {
-            location.href = "contents.html";
+            sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["wonha_profile"]}));
+            location.href = "introducePage.html";
           });
           $("#hyun_profile").click(async function () {
-            location.href = "contents.html";
+            sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["hyun_profile"]}));
+            location.href = "introducePage.html";
           });
+          $("#hyeonho_profile").click(async function () {
+            sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["hyeonho_profile"]}));
+            location.href = "introducePage.html";
+          });
+
           $("#jaeseok_profile").click(async function () {
-            location.href = "contents.html";
+            sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["jaeseok_profile"]}));
+            location.href = "introducePage.html";
           });
           $("#gotocontentsBtn").click(async function () {
             location.href = "contents.html";
@@ -523,6 +564,7 @@
             location.href = "login.html";
           });
           $("#hyeonho_profile").click(async function () {
+            
             location.href = "login.html";
           });
           $("#wonha_profile").click(async function () {
