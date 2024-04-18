@@ -195,7 +195,7 @@
         const db = getFirestore(app);
 
         const userData = JSON.parse(sessionStorage.getItem('introduceIndex'));
-        const getUserId = userData.introduceIndex;
+        const getUserId = userData.introduceIndex.toString();
 
 
         let docs = await getDocs(collection(db, "emergency119"));
