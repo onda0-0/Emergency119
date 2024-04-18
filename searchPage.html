@@ -212,6 +212,7 @@
             overflow-y: hidden;
             white-space: nowrap;
         }
+
         .profileSearchDataImg {
             height: 100%;
             width: 100%;
@@ -318,20 +319,72 @@
             border-style: none;
             align-self: center;
         }
+
+        /* index.html 헤더 스타일 s */
+
+
+        a:hover {
+            transform: scale(1.2) translateX(10px);
+            transition-duration: 0.5s;
+        }
+
+        .navbar {
+            height: 60px;
+            padding: 0 5px 0 3px;
+        }
+
+        .logoimage {
+            width: 70px;
+            margin-left: 0.7rem;
+        }
+
+        .emergencyBtn {
+            /* 테두리 지우기 */
+            border-style: none;
+            /* 모서리 둥글게 깍기 */
+            border-radius: 5px;
+            /* 글자 색상 */
+            color: white;
+            /* 버튼 배경색 그라데이션 지정 */
+            background: linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
+        }
+        .container-fluid {
+            height: 60px;
+            padding: 0 20px 0 20px;
+        }
+        /* index.html 헤더 스타일 e */
     </style>
 </head>
 
 <body>
     <div class="full_size">
         <div class="searchPage">
-            <div class="spHeader">
+            <!-- 헤더 -->
+            <nav class="navbar" style="background-color: #1b1c22">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="src\logo\logo10.png" class="logoimage" alt="" height="33" />
+                    </a>
+
+                    <span id="username" style="color: white"></span>
+                    <form class="d-flex">
+                        <button type="button" class="emergencyBtn" id="loginbtn">
+                            Login
+                        </button>
+                        <button type="button" class="emergencyBtn" id="logoutbtn" onclick="logout()">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </nav>
+            <!-- <div class="spHeader">
                 <div class="div_homeIcon">
                 </div>
                 <div class="div_logo">
                 </div>
                 <div class="div_profileIcon">
                 </div>
-            </div>
+            </div> -->
             <div class="profileRecommendTop"></div>
             <div class="profileRecommendTitle">
             </div>
@@ -388,12 +441,12 @@
         //<<<<<<<<<< DB 정보 >>>>>>>>>>
         //<<<<<<<<<< DB 컬랙션명 : emergency119 >>>>>>>>>>
         let docs = await getDocs(collection(db, `emergency119`));
-        const docsCnt = await getCountFromServer(collection(db, "emergency119"));
+        let docsCnt = 0;
         //<<<<<<<<<< DB 컬랙션명 : emergency119 >>>>>>>>>>
 
         $('.profileSearchLeft').append(`
                 <div class="profileSearchDatas noGrid">
-                    <div class="profileSearchData" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt.data().count}건</div>
+                    <div class="profileSearchData" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt}건</div>
                 </div>`);
 
         const searchStr = getParams("searchStr").searchStr;
@@ -419,6 +472,9 @@
                     <div class="profileSearchData">${mbti}</div>
                     <div class="profileSearchData">${introduce}</div>
                 </div>`);
+
+                docsCnt++;
+                $('.profileSearchData').text(`검색결과 : ${docsCnt}건`);
             }
             // 전체 검색
             if (userid.includes(searchStr) || name.includes(searchStr) || mbti.includes(searchStr) || introduce.includes(searchStr)) {
@@ -431,8 +487,8 @@
                     <div class="profileSearchData">${introduce}</div>
                 </div>`);
             }
-            
-            let randomColor = "#"+(parseInt(Math.random()*0xffffff)).toString(16);
+
+            let randomColor = "#" + (parseInt(Math.random() * 0xffffff)).toString(16);
 
             $('.profileRecommend').append(`
                 <div class="profileRecommendContent" style="border-color: ${randomColor};">
@@ -504,6 +560,104 @@
                 $('.searchBarText').css("bottom", "20px");
 
             })
+
+            $("#loginbtn").click(async function () {
+                location.href = "login.html";
+            });
+
+            // index.html에서 페이지가 로드될 때 실행되는 코드
+
+            const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+            const loginButton = document.getElementById("loginbtn");
+            const logoutButton = document.getElementById("logoutbtn");
+            const userNameLabel = document.getElementById("username");
+            /*
+          const HyunjiProfile=document.getElementById('hyunji_profile');
+          const WonhaProfile=document.getElementById('wonha_profile');
+          const HyunProfile=document.getElementById('hyun_profile');
+          const HyeonhoProfile=document.getElementById('hyeonho_profile');
+          const jaeseokProfile=document.getElementById('jaeseok_profile');*/
+
+            if (loggedInUser) {
+                // 사용자가 로그인되어 있는 경우
+                loginButton.style.display = "none"; // 로그인 버튼 숨기기
+                userNameLabel.innerText = `${loggedInUser.name}'s 팀원을 찾는 여정!`; // 사용자 이름 표시
+                logoutButton.style.display = "inline-block"; // 로그아웃 버튼 보이기
+
+                $("#hyunji_profile").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#hyeonho_profile").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#wonha_profile").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#hyun_profile").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#jaeseok_profile").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#gotocontentsBtn").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#letsgo_search1").click(async function () {
+                    location.href = "searchPage.html";
+                });
+                $("#letsgo_search2").click(async function () {
+                    location.href = "searchPage.html";
+                });
+                $("#letsgo_contents").click(async function () {
+                    location.href = "contents.html";
+                });
+
+                console.log("로그인된 사용자 정보 :", loggedInUser);
+            } else {
+                // 사용자가 로그인되어 있지 않은 경우
+                loginButton.style.display = "inline-block"; // 로그인 버튼 보이기
+                userNameLabel.innerText = ""; // 사용자 이름 숨기기
+                logoutButton.style.display = "none"; // 로그아웃 버튼 숨기기
+                $("#hyunji_profile").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#hyeonho_profile").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#wonha_profile").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#hyun_profile").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#jaeseok_profile").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#gotocontentsBtn").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#letsgo_search1").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#letsgo_search2").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#letsgo_contents").click(async function () {
+                    location.href = "login.html";
+                });
+            }
+
+
+            // 로그아웃 버튼 클릭 시 세션 초기화 및 리다이렉트
+            $("#logoutbtn").click(async function () {
+                sessionStorage.removeItem("loggedInUser");
+                //window.location.href = 'login.html';
+                window.location.reload();
+            });
+
+
+
+            // ~~ready()
         };
         // 일정 주기로 그라데이션 변경
         $('.profileSearchFooterGradient2').css("transition", "all 3s ease-in-out");
@@ -520,6 +674,9 @@
                 $('.profileSearchLine2').css("opacity", "1");
             }
         }, 3000);
+
+
+
     </script>
 </body>
 
