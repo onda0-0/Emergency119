@@ -14,7 +14,7 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
-    
+
 
     body {
         background-image: url("src/background/login.png");
@@ -42,7 +42,17 @@
         font-size: 30px;
     }
 
+    .select {
+        margin-left: 100px;
+        font-size: 30px;
+    }
+
     input::placeholder {
+        color: #BE50C1;
+        font-size: 30px;
+    }
+
+    textarea::placeholder {
         color: #BE50C1;
         font-size: 30px;
     }
@@ -56,8 +66,41 @@
         border-radius: 10px;
     }
 
-    #id,#pw,#pwc,#name,#number,#date,#address,#email,#git,#insta {
+    #id,
+    #pw,
+    #pwc,
+    #name,
+    #number,
+    #date,
+    #address,
+    #email,
+    #git,
+    #insta,
+    #image,
+    #mbti,
+    #strength {
         border-radius: 10px;
+    }
+
+    #workstyle,
+    #introduce {
+        border-radius: 10px;
+        height: 100px;
+        text-align: start;
+    }
+
+    /* 스크롤바 커스텀 */
+    *::-webkit-scrollbar {
+        width: 10px;
+        height: 5px;
+    }
+
+    *::-webkit-scrollbar-track {
+        background-color: grey;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background-color: rgb(24, 24, 24);
     }
 </style>
 
@@ -68,17 +111,16 @@
     import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
     import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    // Firebase 구성 정보 설정
     const firebaseConfig = {
-        apiKey: "AIzaSyB1LgAbTFdpbyOmHTg6U60bFVjSsWZZ2KQ",
-        authDomain: "test1-decaa.firebaseapp.com",
-        projectId: "test1-decaa",
-        storageBucket: "test1-decaa.appspot.com",
-        messagingSenderId: "629960551291",
-        appId: "1:629960551291:web:d57635d3234a59873a2bde",
-        measurementId: "G-C4CG02WP18"
-    };
+            apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
+            authDomain: "watual-f9224.firebaseapp.com",
+            projectId: "watual-f9224",
+            storageBucket: "watual-f9224.appspot.com",
+            messagingSenderId: "307021915043",
+            appId: "1:307021915043:web:ec35f5002d695d81a1f016",
+            measurementId: "G-248XS4LSEE"
+        };
 
 
     // Firebase 인스턴스 초기화
@@ -96,19 +138,31 @@
         let address = $('#address').val();
         let email = $('#email').val();
         let git = $('#git').val();
+        let image = $('#image').val();
+        let mbti = $('#mbti').val();
+        let strength = $('#strength').val();
+        let workstyle = $('#workstyle').val();
+        let introduce = $('#introduce').val();
         let insta = $('#insta').val();
+
 
         let doc = {
             'id': id,
             'pw': pw,
-            'pwc': pwc,
             'name': name,
+            'image': image,
+            'mbti': mbti,
+            'strength': strength,
+            'workstyle': workstyle,
+            'introduce': introduce,
+
             'date': date,
             'number': number,
             'address': address,
             'email': email,
             'git': git,
             'insta': insta
+
         }
 
         if (id === '') {
@@ -130,29 +184,29 @@
             alert('이름을 입력하세요.');
             return false;
         }
-        
-        if (date === '') {
-            alert('생년월일 입력하세요.');
+
+        if (image === '') {
+            alert('이미지를 넣어주세요.');
             return false;
         }
-        
-        if (address === '') {
-            alert('주소를 입력하세요.');
+
+        if (mbti === '') {
+            alert('mbti를 입력하세요.');
             return false;
         }
-        
-        if (email === '') {
-            alert('이메일을 입력하세요.');
+
+        if (strength === '') {
+            alert('장점을 입력하세요.');
             return false;
         }
-        
-        if (git === '') {
-            alert('깃이메일을 입력하세요.');
+
+        if (workstyle === '') {
+            alert('협업스타일을 입력하세요.');
             return false;
         }
-       
-        if (insta === '') {
-            alert('인스타 아이디를 입력하세요.');
+
+        if (introduce === '') {
+            alert('자기소개글을 입력하세요.');
             return false;
         }
 
@@ -164,7 +218,7 @@
             }
         }
 
-        await addDoc(collection(db, "user"), doc);
+        await addDoc(collection(db, "emergency119"), doc);
 
         alert('회원가입 완료!')
         location.href = 'login.html';
@@ -180,16 +234,25 @@
     <div class="main">
         <div class="Sign">
             <div class="Sign-up">
-                <h1 class="ID">
+                <h1 class="ID"><br>
                     Sign up<br><br>
                     <input type="id" id="id" name="id" placeholder="아이디 입력"><br><br>
                     <input type="text" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
                     <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
                     <button type="button" class="signbtn" id="signbtn">Sign up</button>
                 </h1><br>
-                <h1 class="info"><br>
-                    <input type="text" id="name" name="name" placeholder="이름" size="7">
-                    <input type="text" id="number" name="number" placeholder="전화번호(선택)" size="11"><br><br>
+                <h1 class="info">필수입력사항<br><br>
+                    <input type="text" id="name" name="name" placeholder="이름" size="23"><br><br>
+                    <input type="text" id="image" name="image" placeholder="이미지" size="23"><br><br>
+                    <input type="text" id="mbti" name="mbti" placeholder="mbti" size="23"><br><br>
+                    <input type="text" id="strength" name="strength" placeholder="장점" size="23"><br><br>
+                    <textarea id="workstyle" cols="26" name="workstyle" placeholder="협업스타일"
+                        size="23"></textarea><br><br>
+                    <textarea id="introduce" cols="26" name="introduce" placeholder="자기소개글"></textarea><br><br>
+
+                </h1>
+                <h1 class="select">선택입력사항<br><br>
+                    <input type="text" id="number" name="number" placeholder="전화번호" size="23"><br><br>
                     <input type="text" id="date" name="date" placeholder="생년월일" size="23"><br><br>
                     <input type="text" id="address" name="address" placeholder="사는 주소(간략)" size="23"><br><br>
                     <input type="text" id="email" name="email" placeholder="이메일" size="23"><br><br>
