@@ -92,30 +92,41 @@
 
         .profileRecommend {
             width: 90%;
-            height: 300px;
+            height: 320px;
             display: flex;
             flex-direction: row;
             align-self: center;
-            overflow: auto;
-
-
-            .profileRecommendContent {
-                height: 300px;
-                width: 250px;
-                padding: 10px;
-                margin-left: 15px;
-                margin-right: 15px;
-                color: white;
-                background-color: #5357CE;
-
-                .profileRecommendImg {}
-
-                .profileRecommendText {}
-            }
+            overflow-x: auto;
+            overflow-y: hidden;
 
 
         }
 
+        .profileRecommendContent {
+            height: 310px;
+            width: 250px;
+            padding: 10px;
+            margin-left: 15px;
+            margin-right: 15px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        .profileRecommendImg {
+            width: 200px;
+            height: 200px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .profileRecommendText {
+            margin-top: 10px;
+            height: 100px;
+        }
 
         .profileSearch {
             /* background-color: #6b2a91; */
@@ -330,7 +341,8 @@
                 <div class="profileSearchFooterGradient"></div>
                 <div class="div_searchBarOutline">
                     <div class="div_searchBar">
-                        <form class="centerItem searchForm" action="searchPage.html" method="get">
+                        <form class="centerItem searchForm" action="searchPage.html" method="get"
+                            accept-charset="utf-8">
                             <input type="" value="" class="searchBarBtn" />
                             <input class="searchBarText" value="사용자 찾기" readonly />
                             <input type="text" name="searchStr" class="searchBar" />
@@ -346,6 +358,7 @@
     <!-- ------------------------스크립트----------------------------- -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script type="module" defer>
+        //<<<<<<<<<< DB 정보 >>>>>>>>>>
         //firebaseDB 세팅
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -363,15 +376,18 @@
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-
-        let docs = await getDocs(collection(db, `emergency`));
-        const docsCnt = await getCountFromServer(collection(db, "emergency"));
+        //<<<<<<<<<< DB 정보 >>>>>>>>>>
+        //<<<<<<<<<< DB 컬랙션명 : emergency119 >>>>>>>>>>
+        let docs = await getDocs(collection(db, `emergency119`));
+        const docsCnt = await getCountFromServer(collection(db, "emergency119"));
+        //<<<<<<<<<< DB 컬랙션명 : emergency119 >>>>>>>>>>
 
         $('.profileSearchLeft').append(`
                 <div class="profileSearchDatas noGrid">
                     <div class="profileSearchData" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt.data().count}건</div>
                 </div>`);
 
+        const searchStr = getParams("searchStr").searchStr;
         let docsIndex = 0;
         docs.forEach((doc) => {
             // Firebase DB, Table 호출
@@ -382,16 +398,11 @@
             let mbti = row['mbti'];
             let introduce = row['introduce'];
             let image = row['image'];
-            console.log(userid + password + name + mbti + introduce + image);
-            $('.profileSearchRight').append(`
-                <div class="profileSearchDatas">
-                    <img class="profileSearchData" src="${image}">
-                    <div class="profileSearchData">${userid}</div>
-                    <div class="profileSearchData">${name}</div>
-                    <div class="profileSearchData">${mbti}</div>
-                    <div class="profileSearchData">${introduce}</div>
-                </div>`);
-            $('.profileSearchLeft').append(`
+            // console.log(userid + password + name + mbti + introduce + image);
+            // 이름 검색
+            if (userid.indexOf(searchStr) != -1) {
+
+                $('.profileSearchLeft').append(`
                 <div class="profileSearchDatas">
                     <img class="profileSearchData" src="${image}">
                     <div class="profileSearchData">${userid} 님</div>
@@ -399,27 +410,37 @@
                     <div class="profileSearchData">${mbti}</div>
                     <div class="profileSearchData">${introduce}</div>
                 </div>`);
+            }
+            // 전체 검색
+            if (userid.includes(searchStr) || name.includes(searchStr) || mbti.includes(searchStr) || introduce.includes(searchStr)) {
+                $('.profileSearchRight').append(`
+                <div class="profileSearchDatas">
+                    <img class="profileSearchData" src="${image}">
+                    <div class="profileSearchData">${userid}</div>
+                    <div class="profileSearchData">${name}</div>
+                    <div class="profileSearchData">${mbti}</div>
+                    <div class="profileSearchData">${introduce}</div>
+                </div>`);
+            }
 
-        });
 
-        for (let i = 1; i <= 20; i++) {
             $('.profileRecommend').append(`
                 <div class="profileRecommendContent">
-                    <div class="profileRecommendImg">
-                        <img src="src/profile/test${2}.png">
-                    </div>
+                    <div class="profileRecommendImg" style="background-image:url('src/profile/test${2}.png')""></div>
                     <div class="profileRecommendText">
-                        조장's ENFP</br>
+                        ${mbti} ${userid}</br>
                         <div style="color:gray;">
-                            잘 부탁 드립니다
+                            ${introduce}
                         </div>
                     </div>
                 </div>`);
-        }
+        });
+
 
         //get방식으로 데이터 수령
         function getParams() {
-            var url = window.location.search.replace('?', '');
+            //한글 깨짐 URI 수정
+            var url = decodeURI(window.location.search.replace('?', ''));
             var urlArray = url.split('&');
             var params = {};
 
@@ -429,8 +450,6 @@
             }
             return params;
         }
-        const searchStr = getParams("searchStr");
-
         //get 데이터 가공 후 DB에 정보 요청
         // let doc = sessionStorage.getItem("userid");
 
@@ -439,12 +458,12 @@
         $(function () {
             $('.searchBar').on('input', function (f) {
                 if ($('.searchBar').val() != '') {
-                    addEventListener('keydown', function (e) {
-                        if ((e.code == 'Enter') || (e.code == 'NumpadEnter') && $('.searchBar').val() != '') {
-                            sendData();
-                        }
-                    })
-
+                    // 엔터키 입력시 form submit
+                    // addEventListener('keydown', function (e) {
+                    //     if ((e.code == 'Enter') || (e.code == 'NumpadEnter')) {
+                    //          document.getElementsByClassName('searchForm').submit();
+                    //     }
+                    // })
                     $('.searchBarText').css("font-size", "15px");
                     $('.searchBarText').css("bottom", "50px");
                     $('.searchBarText').css("paddign-right", "300px");
