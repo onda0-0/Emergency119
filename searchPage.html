@@ -348,10 +348,12 @@
             /* 버튼 배경색 그라데이션 지정 */
             background: linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
         }
+
         .container-fluid {
             height: 60px;
             padding: 0 20px 0 20px;
         }
+
         /* index.html 헤더 스타일 e */
     </style>
 </head>
@@ -442,14 +444,21 @@
         //<<<<<<<<<< DB 컬랙션명 : emergency119 >>>>>>>>>>
         let docs = await getDocs(collection(db, `emergency119`));
         let docsCnt = 0;
+        let docsCnt2 = 0;
         //<<<<<<<<<< DB 컬랙션명 : emergency119 >>>>>>>>>>
 
         $('.profileSearchLeft').append(`
                 <div class="profileSearchDatas noGrid">
-                    <div class="profileSearchData" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt}건</div>
+                    <div class="profileSearchData profileSearchDataCnt" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt}건</div>
+                </div>`);
+        $('.profileSearchRight').append(`
+                <div class="profileSearchDatas noGrid">
+                    <div class="profileSearchData profileSearchDataCnt2" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt2}건</div>
                 </div>`);
 
-        const searchStr = getParams("searchStr").searchStr;
+
+        // DB 데이터 출력
+        let searchStr = getParams("searchStr").searchStr;
         let docsIndex = 0;
         docs.forEach((doc) => {
             // Firebase DB, Table 호출
@@ -460,12 +469,16 @@
             let mbti = row['mbti'];
             let introduce = row['introduce'];
             let image = row['img'];
+            const goIntroducePage = `sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : '${userid}'}));
+                location.href = 'introducePage.html';`;
+
             // console.log(userid + password + name + mbti + introduce + image);
             // 이름 검색
+            console.log(userid.indexOf(searchStr));
             if (userid.indexOf(searchStr) != -1) {
 
                 $('.profileSearchLeft').append(`
-                <div class="profileSearchDatas">
+                <div class="profileSearchDatas" onclick="${goIntroducePage}">
                     <div class="profileSearchDataImg" style="background-image:url('${image}')"></div>
                     <div class="profileSearchData">${userid} 님</div>
                     <div class="profileSearchData">${name}</div>
@@ -474,24 +487,26 @@
                 </div>`);
 
                 docsCnt++;
-                $('.profileSearchData').text(`검색결과 : ${docsCnt}건`);
+                $('.profileSearchDataCnt').text(`검색결과 : ${docsCnt}건`);
             }
             // 전체 검색
             if (userid.includes(searchStr) || name.includes(searchStr) || mbti.includes(searchStr) || introduce.includes(searchStr)) {
                 $('.profileSearchRight').append(`
-                <div class="profileSearchDatas">
+                <div class="profileSearchDatas" onclick="${goIntroducePage}">
                     <div class="profileSearchDataImg" style="background-image:url('${image}')"></div>
                     <div class="profileSearchData">${userid} 님</div>
                     <div class="profileSearchData">${name}</div>
                     <div class="profileSearchData">${mbti}</div>
                     <div class="profileSearchData">${introduce}</div>
                 </div>`);
+                docsCnt2++;
+                $('.profileSearchDataCnt2').text(`검색결과 : ${docsCnt2}건`);
             }
 
             let randomColor = "#" + (parseInt(Math.random() * 0xffffff)).toString(16);
 
             $('.profileRecommend').append(`
-                <div class="profileRecommendContent" style="border-color: ${randomColor};">
+                <div class="profileRecommendContent" style="border-color: ${randomColor};" onclick="${goIntroducePage}">
                     <div class="profileRecommendImg" style="background-image:url('${image}')"></div>
                     <div class="profileRecommendText">
                         ${mbti} ${userid}</br>
@@ -509,10 +524,12 @@
             var url = decodeURI(window.location.search.replace('?', ''));
             var urlArray = url.split('&');
             var params = {};
-
             for (var i in urlArray) {
                 var param = urlArray[i].split('=');
                 params[param[0]] = param[1];
+            }
+            if (params['searchStr'] == undefined) {
+                params['searchStr'] = "";
             }
             return params;
         }
@@ -674,7 +691,6 @@
                 $('.profileSearchLine2').css("opacity", "1");
             }
         }, 3000);
-
 
 
     </script>
