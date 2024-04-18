@@ -112,12 +112,47 @@
         }
 
         if (id === '') {
-            alert('id를 입력하세요.');
+            alert('아이디를 입력하세요.');
             return false;
         }
 
         if (pw === '') {
-            alert('pw를 입력하세요.');
+            alert('비밀번호를 입력하세요.');
+            return false;
+        }
+
+        if (pwc === '') {
+            alert('비밀번호를 한번 더 입력하세요.');
+            return false;
+        }
+
+        if (name === '') {
+            alert('이름을 입력하세요.');
+            return false;
+        }
+        
+        if (date === '') {
+            alert('생년월일 입력하세요.');
+            return false;
+        }
+        
+        if (address === '') {
+            alert('주소를 입력하세요.');
+            return false;
+        }
+        
+        if (email === '') {
+            alert('이메일을 입력하세요.');
+            return false;
+        }
+        
+        if (git === '') {
+            alert('깃이메일을 입력하세요.');
+            return false;
+        }
+       
+        if (insta === '') {
+            alert('인스타 아이디를 입력하세요.');
             return false;
         }
 
@@ -147,7 +182,7 @@
             <div class="Sign-up">
                 <h1 class="ID">
                     Sign up<br><br>
-                    <input type="text" id="id" name="id" placeholder="아이디 입력"><br><br>
+                    <input type="id" id="id" name="id" placeholder="아이디 입력"><br><br>
                     <input type="text" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
                     <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
                     <button type="button" class="signbtn" id="signbtn">Sign up</button>

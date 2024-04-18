@@ -100,7 +100,7 @@
             let idin = $('#idin').val();
             let pwin = $('#pwin').val();
 
-            let loggedIn = false;
+            let loggedInUser = null;
 
             docs.forEach((doc) => {
                 let row = doc.data();
@@ -108,14 +108,17 @@
                 let pw = row['pw'];
 
                 if (id === idin && pw === pwin) {
-                    loggedIn = true;
-
-                    // 사용자 정보 저장
-                    sessionStorage.setItem('loggedInUser', idin);
-
-                    window.location.href = 'index.html';
+                    loggedInUser = row;
+                    return;
                 }
             });
+
+            if (loggedInUser) {
+                // 로그인한 사용자 정보 저장
+                sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+
+                window.location.href = 'index.html';
+            }
 
             // 로그인에 실패한 경우에만 실행됨
             if (!loggedIn) {
@@ -128,6 +131,7 @@
         });
     });
 
+    // 비밀번호 표시 체크박스 기능
     $(document).ready(function () {
         const pwInput = $("#pwin");
         $('.pw_show input[type="checkbox"]').on('change', function () {
@@ -152,7 +156,7 @@
                     Login<br><br>
                     <input type="text" id="idin" name="idin" placeholder="아이디 입력"><br><br>
                     <input type="password" id="pwin" name="pwin" placeholder="비밀번호 입력"><br>
-                    <label class="pw_show"><input type="checkbox">비밀번호 표시</label><br><br>
+                    <label class="pw_show"><input type="checkbox" id="pw_show">비밀번호 표시</label><br><br>
                     <button type="button" class="loginbtn" id="loginbtn">LOGIN</button><br><br>
                     <button type="button" class="signupbtn" id="signupbtn">Sign up</button>
                 </h1><br>
