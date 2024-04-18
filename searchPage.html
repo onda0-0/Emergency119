@@ -126,6 +126,7 @@
         }
 
         .profileRecommendText {
+            overflow-y: auto;
             margin-top: 10px;
             height: 100px;
         }
@@ -469,12 +470,17 @@
             let mbti = row['mbti'];
             let introduce = row['introduce'];
             let image = row['img'];
+            if(image == undefined){
+                console.log(mbti);
+                const mbtiL = mbti.toLowerCase();
+                image = `src/mbti/${mbtiL}.png`;
+            }
             const goIntroducePage = `sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : '${userid}'}));
                 location.href = 'introducePage.html';`;
 
             // console.log(userid + password + name + mbti + introduce + image);
             // 이름 검색
-            console.log(userid.indexOf(searchStr));
+            // console.log(userid.indexOf(searchStr));
             if (userid.indexOf(searchStr) != -1) {
 
                 $('.profileSearchLeft').append(`
@@ -502,9 +508,8 @@
                 docsCnt2++;
                 $('.profileSearchDataCnt2').text(`검색결과 : ${docsCnt2}건`);
             }
-
+            // 추천 프로필
             let randomColor = "#" + (parseInt(Math.random() * 0xffffff)).toString(16);
-
             $('.profileRecommend').append(`
                 <div class="profileRecommendContent" style="border-color: ${randomColor};" onclick="${goIntroducePage}">
                     <div class="profileRecommendImg" style="background-image:url('${image}')"></div>
@@ -629,7 +634,7 @@
                     location.href = "contents.html";
                 });
 
-                console.log("로그인된 사용자 정보 :", loggedInUser);
+                // console.log("로그인된 사용자 정보 :", loggedInUser);
             } else {
                 // 사용자가 로그인되어 있지 않은 경우
                 loginButton.style.display = "inline-block"; // 로그인 버튼 보이기
