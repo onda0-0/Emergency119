@@ -13,6 +13,19 @@
         body {
             background-color: #1B1C22;
             margin: 0;
+            
+        }
+        *::-webkit-scrollbar {
+            width: 10px;
+            height: 5px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background-color: grey;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: rgb(24, 24, 24);
         }
 
         .main {
@@ -40,7 +53,7 @@
         .carousel-item>img {
             width: 100%;
             height: 100%;
-            padding: 10%;
+            padding: 0 10% 10% 10%;
         }
 
         .carousel-caption {
@@ -60,6 +73,16 @@
             background: linear-gradient(20deg, #5357CE, #C650C0, #F8BB7B);
             height: 100vh;
         }
+       
+    
+        .header{
+            height: 60px;
+            padding: 0 5px 0 3px;
+        }
+        .logo_btn>img{
+            width:70px;
+            margin-left: 0.7rem;
+        }
     </style>
     <script type="module">
 
@@ -71,25 +94,25 @@
 
         // Firebase 구성 정보 설정
         const firebaseConfig = {
-            apiKey: "AIzaSyAIP8svZiWmrZ5hcYP2R-qSeGapwrJESxk",
-            authDomain: "ilboon.firebaseapp.com",
-            projectId: "ilboon",
-            storageBucket: "ilboon.appspot.com",
-            messagingSenderId: "889902979830",
-            appId: "1:889902979830:web:e06a486199415e115bead7",
-            measurementId: "G-RZSDVG93QH"
+            apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
+            authDomain: "watual-f9224.firebaseapp.com",
+            projectId: "watual-f9224",
+            storageBucket: "watual-f9224.appspot.com",
+            messagingSenderId: "307021915043",
+            appId: "1:307021915043:web:ec35f5002d695d81a1f016",
+            measurementId: "G-248XS4LSEE"
         };
 
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        
 
-        let docs = await getDocs(collection(db, "introduce"));
+        let docs = await getDocs(collection(db, "emergency119"));
         let count = 0;
         docs.forEach((doc) => {
             let row = doc.data();
 
-            let image = row['image'];
             let name = row['name'];
             let mbti = row['mbti'];
             let strength = row['strength'];
@@ -122,6 +145,9 @@
             count++;
             
         });
+        $('#logo_btn').click(function(){
+            location.href = 'index.html';
+        })
 
         document.querySelector(".slide2").addEventListener("click", function () {
             document.querySelector(".container").style = "transform: translateX(-100vw);";
@@ -131,6 +157,11 @@
 </head>
 
 <body>
+    <div class="header">
+    <div class="logo_btn" id="logo_btn">
+        <img  src="src/logo/logo10.png" alt="">
+    </div>
+</div>
 
     <div id="carouselExampleCaptions" class="carousel slide w-100 m-auto ">
 
@@ -147,11 +178,13 @@
             <div class="carousel-inner" id="card">
 
             </div>
+            
 
             <div id="cardBtn" class="carousel-indicators">
                 
             </div>
         </div>
+        
 
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
             data-bs-slide="next">
