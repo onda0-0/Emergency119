@@ -37,6 +37,11 @@
         margin-left: 100px;
     }
 
+    .ID{
+        position: relative;
+        top: -100px;
+    }
+
     .info {
         margin-left: 100px;
         font-size: 30px;
@@ -82,6 +87,10 @@
         border-radius: 10px;
     }
 
+    #pw{
+        margin-top: 30px;
+    }
+
     #workstyle,
     #introduce {
         border-radius: 10px;
@@ -101,6 +110,19 @@
 
     *::-webkit-scrollbar-thumb {
         background-color: rgb(24, 24, 24);
+    }
+
+    .existing-id{
+        color:red;
+        font-size: 20px;
+    }
+    
+    .homebtn{
+        width:100px;
+        height:100px;
+        background: url('src/logo/logo10.png') no-repeat;
+        background-size : cover;
+        border: none;
     }
 </style>
 
@@ -126,6 +148,20 @@
     // Firebase 인스턴스 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+
+    $('#id').on('input', async function (){
+            let id = $(this).val();
+
+            const idcheck = await getDocs(collection(db, 'emergency119'));
+            for (const doc of idcheck.docs){
+                if (doc.data().id === id){
+                    $('.existing-id').text('이미 존재하는 아이디입니다.');
+                    return;
+                }
+            }
+
+            $('.existing-id').text('');
+        });
 
     $("#signbtn").click(async function () {
 
@@ -224,6 +260,10 @@
         location.href = 'login.html';
     })
 
+    $("#homebtn").click(async function () {
+        location.href = 'index.html';
+    })
+
 
 
 
@@ -233,10 +273,12 @@
 <body>
     <div class="main">
         <div class="Sign">
-            <div class="Sign-up">
+            <div class="Sign-up">        
                 <h1 class="ID"><br>
+                    <button type="button" class="homebtn" id="homebtn"></button><br>
                     Sign up<br><br>
-                    <input type="id" id="id" name="id" placeholder="아이디 입력"><br><br>
+                    <input type="id" id="id" name="id" placeholder="아이디 입력">
+                    <p class="existing-id"></p>
                     <input type="text" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
                     <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
                     <button type="button" class="signbtn" id="signbtn">Sign up</button>
