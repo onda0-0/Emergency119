@@ -626,7 +626,7 @@
             const loginButton = document.getElementById("loginbtn");
             const logoutButton = document.getElementById("logoutbtn");
             const userNameLabel = document.getElementById("username");
-        const ModifyBtn = document.getElementById("modifybtn");
+            const ModifyBtn = document.getElementById("modifybtn");
             /*
           const HyunjiProfile=document.getElementById('hyunji_profile');
           const WonhaProfile=document.getElementById('wonha_profile');
@@ -634,12 +634,12 @@
           const HyeonhoProfile=document.getElementById('hyeonho_profile');
           const jaeseokProfile=document.getElementById('jaeseok_profile');*/
 
-          if (loggedInUser) {
-          // 사용자가 로그인되어 있는 경우
-          loginButton.style.display = "none"; // 로그인 버튼 숨기기
-          userNameLabel.innerText = `${loggedInUser.name}'s 팀원을 찾는 여정!`; // 사용자 이름 표시
-          logoutButton.style.display = "inline-block"; // 로그아웃 버튼 보이기
-          ModifyBtn.style.display = "inline-block";
+            if (loggedInUser) {
+                // 사용자가 로그인되어 있는 경우
+                loginButton.style.display = "none"; // 로그인 버튼 숨기기
+                userNameLabel.innerText = `${loggedInUser.name}'s 팀원을 찾는 여정!`; // 사용자 이름 표시
+                logoutButton.style.display = "inline-block"; // 로그아웃 버튼 보이기
+                ModifyBtn.style.display = "inline-block";
                 // console.log("로그인된 사용자 정보 :", loggedInUser);
             } else {
                 // 사용자가 로그인되어 있지 않은 경우
