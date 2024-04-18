@@ -439,7 +439,7 @@
       import {
         collection,
         addDoc,
-        query
+        query,
       } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
       import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
@@ -462,7 +462,7 @@
         location.href = "login.html";
       });
 
-let userids = {
+      let userids = {
       "hyunji_profile": "",
       "hyeonho_profile": "",
       "wonha_profile": "",
@@ -478,21 +478,22 @@ let userids = {
         //이름, mbti 대조 후 id 추출, userids에 입력
         const strName = doc.data()['name'];
         const strMbti = doc.data()['mbti'];
+        console.log(strName);
         switch (strName) {
           case "강현지": if (strMbti.toLowerCase() == "enfj") {
             userids["hyunji_profile"] = doc.data()['id'];
           } break;
           case "백원하": if (strMbti.toLowerCase() == "intp") {
-            userids["wonha_profile"] = doc.data()['id'];
+            userids["hyeonho_profile"] = doc.data()['id'];
           } break;
           case "이재석": if (strMbti.toLowerCase() == "isfp") {
-            userids["jaeseok_profile"] = doc.data()['id'];
+            userids["wonha_profile"] = doc.data()['id'];
           } break;
           case "남현": if (strMbti.toLowerCase() == "istj") {
             userids["hyun_profile"] = doc.data()['id'];
           } break;
           case "석현호": if (strMbti.toLowerCase() == "isfj") {
-            userids["hyeonho_profile"] = doc.data()['id'];
+            userids["jaeseok_profile"] = doc.data()['id'];
           } break;
         }
       })
@@ -507,6 +508,13 @@ let userids = {
         const userNameLabel = document.getElementById("username");
         const ModifyBtn = document.getElementById("modifybtn");
 
+        /*
+    const HyunjiProfile=document.getElementById('hyunji_profile');
+    const WonhaProfile=document.getElementById('wonha_profile');
+    const HyunProfile=document.getElementById('hyun_profile');
+    const HyeonhoProfile=document.getElementById('hyeonho_profile');
+    const jaeseokProfile=document.getElementById('jaeseok_profile');*/
+
         if (loggedInUser) {
           // 사용자가 로그인되어 있는 경우
           loginButton.style.display = "none"; // 로그인 버튼 숨기기
@@ -515,24 +523,23 @@ let userids = {
           ModifyBtn.style.display = "inline-block";
 
           $("#hyunji_profile").click(async function () {
-            sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["hyunji_profile"]}));
-            location.href = "introducePage.html";
-          });
-          $("#wonha_profile").click(async function () {
-            sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["wonha_profile"]}));
-            location.href = "introducePage.html";
-          });
-          $("#hyun_profile").click(async function () {
-            sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["hyun_profile"]}));
+          sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["hyunji_profile"]}));
             location.href = "introducePage.html";
           });
           $("#hyeonho_profile").click(async function () {
-            sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["hyeonho_profile"]}));
+          sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["hyeonho_profile"]}));
             location.href = "introducePage.html";
           });
-
+          $("#wonha_profile").click(async function () {
+          sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["wonha_profile"]}));
+            location.href = "introducePage.html";
+          });
+          $("#hyun_profile").click(async function () {
+          sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["hyun_profile"]}));
+            location.href = "introducePage.html";
+          });
           $("#jaeseok_profile").click(async function () {
-            sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["jaeseok_profile"]}));
+          sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : userids["jaeseok_profile"]}));
             location.href = "introducePage.html";
           });
           $("#gotocontentsBtn").click(async function () {
@@ -560,7 +567,6 @@ let userids = {
             location.href = "login.html";
           });
           $("#hyeonho_profile").click(async function () {
-            
             location.href = "login.html";
           });
           $("#wonha_profile").click(async function () {
