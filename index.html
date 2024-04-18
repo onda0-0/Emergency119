@@ -37,6 +37,13 @@
       margin-right: 1rem;
     }
 
+    .modifybtn{
+      margin-right: 1rem;
+      color: white;
+      background-color: transparent;
+      border-radius: 5px;
+    }
+
     /*사이트소개들어있는부분*/
     .teamname {
       height: 300px;
@@ -196,6 +203,9 @@
       <form class="d-flex">
         <button type="button" class="emergencyBtn" id="loginbtn">
           Login
+        </button>
+        <button type="button" class="modifybtn" id="modifybtn" onClick="location.href='signModify.html'">
+          MyPage
         </button>
         <button type="button" class="emergencyBtn" id="logoutbtn" onclick="logout()">
           Logout
@@ -372,6 +382,8 @@
       const loginButton = document.getElementById("loginbtn");
       const logoutButton = document.getElementById("logoutbtn");
       const userNameLabel = document.getElementById("username");
+      const ModifyBtn = document.getElementById("modifybtn");
+      
       /*
     const HyunjiProfile=document.getElementById('hyunji_profile');
     const WonhaProfile=document.getElementById('wonha_profile');
@@ -384,6 +396,7 @@
         loginButton.style.display = "none"; // 로그인 버튼 숨기기
         userNameLabel.innerText = `${loggedInUser.name}'s 팀원을 찾는 여정!`; // 사용자 이름 표시
         logoutButton.style.display = "inline-block"; // 로그아웃 버튼 보이기
+        ModifyBtn.style.display="inline-block";
 
         $("#hyunji_profile").click(async function () {
           location.href = "contents.html";
@@ -419,6 +432,7 @@
         loginButton.style.display = "inline-block"; // 로그인 버튼 보이기
         userNameLabel.innerText = ""; // 사용자 이름 숨기기
         logoutButton.style.display = "none"; // 로그아웃 버튼 숨기기
+        ModifyBtn.style.display="none";
         $("#hyunji_profile").click(async function () {
           location.href = "login.html";
         });
