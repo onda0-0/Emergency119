@@ -68,12 +68,13 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-image: url("https://i.pinimg.com/564x/ea/b0/0b/eab00b4e63c53ba697ff038f1b60d96e.jpg");
+        background-image: url("src/background/mainTop2.jpg");
         background-position: center;
         background-size: cover;
       }
 
       .teamname > h2 {
+        z-index: 2;
         font-weight: 1000;
         margin-top: 0.7rem;
         margin-bottom: 1rem;
@@ -204,6 +205,17 @@
       *::-webkit-scrollbar-thumb {
         background-color: rgb(24, 24, 24);
       }
+      .teamnameGradient {
+      opacity: 0;
+      z-index: 1;
+       position: absolute;
+       width:100%;
+       height: 300px;
+       background-image: url('src/background/mainTop3.PNG');
+       background-position: center;
+       background-repeat: no-repeat;
+       background-size: cover;
+    }
     </style>
   </head>
 
@@ -239,8 +251,9 @@
       </div>
     </nav>
     <div class="teamname">
+      <div class="teamnameGradient"></div>
       <h2 class="get-team-mate" style="font-size: 3em">9해조 내 팀원</h2>
-      <p>
+      <p style="z-index: 2;">
         취미가 뭔지 MBTI가 뭔지 서로 소개하고 공유하며 협업하고 싶은 팀원을
         찾아보아요!
       </p>
@@ -584,6 +597,19 @@ let userids = {
         //window.location.href = 'login.html';
         window.location.reload();
       });
+
+      // 일정 주기로 그라데이션 변경
+        $('.teamnameGradient').css("transition", "all 2s ease-in-out");
+        let teamnameGradient = 0;
+        setInterval(function () {
+            if (teamnameGradient == 0) {
+                teamnameGradient = 1;
+                $('.teamnameGradient').css("opacity", "1");
+            } else {
+                teamnameGradient = 0;
+                $('.teamnameGradient').css("opacity", "0");
+            }
+        }, 2000);
     </script>
   </body>
 </html>
