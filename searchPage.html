@@ -61,6 +61,7 @@
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
+            cursor: pointer;
         }
 
         .div_logo {
@@ -91,47 +92,97 @@
 
         .profileRecommend {
             width: 90%;
-            height: 300px;
-            align-self: center;
+            height: 320px;
             display: flex;
             flex-direction: row;
-            overflow: hidden;
+            align-self: center;
+            overflow-x: auto;
+            overflow-y: hidden;
 
 
-            .profileRecommendContent {
-                padding: 10px;
-                color: white;
+        }
 
-                .profileRecommendImg {}
+        .profileRecommendContent {
+            height: 310px;
+            width: 250px;
+            padding: 10px;
+            margin-left: 15px;
+            margin-right: 15px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
 
-                .profileRecommendText {}
-            }
+
+        .profileRecommendImg {
+            width: 200px;
+            height: 200px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .profileRecommendText {
+            overflow-y: auto;
+            margin-top: 10px;
+            height: 100px;
         }
 
         .profileSearch {
             /* background-color: #6b2a91; */
             display: flex;
             flex-direction: row;
-            /* flex-grow: 1; */
+
+            flex-grow: 1;
             justify-content: space-evenly;
-            border-top: 1px solid gray;
+            border: 1px solid gray;
+            margin: 20px;
+            border-radius: 10px;
+
+
 
             .profileSearchLeft {
                 padding-top: 2vh;
                 height: 100%;
                 width: 45%;
+                padding-right: 20px;
+
                 /* background-color: #9c0f95; */
 
 
+            }
+
+            .profileSearchLine1 {
+                background: linear-gradient(to top, #5357CE, #C650C0, #F8BB7B);
+                width: 10px;
+                height: 90%;
+                align-self: center;
+
+                .profileSearchLine2 {
+                    width: 100%;
+                    height: 100%;
+                    align-self: center;
+                    background: linear-gradient(to bottom, #5357CE, #C650C0, #F8BB7B);
+                    opacity: 1;
+                }
             }
 
             .profileSearchRight {
                 padding-top: 2vh;
                 height: 100%;
                 width: 45%;
+                padding-left: 20px;
                 /* background-color: #a1054b; */
             }
 
+
+        }
+
+        .profileSearchFoot {
+            height: 100px;
         }
 
         .profileSearchDatas {
@@ -143,6 +194,7 @@
             border-radius: 5px;
             background-color: #23242A;
             justify-content: space-evenly;
+            padding-left: 5px;
         }
 
         .noGrid {
@@ -160,6 +212,14 @@
             overflow-x: auto;
             overflow-y: hidden;
             white-space: nowrap;
+        }
+
+        .profileSearchDataImg {
+            height: 100%;
+            width: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
         }
 
         .profileSearchFooter {
@@ -188,13 +248,12 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(to right, #5357CE, #d43770, #F8BB7B);
-            transition: all 5s ease-in-out;
             z-index: 2;
             opacity: 1;
         }
 
         .div_searchBarOutline {
-            width: 50%;
+            width: 70%;
             height: 60px;
             align-content: center;
             margin-top: 30px;
@@ -252,41 +311,107 @@
             font-size: 22px;
             bottom: 20px;
         }
+
+        .searchBarBtn {
+            width: 30px;
+            height: 100%;
+            z-index: 10;
+            background: none;
+            border-style: none;
+            align-self: center;
+        }
+
+        /* index.html 헤더 스타일 s */
+
+
+        a:hover {
+            transform: scale(1.2) translateX(10px);
+            transition-duration: 0.5s;
+        }
+
+        .navbar {
+            height: 60px;
+            padding: 0 5px 0 3px;
+        }
+
+        .logoimage {
+            width: 70px;
+            margin-left: 0.7rem;
+        }
+
+        .emergencyBtn {
+            /* 테두리 지우기 */
+            border-style: none;
+            /* 모서리 둥글게 깍기 */
+            border-radius: 5px;
+            /* 글자 색상 */
+            color: white;
+            /* 버튼 배경색 그라데이션 지정 */
+            background: linear-gradient(20deg, #5357ce, #c650c0, #f8bb7b);
+        }
+
+        .container-fluid {
+            height: 60px;
+            padding: 0 20px 0 20px;
+        }
+
+        /* index.html 헤더 스타일 e */
     </style>
 </head>
 
 <body>
     <div class="full_size">
         <div class="searchPage">
-            <div class="spHeader">
+            <!-- 헤더 -->
+            <nav class="navbar" style="background-color: #1b1c22">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="src\logo\logo10.png" class="logoimage" alt="" height="33" />
+                    </a>
+
+                    <span id="username" style="color: white"></span>
+                    <form class="d-flex">
+                        <button type="button" class="emergencyBtn" id="loginbtn">
+                            Login
+                        </button>
+                        <button type="button" class="emergencyBtn" id="logoutbtn" onclick="logout()">
+                            Logout
+                        </button>
+                    </form>
+                </div>
+            </nav>
+            <!-- <div class="spHeader">
                 <div class="div_homeIcon">
                 </div>
                 <div class="div_logo">
                 </div>
                 <div class="div_profileIcon">
                 </div>
-            </div>
+            </div> -->
             <div class="profileRecommendTop"></div>
             <div class="profileRecommendTitle">
-                추천 프로필
             </div>
             <div class="profileRecommend">
             </div>
             <div class="profileSearch">
-                <div class="profileSearchLeft">
+                <div class="profileSearchLeft"></div>
+                <div class="profileSearchLine1">
+                    <div class="profileSearchLine2"></div>
                 </div>
-                <div class="profileSearchRight">
-                </div>
+                <div class="profileSearchRight"></div>
             </div>
+            <div class="profileSearchFoot"></div>
             <div class="profileSearchFooter">
                 <div class="profileSearchFooterGradient2"></div>
                 <div class="profileSearchFooterGradient"></div>
                 <div class="div_searchBarOutline">
                     <div class="div_searchBar">
-                        <form class="centerItem searchForm" action="searchPage.html" method="get">
+                        <form class="centerItem searchForm" action="searchPage.html" method="get"
+                            accept-charset="utf-8">
+                            <input type="" value="" class="searchBarBtn" />
                             <input class="searchBarText" value="사용자 찾기" readonly />
                             <input type="text" name="searchStr" class="searchBar" />
-                            <input type="submit" method="get" value=""/>
+                            <input type="submit" method="get" value="▷" class="searchBarBtn" />
                         </form>
                     </div>
                 </div>
@@ -298,6 +423,7 @@
     <!-- ------------------------스크립트----------------------------- -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script type="module" defer>
+        //<<<<<<<<<< DB 정보 >>>>>>>>>>
         //firebaseDB 세팅
         // Firebase SDK 라이브러리 가져오기
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -315,89 +441,117 @@
         // Firebase 인스턴스 초기화
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-
-        let qq = 0;
-        let docs = await getDocs(collection(db, `emergency${qq}`));
-        const docsCnt = await getCountFromServer(collection(db, "emergency"));
+        //<<<<<<<<<< DB 정보 >>>>>>>>>>
+        //<<<<<<<<<< DB 컬랙션명 : emergency119 >>>>>>>>>>
+        let docs = await getDocs(collection(db, `emergency119`));
+        let docsCnt = 0;
+        let docsCnt2 = 0;
+        //<<<<<<<<<< DB 컬랙션명 : emergency119 >>>>>>>>>>
 
         $('.profileSearchLeft').append(`
                 <div class="profileSearchDatas noGrid">
-                    <div class="profileSearchData" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt.data().count}건</div>
+                    <div class="profileSearchData profileSearchDataCnt" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt}건</div>
+                </div>`);
+        $('.profileSearchRight').append(`
+                <div class="profileSearchDatas noGrid">
+                    <div class="profileSearchData profileSearchDataCnt2" style="font-size:17px;font-weight:550;">검색결과 : ${docsCnt2}건</div>
                 </div>`);
 
+
+        // DB 데이터 출력
+        let searchStr = getParams("searchStr").searchStr;
         let docsIndex = 0;
         docs.forEach((doc) => {
             // Firebase DB, Table 호출
             let row = doc.data();
-            let userid = row['userid'];
-            let password = row['password'];
+            let userid = row['id'];
+            let password = row['pw'];
             let name = row['name'];
             let mbti = row['mbti'];
             let introduce = row['introduce'];
-            let image = row['image'];
-            console.log(userid + password + name + mbti + introduce + image);
-            $('.profileSearchRight').append(`
-                <div class="profileSearchDatas">
-                    <img class="profileSearchData" src="${image}">
-                    <div class="profileSearchData">${userid}</div>
-                    <div class="profileSearchData">${name}</div>
-                    <div class="profileSearchData">${mbti}</div>
-                    <div class="profileSearchData">${introduce}</div>
-                </div>`);
-            $('.profileSearchLeft').append(`
-                <div class="profileSearchDatas">
-                    <img class="profileSearchData" src="${image}">
+            let image = row['img'];
+            if(image == undefined){
+                console.log(mbti);
+                const mbtiL = mbti.toLowerCase();
+                image = `src/mbti/${mbtiL}.png`;
+            }
+            const goIntroducePage = `sessionStorage.setItem('introduceIndex', JSON.stringify({'introduceIndex' : '${userid}'}));
+                location.href = 'introducePage.html';`;
+
+            // console.log(userid + password + name + mbti + introduce + image);
+            // 이름 검색
+            // console.log(userid.indexOf(searchStr));
+            if (userid.indexOf(searchStr) != -1) {
+
+                $('.profileSearchLeft').append(`
+                <div class="profileSearchDatas" onclick="${goIntroducePage}">
+                    <div class="profileSearchDataImg" style="background-image:url('${image}')"></div>
                     <div class="profileSearchData">${userid} 님</div>
                     <div class="profileSearchData">${name}</div>
                     <div class="profileSearchData">${mbti}</div>
                     <div class="profileSearchData">${introduce}</div>
                 </div>`);
 
-        });
-
-        for (let i = 1; i <= 7; i++) {
+                docsCnt++;
+                $('.profileSearchDataCnt').text(`검색결과 : ${docsCnt}건`);
+            }
+            // 전체 검색
+            if (userid.includes(searchStr) || name.includes(searchStr) || mbti.includes(searchStr) || introduce.includes(searchStr)) {
+                $('.profileSearchRight').append(`
+                <div class="profileSearchDatas" onclick="${goIntroducePage}">
+                    <div class="profileSearchDataImg" style="background-image:url('${image}')"></div>
+                    <div class="profileSearchData">${userid} 님</div>
+                    <div class="profileSearchData">${name}</div>
+                    <div class="profileSearchData">${mbti}</div>
+                    <div class="profileSearchData">${introduce}</div>
+                </div>`);
+                docsCnt2++;
+                $('.profileSearchDataCnt2').text(`검색결과 : ${docsCnt2}건`);
+            }
+            // 추천 프로필
+            let randomColor = "#" + (parseInt(Math.random() * 0xffffff)).toString(16);
             $('.profileRecommend').append(`
-                <div class="profileRecommendContent">
-                    <div class="profileRecommendImg">
-                        <img src="src/profile/test${i}.png">
-                    </div>
+                <div class="profileRecommendContent" style="border-color: ${randomColor};" onclick="${goIntroducePage}">
+                    <div class="profileRecommendImg" style="background-image:url('${image}')"></div>
                     <div class="profileRecommendText">
-                        조장's ENFP</br>
+                        ${mbti} ${userid}</br>
                         <div style="color:gray;">
-                            잘 부탁 드립니다
+                            ${introduce}
                         </div>
                     </div>
                 </div>`);
-        }
+        });
+
 
         //get방식으로 데이터 수령
         function getParams() {
-            var url = window.location.search.replace('?', '');
+            //한글 깨짐 URI 수정
+            var url = decodeURI(window.location.search.replace('?', ''));
             var urlArray = url.split('&');
             var params = {};
-
             for (var i in urlArray) {
                 var param = urlArray[i].split('=');
                 params[param[0]] = param[1];
             }
+            if (params['searchStr'] == undefined) {
+                params['searchStr'] = "";
+            }
             return params;
         }
-        const searchStr = getParams("searchStr");
-
         //get 데이터 가공 후 DB에 정보 요청
-
+        // let doc = sessionStorage.getItem("userid");
 
 
         //search text on, off
         $(function () {
             $('.searchBar').on('input', function (f) {
                 if ($('.searchBar').val() != '') {
-                    addEventListener('keydown', function (e) {
-                        if ((e.code == 'Enter') || (e.code == 'NumpadEnter') && $('.searchBar').val() != '') {
-                            sendData();
-                        }
-                    })
-
+                    // 엔터키 입력시 form submit
+                    // addEventListener('keydown', function (e) {
+                    //     if ((e.code == 'Enter') || (e.code == 'NumpadEnter')) {
+                    //          document.getElementsByClassName('searchForm').submit();
+                    //     }
+                    // })
                     $('.searchBarText').css("font-size", "15px");
                     $('.searchBarText').css("bottom", "50px");
                     $('.searchBarText').css("paddign-right", "300px");
@@ -412,8 +566,14 @@
             })
 
         })
+        //
         document.addEventListener("DOMContentLoaded", ready());
         function ready() {
+            // 홈 아이콘
+            $('.div_homeIcon').click(function () {
+                location.href = 'index.html';
+            })
+            // 검색창 애니메이션
             $('.searchBar').hover(function () {
                 $('.searchBarText').css("font-size", "15px");
                 $('.searchBarText').css("bottom", "50px");
@@ -422,105 +582,121 @@
                 $('.searchBarText').css("bottom", "20px");
 
             })
+
+            $("#loginbtn").click(async function () {
+                location.href = "login.html";
+            });
+
+            // index.html에서 페이지가 로드될 때 실행되는 코드
+
+            const loggedInUser = JSON.parse(sessionStorage.getItem("loggedInUser"));
+            const loginButton = document.getElementById("loginbtn");
+            const logoutButton = document.getElementById("logoutbtn");
+            const userNameLabel = document.getElementById("username");
+            /*
+          const HyunjiProfile=document.getElementById('hyunji_profile');
+          const WonhaProfile=document.getElementById('wonha_profile');
+          const HyunProfile=document.getElementById('hyun_profile');
+          const HyeonhoProfile=document.getElementById('hyeonho_profile');
+          const jaeseokProfile=document.getElementById('jaeseok_profile');*/
+
+            if (loggedInUser) {
+                // 사용자가 로그인되어 있는 경우
+                loginButton.style.display = "none"; // 로그인 버튼 숨기기
+                userNameLabel.innerText = `${loggedInUser.name}'s 팀원을 찾는 여정!`; // 사용자 이름 표시
+                logoutButton.style.display = "inline-block"; // 로그아웃 버튼 보이기
+
+                $("#hyunji_profile").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#hyeonho_profile").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#wonha_profile").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#hyun_profile").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#jaeseok_profile").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#gotocontentsBtn").click(async function () {
+                    location.href = "contents.html";
+                });
+                $("#letsgo_search1").click(async function () {
+                    location.href = "searchPage.html";
+                });
+                $("#letsgo_search2").click(async function () {
+                    location.href = "searchPage.html";
+                });
+                $("#letsgo_contents").click(async function () {
+                    location.href = "contents.html";
+                });
+
+                // console.log("로그인된 사용자 정보 :", loggedInUser);
+            } else {
+                // 사용자가 로그인되어 있지 않은 경우
+                loginButton.style.display = "inline-block"; // 로그인 버튼 보이기
+                userNameLabel.innerText = ""; // 사용자 이름 숨기기
+                logoutButton.style.display = "none"; // 로그아웃 버튼 숨기기
+                $("#hyunji_profile").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#hyeonho_profile").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#wonha_profile").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#hyun_profile").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#jaeseok_profile").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#gotocontentsBtn").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#letsgo_search1").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#letsgo_search2").click(async function () {
+                    location.href = "login.html";
+                });
+                $("#letsgo_contents").click(async function () {
+                    location.href = "login.html";
+                });
+            }
+
+
+            // 로그아웃 버튼 클릭 시 세션 초기화 및 리다이렉트
+            $("#logoutbtn").click(async function () {
+                sessionStorage.removeItem("loggedInUser");
+                //window.location.href = 'login.html';
+                window.location.reload();
+            });
+
+
+
+            // ~~ready()
         };
-
-
-        // color:aqua;
-        //     transition: all 1s ease-in-out;
-        //     font-size: 0.65em;
-        //     transform: translateX(10px) translateY(-7px);
-        //     background-color: aqua;
+        // 일정 주기로 그라데이션 변경
+        $('.profileSearchFooterGradient2').css("transition", "all 3s ease-in-out");
+        $('.profileSearchLine2').css("transition", "all 2s ease-in-out");
         let profileSearchFooterGradient2 = 0;
         setInterval(function () {
             if (profileSearchFooterGradient2 == 0) {
                 $('.profileSearchFooterGradient2').css("opacity", "0");
                 profileSearchFooterGradient2 = 1;
+                $('.profileSearchLine2').css("opacity", "0");
             } else {
                 $('.profileSearchFooterGradient2').css("opacity", "1");
                 profileSearchFooterGradient2 = 0;
+                $('.profileSearchLine2').css("opacity", "1");
             }
-        }, 5000);
+        }, 3000);
 
-
-        // <div class="stage">
-        //                 <div class="container">
-        //                     <div class="ring">
-        //                         <div class="img"></div>
-        //                         <div class="img"></div>
-        //                         <div class="img"></div>
-        //                         <div class="img"></div>
-        //                         <div class="img"></div>
-        //                         <div class="img"></div>
-        //                         <div class="img"></div>
-        //                         <div class="img"></div>
-        //                         <div class="img"></div>
-        //                         <div class="img"></div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        // //이미지 회전
-        // let xPos = 0;
-
-        // gsap.timeline()
-        //     .set('.ring', { rotationY: 180, cursor: 'grab' }) //set initial rotationY so the parallax jump happens off screen
-        //     .set('.img', { // apply transform rotations to each image
-        //         rotateY: (i) => i * -36,
-        //         transformOrigin: '70% 50% 500px',
-        //         z: -500,
-        //         backgroundImage: (i) => 'url(https://picsum.photos/id/' + (i + 32) + '/600/400/)',
-        //         backgroundPosition: (i) => getBgPos(i),
-        //         backfaceVisibility: 'hidden'
-        //     })
-        //     .from('.img', {
-        //         duration: 1.5,
-        //         y: 200,
-        //         opacity: 0,
-        //         stagger: 0.1,
-        //         ease: 'expo'
-        //     })
-        //     .add(() => {
-        //         $('.img').on('mouseenter', (e) => {
-        //             let current = e.currentTarget;
-        //             gsap.to('.img', { opacity: (i, t) => (t == current) ? 1 : 0.5, ease: 'power3' })
-        //         })
-        //         $('.img').on('mouseleave', (e) => {
-        //             gsap.to('.img', { opacity: 1, ease: 'power2.inOut' })
-        //         })
-        //     }, '-=0.5')
-
-        // $(window).on('mousedown touchstart', dragStart);
-        // $(window).on('mouseup touchend', dragEnd);
-
-
-        // function dragStart(e) {
-        //     if (e.touches) e.clientX = e.touches[0].clientX;
-        //     xPos = Math.round(e.clientX);
-        //     gsap.set('.ring', { cursor: 'grabbing' })
-        //     $(window).on('mousemove touchmove', drag);
-        // }
-
-
-        // function drag(e) {
-        //     if (e.touches) e.clientX = e.touches[0].clientX;
-
-        //     gsap.to('.ring', {
-        //         rotationY: '-=' + ((Math.round(e.clientX) - xPos) % 360),
-        //         onUpdate: () => { gsap.set('.img', { backgroundPosition: (i) => getBgPos(i) }) }
-        //     });
-
-        //     xPos = Math.round(e.clientX);
-        // }
-
-
-        // function dragEnd(e) {
-        //     $(window).off('mousemove touchmove', drag);
-        //     gsap.set('.ring', { cursor: 'grab' });
-        // }
-
-
-        // function getBgPos(i) { //returns the background-position string to create parallax movement in each image
-        //     return (100 - gsap.utils.wrap(0, 360, gsap.getProperty('.ring', 'rotationY') - 180 - i * 36) / 360 * 500) + 'px 0px';
-        // }
 
     </script>
 </body>
