@@ -295,7 +295,7 @@
         await setDoc(doc(db, "emergency119", docId), doc1);
 
         alert('개인정보 수정 완료!')
-        location.href = 'login.html';
+        history.back(-1);
     })
 
     $("#homebtn").click(async function () {
