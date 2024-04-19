@@ -128,6 +128,11 @@
         font-size: 20px;
     }
 
+    .password-check {
+        color: red;
+        font-size: 20px;
+    }
+
     .homebtn {
         width: 300px;
         height: 150px;
@@ -173,6 +178,22 @@
         }
 
         $('.existing-id').text('');
+    });
+
+    $('#pwc').on('input', function () {
+        let pw = $('#pw').val();
+        let pwc = $(this).val();
+
+        if (pw !== '' && pwc !== '') {
+            if (pw !== pwc) {
+                $('.password-check').text('비밀번호가 일치하지 않습니다.');
+                
+            } else {
+                $('.password-check').text('');
+            }
+        } else {
+            $('.password-check').text('');
+        }
     });
 
     $("#signbtn").click(async function () {
@@ -254,14 +275,6 @@
             return false;
         }
 
-        if (pw !== '' && pwc !== '') {
-            if (pw !== pwc) {
-                return alert('pw를 확인하세요');
-            } else {
-
-            }
-        }
-
         if (mbti !== 'ISFJ' && mbti !== 'ISFP' && mbti !== 'ISTJ' && mbti !== 'ISTP'
             && mbti !== 'INFJ' && mbti !== 'INFP' && mbti !== 'INTJ' && mbti !== 'INTP'
             && mbti !== 'ESFJ' && mbti !== 'ESFP' && mbti !== 'ESTJ' && mbti !== 'ESTP'
@@ -296,7 +309,8 @@
                     <input type="id" id="id" name="id" placeholder="아이디 입력">
                     <p class="existing-id"></p>
                     <input type="text" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
-                    <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br><br>
+                    <input type="text" id="pwc" name="pwc" placeholder="비밀번호 확인"><br>
+                    <p class="password-check"></p>
                     <button type="button" class="signbtn" id="signbtn">Sign up</button>
                 </h1><br>
                 <h1 class="info">필수입력사항<br><br>
