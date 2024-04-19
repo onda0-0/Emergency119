@@ -335,6 +335,7 @@
             let image;
             let name = row['name'];
             let mbti = row['mbti'];
+            mbti = mbti.toUpperCase();
 
             let userid = row['id'];
 
@@ -372,34 +373,31 @@
                 image = "src/mbti/entj.png";
             }
 
-            if (name != null && name != ''
-                && mbti != null && mbti != '' && mbti.length === 4) {
-                let temp_html = `
-                    <div class="col">
-                        <div class="member">
-
-                            <div class="member_img">
-                                <img src="${image}" alt="...">
-                            </div>
-
-                            <div class="member_name">
-                                <p>${name}</p>
-                            </div>
-
-                            <div class="member_mbti">
-                                <p>${mbti.toUpperCase()}</p>
-                            </div>
-
-                            <button class="detail" data-userid="${userid}">
-                                자세히
-                            </button>
+            let temp_html = `
+                <div class="col">
+                    <div class="member">
+                        
+                        <div class="member_img">
+                            <img src="${image}" alt="...">
                         </div>
 
-                        <div class="phone"><img src="src/frame/mobile.png" alt=""></div>
+                        <div class="member_name">
+                            <p>${name}</p>
+                        </div>
 
-                    </div>`;
-                $('#card').append(temp_html);
-            }
+                        <div class="member_mbti">
+                            <p>${mbti}</p>
+                        </div>
+
+                        <button class="detail" data-userid="${userid}">
+                            자세히
+                        </button>
+                    </div>
+
+                    <div class="phone"><img src="src/frame/mobile.png" alt=""></div>
+
+                </div>`;
+            $('#card').append(temp_html);
         });
 
         $(document).on('click', '.detail', function () {
