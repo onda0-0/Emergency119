@@ -38,7 +38,7 @@
         margin-top: 150px;
     }
 
-    .ID{
+    .ID {
         position: relative;
         top: -100px;
         font-size: 40px;
@@ -91,11 +91,13 @@
         border-radius: 10px;
     }
 
-    #pw{
+    #pw {
         margin-top: 30px;
     }
 
-    #id,#pw,#pwc{
+    #id,
+    #pw,
+    #pwc {
         width: 400px;
         height: 50px;
     }
@@ -121,16 +123,16 @@
         background-color: rgb(24, 24, 24);
     }
 
-    .existing-id{
-        color:red;
+    .existing-id {
+        color: red;
         font-size: 20px;
     }
-    
-    .homebtn{
-        width:300px;
-        height:150px;
+
+    .homebtn {
+        width: 300px;
+        height: 150px;
         background: url('src/logo/logo10.png') no-repeat;
-        background-size : contain;
+        background-size: contain;
         border: none;
         margin-top: -90px;
     }
@@ -145,33 +147,33 @@
 
     // Firebase 구성 정보 설정
     const firebaseConfig = {
-            apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
-            authDomain: "watual-f9224.firebaseapp.com",
-            projectId: "watual-f9224",
-            storageBucket: "watual-f9224.appspot.com",
-            messagingSenderId: "307021915043",
-            appId: "1:307021915043:web:ec35f5002d695d81a1f016",
-            measurementId: "G-248XS4LSEE"
-        };
+        apiKey: "AIzaSyDUo3wGBYmzDE0daVh0twAmzZ2r8TzyrGE",
+        authDomain: "watual-f9224.firebaseapp.com",
+        projectId: "watual-f9224",
+        storageBucket: "watual-f9224.appspot.com",
+        messagingSenderId: "307021915043",
+        appId: "1:307021915043:web:ec35f5002d695d81a1f016",
+        measurementId: "G-248XS4LSEE"
+    };
 
 
     // Firebase 인스턴스 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    $('#id').on('input', async function (){
-            let id = $(this).val();
+    $('#id').on('input', async function () {
+        let id = $(this).val();
 
-            const idcheck = await getDocs(collection(db, 'emergency119'));
-            for (const doc of idcheck.docs){
-                if (doc.data().id === id){
-                    $('.existing-id').text('이미 존재하는 아이디입니다.');
-                    return;
-                }
+        const idcheck = await getDocs(collection(db, 'emergency119'));
+        for (const doc of idcheck.docs) {
+            if (doc.data().id === id) {
+                $('.existing-id').text('이미 존재하는 아이디입니다.');
+                return;
             }
+        }
 
-            $('.existing-id').text('');
-        });
+        $('.existing-id').text('');
+    });
 
     $("#signbtn").click(async function () {
 
@@ -260,10 +262,10 @@
             }
         }
 
-        if (mbti !== 'ISFJ'&& mbti !== 'ISFP' && mbti !== 'ISTJ' && mbti !== 'ISTP' 
-        && mbti !== 'INFJ' && mbti !== 'INFP' && mbti !== 'INTJ' && mbti !== 'INTP' 
-        && mbti !== 'ESFJ'&& mbti !== 'ESFP' && mbti !== 'ESTJ' && mbti !== 'ESTP' 
-        && mbti !== 'ENFJ' && mbti !== 'ENFP' && mbti !== 'ENTJ' && mbti !== 'ENTP' ){
+        if (mbti !== 'ISFJ' && mbti !== 'ISFP' && mbti !== 'ISTJ' && mbti !== 'ISTP'
+            && mbti !== 'INFJ' && mbti !== 'INFP' && mbti !== 'INTJ' && mbti !== 'INTP'
+            && mbti !== 'ESFJ' && mbti !== 'ESFP' && mbti !== 'ESTJ' && mbti !== 'ESTP'
+            && mbti !== 'ENFJ' && mbti !== 'ENFP' && mbti !== 'ENTJ' && mbti !== 'ENTP') {
             alert('정확한 MBTI를 입력하세요.')
             return false;
         }
@@ -287,7 +289,7 @@
 <body>
     <div class="main">
         <div class="Sign">
-            <div class="Sign-up">        
+            <div class="Sign-up">
                 <h1 class="ID"><br>
                     <button type="button" class="homebtn" id="homebtn"></button><br>
                     Sign up<br><br>
@@ -313,7 +315,7 @@
                     <input type="text" id="email" name="email" placeholder="이메일" size="23"><br><br>
                     <input type="text" id="git" name="git" placeholder="Git 이메일" size="23"><br><br>
                     <input type="text" id="insta" name="insta" placeholder="인스타 주소" size="23"><br><br>
-                    <input type="text" id="image" name="image" placeholder="이미지" size="23"><br><br>
+                    <input type="text" id="image" name="image" placeholder="프로필 이미지" size="23"><br><br>
                 </h1>
 
             </div>
