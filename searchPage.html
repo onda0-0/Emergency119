@@ -503,8 +503,9 @@
             let mbti = row['mbti'];
             let introduce = row['introduce'];
             let image = row['image'];
-            if (image == undefined) {
-                console.log(image);
+            // console.log(image);
+            if (image == undefined || image == "") {
+                // console.log(image);
                 const mbtiL = mbti.toLowerCase();
                 image = `src/mbti/${mbtiL}.png`;
             }
