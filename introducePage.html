@@ -64,7 +64,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            padding: 20%;
+            padding: 2% 20% 10% 20%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -104,8 +104,8 @@
             color: white;
             background-color: transparent;
             border: none;
-            /border-color: white;
-            border-radius: 5px;/
+            /* border-color: white;
+            border-radius: 5px;/ */
         }
 
         .mypagebtn::after {
@@ -207,6 +207,14 @@
             let mbti = row['mbti'];
             let strength = row['strength'];
             let workstyle = row['workstyle'];
+            let introduce = row['introduce'];
+            let Image0 = row['image'];
+            console.log(Image0);
+            
+            if (Image0 == undefined || Image0 == "") {
+                const mbtiL = mbti.toLowerCase();
+                Image0 = `src/mbti/${mbtiL}.png`;
+            }
 
             let userid = row['id'];
 
@@ -214,13 +222,16 @@
                 <div class="carousel-item ${userid === getUserId ? ' active' : ''}">
                     <img src="src/frame/mobile.png" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-block">
+                        <div style="border-radius:7px; margin-top:30px;position: absolute; width:70px; height:70px; background-image:url('${Image0}'); background-size:contain; background-repeat:no-repeat;background-position:center;"></div>
                         <div>
-                            <p style="font-size: 20px; padding-top: 25px;">이름 : ${name}</p>
-                            <p style="font-size: 20px; padding-bottom: 5px;">MBTI : ${mbti}</p>
+                            <p style="font-size: 20px; margin-left:70px; padding-top: 25px; overflow-x:auto;">이름 : ${name}</p>
+                            <p style="font-size: 20px; margin-left:70px; padding-bottom: 5px; overflow-x:auto;">MBTI : ${mbti}</p>
+                            <p style="border:1px solid white; height: 30px;">자기소개</p>
+                            <p style="background-color: white; padding: 5px; color: black; height: 100px; text-align: left; word-wrap: break-word; overflow-y: auto;">${introduce}</p>
                             <p style="border:1px solid white; height: 30px;">장점</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">${strength}</p>
+                            <p style="background-color: white; padding: 5px; color: black; height: 100px; text-align: left; word-wrap: break-word; overflow-y: auto;">${strength}</p>
                             <p style="border:1px solid white; height: 30px;">협업 스타일</p>
-                            <p style="background-color: white; padding: 5px; color: black; height: 120px; text-align: left; word-wrap: break-word;">${workstyle}</p>
+                            <p style="background-color: white; padding: 5px; color: black; height: 100px; text-align: left; word-wrap: break-word; overflow-y: auto;">${workstyle}</p>
                         </div>
                     </div>
                 </div>
