@@ -25,7 +25,7 @@
         font-size: 200px;
         color: white;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         min-height: 100dvh;
     }
@@ -35,19 +35,23 @@
         display: flex;
         float: left;
         margin-left: 100px;
+        margin-top: 150px;
     }
 
     .ID{
         position: relative;
         top: -100px;
+        font-size: 40px;
     }
 
     .info {
+        flex: 1;
         margin-left: 100px;
         font-size: 30px;
     }
 
     .select {
+        flex: 1;
         margin-left: 100px;
         font-size: 30px;
     }
@@ -91,6 +95,11 @@
         margin-top: 30px;
     }
 
+    #id,#pw,#pwc{
+        width: 400px;
+        height: 50px;
+    }
+
     #workstyle,
     #introduce {
         border-radius: 10px;
@@ -119,10 +128,11 @@
     
     .homebtn{
         width:300px;
-        height:100px;
+        height:150px;
         background: url('src/logo/logo10.png') no-repeat;
         background-size : contain;
         border: none;
+        margin-top: -90px;
     }
 </style>
 
@@ -221,11 +231,6 @@
             return false;
         }
 
-        if (image === '') {
-            alert('이미지를 넣어주세요.');
-            return false;
-        }
-
         if (mbti === '') {
             alert('mbti를 입력하세요.');
             return false;
@@ -285,7 +290,6 @@
                 </h1><br>
                 <h1 class="info">필수입력사항<br><br>
                     <input type="text" id="name" name="name" placeholder="이름" size="23"><br><br>
-                    <input type="text" id="image" name="image" placeholder="이미지" size="23"><br><br>
                     <input type="text" id="mbti" name="mbti" placeholder="mbti" size="23"><br><br>
                     <input type="text" id="strength" name="strength" placeholder="장점" size="23"><br><br>
                     <textarea id="workstyle" cols="26" name="workstyle" placeholder="협업스타일"
@@ -300,6 +304,7 @@
                     <input type="text" id="email" name="email" placeholder="이메일" size="23"><br><br>
                     <input type="text" id="git" name="git" placeholder="Git 이메일" size="23"><br><br>
                     <input type="text" id="insta" name="insta" placeholder="인스타 주소" size="23"><br><br>
+                    <input type="text" id="image" name="image" placeholder="이미지" size="23"><br><br>
                 </h1>
 
             </div>
