@@ -191,6 +191,7 @@
         let introduce = $('#introduce').val();
         let insta = $('#insta').val();
 
+        mbti = mbti.toUpperCase();
 
         let doc = {
             'id': id,
@@ -257,6 +258,14 @@
             } else {
 
             }
+        }
+
+        if (mbti !== 'ISFJ'&& mbti !== 'ISFP' && mbti !== 'ISTJ' && mbti !== 'ISTP' 
+        && mbti !== 'INFJ' && mbti !== 'INFP' && mbti !== 'INTJ' && mbti !== 'INTP' 
+        && mbti !== 'ESFJ'&& mbti !== 'ESFP' && mbti !== 'ESTJ' && mbti !== 'ESTP' 
+        && mbti !== 'ENFJ' && mbti !== 'ENFP' && mbti !== 'ENTJ' && mbti !== 'ENTP' ){
+            alert('정확한 MBTI를 입력하세요.')
+            return false;
         }
 
         await addDoc(collection(db, "emergency119"), doc);
